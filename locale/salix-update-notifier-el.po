@@ -1,0 +1,46 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: salix-update-notifier\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2009-11-17 00:11+0200\n"
+"PO-Revision-Date: \n"
+"Last-Translator: George Vlahavas <vlahavas~at~gmail~dot~com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: 2\n"
+"X-Poedit-Language: Greek\n"
+"X-Poedit-Country: GREECE\n"
+"X-Poedit-SourceCharset: utf-8\n"
+
+#: src/salix-update-notifier:24
+#, sh-format
+msgid "ERROR: gksu, ktsuss or kdesu are required for salix-update-notifier to work."
+msgstr "ΣΦΑΛΜΑ: Ένα από τα gksu, ktsuss ή kdesu θα πρέπει να είναι εγκατεστημένα για να λειτουργήσει το salix-update-notifier."
+
+#: src/salix-update-notifier:36
+#, sh-format
+msgid "Package updates are available."
+msgstr "Υπάρχουν διαθέσιμες ενημερώσεις πακέτων."
+
+#: src/salix-update-notifier:39
+#, sh-format
+msgid "Install package updates?"
+msgstr "Να γίνει αναβάθμιση πακέτων;"
+
+#: src/salix-update-notifier:40
+#, sh-format
+msgid ""
+"Package updates are available for your system.\\n"
+"\\n"
+"Selecting OK will perform the updates using gslapt. Root user privileges will be required in order to do that.\\n"
+"\\n"
+"Proceed with updating?"
+msgstr ""
+"Υπάρχουν διαθέσιμες ενημερώσεις πακέτων για το σύστημά σας\\n"
+"\\n"
+"Αν επιλέξετε Εντάξει θα πραγματοποιηθούν οι αναβαθμίσεις χρησιμοποιώντας το gslapt. Θα χρειαστείτε δικαιώματα χρήστη root για να γίνει αυτό.\\n"
+"\\n"
+"Επιθυμείτε να συνεχίσετε με την αναβάθμιση των πακέτων;"
+
