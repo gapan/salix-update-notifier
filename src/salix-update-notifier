@@ -33,7 +33,7 @@ while true; do
 	if [[ `LANG=C /usr/sbin/slapt-get -s --upgrade | grep "Need to get"` ]]
 	then
 		zenity --notification \
-		--text="`eval_gettext 'Package updates are available. Click here to take action.'`" \
+		--text="`eval_gettext 'Package updates are available.'`" \
 		--window-icon=/usr/share/icons/hicolor/48x48/apps/gslapt.png \
 		&& zenity --question \
 		--title "`eval_gettext 'Install package updates?'`" \
