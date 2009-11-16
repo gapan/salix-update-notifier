@@ -1,0 +1,43 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2009-11-17 00:11+0200\n"
+"PO-Revision-Date: \n"
+"Last-Translator: Thorsten Mühlfelder <thenktor@gmx.de>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: German\n"
+
+#: src/salix-update-notifier:24
+#, sh-format
+msgid "ERROR: gksu, ktsuss or kdesu are required for salix-update-notifier to work."
+msgstr "FEHLER: gksu, ktsuss oder kdesu werden für salix-update-notifier benötigt."
+
+#: src/salix-update-notifier:36
+#, sh-format
+msgid "Package updates are available."
+msgstr "Paketupdates sind verfügbar."
+
+#: src/salix-update-notifier:39
+#, sh-format
+msgid "Install package updates?"
+msgstr "Paketupdates installieren?"
+
+#: src/salix-update-notifier:40
+#, sh-format
+msgid ""
+"Package updates are available for your system.\\n"
+"\\n"
+"Selecting OK will perform the updates using gslapt. Root user privileges will be required in order to do that.\\n"
+"\\n"
+"Proceed with updating?"
+msgstr ""
+"Für ihr System sind Paketupdates verfügbar.\\n"
+"\\n"
+"OK wird die Updates mit gslapt durchführen. Dazu werden root Benutzerrechte benötigt.\\n"
+"\\n"
+"Mit dem Update fortfahren?"
+
