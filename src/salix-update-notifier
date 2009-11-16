@@ -26,7 +26,7 @@ else
 fi
 
 # Wait 10 mins before running for the first time
-#sleep 10m
+sleep 10m
 
 # Main loop
 while true; do
