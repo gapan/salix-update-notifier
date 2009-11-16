@@ -45,7 +45,7 @@ while true; do
 	# Check if there is a config file that sets a different interval
 	# than the default and use that
 	if [ -f $HOME/.config/salix-update-notifier ]; then
-		INTERVAL=`grep "interval=" $HOME/.config/salix-update-notifier | \
+		INTERVAL=`grep "^interval=" $HOME/.config/salix-update-notifier | \
 		head -n1 | sed "s/interval=\(.*\)/\1/" `
 	else
 		INTERVAL=$DEFAULT_INTERVAL
