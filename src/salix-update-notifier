@@ -1,0 +1,55 @@
+#!/bin/sh
+
+# The default interval is set to 4 hours
+DEFAULT_INTERVAL="2h"
+
+# Translations only work with utf8 locales
+if [ ! `echo $LANG | grep -i utf` ]; then
+	LANG=C
+fi
+
+# Gettext internationalization
+export TEXTDOMAIN="salix-update-notifier"
+export TEXTDOMAINDIR="/usr/share/locale"
+. gettext.sh
+
+# Determine if gksu or kdesu will be used
+if [[ `which gksu` ]]; then
+	SUCOMMAND="gksu"
+elif [[ `which ktsuss` ]]; then
+	SUCOMMAND="ktsuss"
+elif [[ `which kdesu` ]]; then
+	SUCOMMAND="kdesu"
+else
+	echo "`eval_gettext 'ERROR: gksu, ktsuss or kdesu are required for salix-update-notifier to work.'`" >&2
+	exit 1
+fi
+
+# Wait 10 mins before running for the first time
+sleep 10m
+
+# Main loop
+while true; do
+	if [[ `LANG=C /usr/sbin/slapt-get -s --upgrade | grep "Need to get"` ]]
+	then
+		zenity --notification \
+		--text="`eval_gettext 'Package updates are available. Click here to take action.'`" \
+		--window-icon=/usr/share/icons/hicolor/48x48/apps/gslapt.png \
+		&& zenity --question \
+		--text="`eval_gettext 'Package updates are available for your system. Selecting OK will perform the updates using gslapt, the graphical package manager. Root user priviliges will be required in order to do that. Proceed with updating?'`" \
+		--window-icon=/usr/share/icons/hicolor/48x48/apps/gslapt.png \
+		&& $SUCOMMAND gslapt --upgrade
+	fi
+
+	# Check if there is a config file that sets a different interval
+	# than the default and use that
+	if [ -f $HOME/.config/salix-update-notifier ]; then
+		INTERVAL=`grep "interval=" $HOME/.config/salix-update-notifier | \
+		head -n1 | sed "s/interval=\(.*\)/\1/" `
+	else
+		INTERVAL=$DEFAULT_INTERVAL
+	fi
+	# Wait until checking for updates again
+	sleep $INTERVAL || sleep $DEFAULT_INTERVAL
+done
+

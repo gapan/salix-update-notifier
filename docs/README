@@ -1,0 +1,27 @@
+salix-update-notifier is a daemon that provides system tray
+notifications if package updates are available from on-line package
+repositories. It uses slapt-get and gslapt to determine if there are any
+updates available and actually perform the package updates.
+
+By clicking on the system tray notification, you will get a window
+prompting for action. You can cancel the operation and leave updating
+for a later time or you can press OK to perform the package updates. The
+root user password is of course required for that purpose and you will
+be prompted for that.
+
+salix-update-notifier by default puts a script named slapt-get-update in
+your system's /etc/cron.hourly directory, so the package database can be
+refreshed every hour. If you don't like that, you can move the scripts
+to /etc/cron.daily, so it is run once a day.
+
+The salix-update-notifier daemon will check every hour by default for
+package updates. You can change that interval per user, by creating a
+$HOME/.config/salix-update-notifier settings file with a line setting an
+"interval" variable as follows:
+
+interval=30m
+
+for example if you want it to run every 30 minutes. The number format is
+a number followed by a suffix, which may be 's' for seconds (but you
+really shouldn't use such a small interval), 'm' for minutes, 'h' for
+hours or `d' for days. Any other lines in that file will be ignored.
