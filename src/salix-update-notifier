@@ -26,7 +26,7 @@ else
 fi
 
 # Wait 10 mins before running for the first time
-sleep 10m
+#sleep 10m
 
 # Main loop
 while true; do
@@ -36,7 +36,8 @@ while true; do
 		--text="`eval_gettext 'Package updates are available. Click here to take action.'`" \
 		--window-icon=/usr/share/icons/hicolor/48x48/apps/gslapt.png \
 		&& zenity --question \
-		--text="`eval_gettext 'Package updates are available for your system. Selecting OK will perform the updates using gslapt, the graphical package manager. Root user priviliges will be required in order to do that. Proceed with updating?'`" \
+		--title "`eval_gettext 'Install package updates?'`" \
+		--text="`eval_gettext 'Package updates are available for your system.\n\nSelecting OK will perform the updates using gslapt. Root user privileges will be required in order to do that.\n\nProceed with updating?'`" \
 		--window-icon=/usr/share/icons/hicolor/48x48/apps/gslapt.png \
 		&& $SUCOMMAND gslapt --upgrade
 	fi
