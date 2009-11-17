@@ -1,0 +1,49 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: salix-update-notifier\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2009-11-17 00:11+0200\n"
+"PO-Revision-Date: 2009-11-17 11:28+0100\n"
+"Last-Translator: Frédéric Galusik <fred.galusik~at~gmail~dot~com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: French\n"
+"X-Poedit-Country: FRANCE\n"
+
+#: src/salix-update-notifier:24
+#, sh-format
+msgid "ERROR: gksu, ktsuss or kdesu are required for salix-update-notifier to work."
+msgstr "ERREUR : gksu, ktsuss ou kdesu sont requis pour que salix-update-notifier puisse fonctionner."
+
+#: src/salix-update-notifier:36
+#, sh-format
+msgid "Package updates are available."
+msgstr "Des mises à jours de packages sont disponibles."
+
+#: src/salix-update-notifier:39
+#, sh-format
+msgid "Install package updates?"
+msgstr "Souhaitez vous installer les mises à jour ?"
+
+#: src/salix-update-notifier:40
+#, sh-format
+msgid ""
+"Package updates are available for your system.\\n"
+"\\n"
+"Selecting OK will perform the updates using gslapt. Root user privileges will be required in order to do that.\\n"
+"\\n"
+"Proceed with updating?"
+msgstr ""
+"Des mises à jour de packages sont disponibles pour votre système.\\n"
+"\\n"
+"Si vous sélectionnez OK, les mises à jour seront effectuées par Gslapt. Les droits Root seront nécessaires.\\n"
+"\\n"
+"Souhaitez vous lancer la mise à jour ?"
+
