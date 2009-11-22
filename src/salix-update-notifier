@@ -14,11 +14,11 @@ export TEXTDOMAINDIR="/usr/share/locale"
 . gettext.sh
 
 # Determine if gksu or kdesu will be used
-if [[ `which gksu` ]]; then
+if [[ `which gksu 2> /dev/null` ]]; then
 	SUCOMMAND="gksu"
-elif [[ `which ktsuss` ]]; then
+elif [[ `which ktsuss 2> /dev/null` ]]; then
 	SUCOMMAND="ktsuss"
-elif [[ `which kdesu` ]]; then
+elif [[ `which kdesu 2> /dev/null` ]]; then
 	SUCOMMAND="kdesu"
 else
 	echo "`eval_gettext 'ERROR: gksu, ktsuss or kdesu are required for salix-update-notifier to work.'`" >&2
