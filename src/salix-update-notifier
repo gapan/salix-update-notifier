@@ -25,6 +25,12 @@ else
 	exit 1
 fi
 
+# Check if zenity is present
+if [[ ! `which zenity 2> /dev/null` ]]; then
+	echo "`eval_gettext 'ERROR: zenity must be installed for salix-update-notifier to work.'`" >&2
+	exit 1
+fi
+
 # Wait 10 mins before running for the first time
 sleep 10m
 
