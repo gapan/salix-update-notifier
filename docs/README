@@ -3,6 +3,13 @@ notifications if package updates are available from on-line package
 repositories. It uses slapt-get and gslapt to determine if there are any
 updates available and actually perform the package updates.
 
+salix-update-notifier can be used on any slackware or slackware based
+system that uses slapt-get/gslapt for package managemenet. It
+additionally requires zenity to be installed though, which is not
+included in the standard slackware packages and must be installed
+separately. It also requires one of gksu, ktsuss or kdesu to be present
+in the system.
+
 By clicking on the system tray notification, you will get a window
 prompting for action. You can cancel the operation and leave updating
 for a later time or you can press OK to perform the package updates. The
