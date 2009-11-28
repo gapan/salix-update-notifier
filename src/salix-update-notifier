@@ -40,11 +40,11 @@ while true; do
 	then
 		zenity --notification \
 		--text="`eval_gettext 'Package updates are available.'`" \
-		--window-icon=/usr/share/icons/hicolor/48x48/apps/gslapt.png \
+		--window-icon=/usr/share/pixmaps/salix-update-notifier.png \
 		&& zenity --question \
 		--title "`eval_gettext 'Install package updates?'`" \
 		--text="`eval_gettext 'Package updates are available for your system.\n\nSelecting OK will perform the updates using gslapt. Root user privileges will be required in order to do that.\n\nProceed with updating?'`" \
-		--window-icon=/usr/share/icons/hicolor/48x48/apps/gslapt.png \
+		--window-icon=/usr/share/pixmaps/salix-update-notifier.png \
 		&& $SUCOMMAND "gslapt --upgrade"
 	fi
 

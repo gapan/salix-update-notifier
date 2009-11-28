@@ -1,7 +1,7 @@
 [Desktop Entry]
 Categories=Application;System;PackageManager;
 Exec=salix-update-notifier
-Icon=gslapt
+Icon=salix-update-notifier
 Name=Salix update notifier
 Name[de]=Salix Update-Benachrichtigung
 Comment=Display a tray notification when package updates are available
