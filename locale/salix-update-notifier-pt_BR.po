@@ -1,0 +1,52 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2009-11-22 14:33+0200\n"
+"PO-Revision-Date: 2010-03-12 13:47-0300\n"
+"Last-Translator: Willian Gustavo Veiga <wiltave@gmail.com>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../src/salix-update-notifier:24
+#, sh-format
+msgid "ERROR: gksu, ktsuss or kdesu are required for salix-update-notifier to work."
+msgstr "ERRO: O gksu, ktsuss ou kdesu são necessários para que o salix-update-notifier funcione."
+
+#: ../src/salix-update-notifier:30
+#, sh-format
+msgid "ERROR: zenity must be installed for salix-update-notifier to work."
+msgstr "ERRO: O zenity precisa estar instalado para que o salix-update-notifier funcione."
+
+#: ../src/salix-update-notifier:42
+#, sh-format
+msgid "Package updates are available."
+msgstr "Atualizações dos pacotes estão disponíveis."
+
+#: ../src/salix-update-notifier:45
+#, sh-format
+msgid "Install package updates?"
+msgstr "Instalar as atualizações dos pacotes?"
+
+#: ../src/salix-update-notifier:46
+#, sh-format
+msgid ""
+"Package updates are available for your system.\\n"
+"\\n"
+"Selecting OK will perform the updates using gslapt. Root user privileges will be required in order to do that.\\n"
+"\\n"
+"Proceed with updating?"
+msgstr ""
+"Atualização dos pacotes estão disponíveis para o seu sistema.\\n"
+"\\n"
+"Selecionando OK serão realizadas as atualizações usando o gslapt. Privilégios do usuário root serão necessários para fazer isso.\\n"
+"\\n"
+"Continuar com a atualização?"
+
