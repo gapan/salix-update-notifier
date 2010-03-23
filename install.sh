@@ -10,8 +10,8 @@ install -m 755 src/slapt-get-update $DESTDIR/etc/cron.hourly/
 install -m 644 src/salix-update-notifier.conf $DESTDIR/etc/
 install -m 644 src/salix-update-notifier.png $DESTDIR/usr/share/pixmaps/
 
-for i in `ls locale/*.mo|sed "s|locale/\(.*\).mo|\1|"`; do
+for i in `ls po/*.mo|sed "s|po/\(.*\).mo|\1|"`; do
 	install -d -m 755 $DESTDIR/usr/share/locale/${i}/LC_MESSAGES
-	install -m 644 locale/${i}.mo \
+	install -m 644 po/${i}.mo \
 	$DESTDIR/usr/share/locale/${i}/LC_MESSAGES/salix-update-notifier.mo
 done
