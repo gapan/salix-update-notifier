@@ -2,7 +2,7 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: salix-update-notifier\n"
@@ -19,18 +19,13 @@ msgstr ""
 
 #: src/salix-update-notifier:24
 #, sh-format
-msgid ""
-"ERROR: gksu, ktsuss or kdesu are required for salix-update-notifier to work."
-msgstr ""
-"ERREUR : gksu, ktsuss ou kdesu sont requis pour que salix-update-notifier "
-"puisse fonctionner."
+msgid "ERROR: gksu, ktsuss or kdesu are required for salix-update-notifier to work."
+msgstr "ERREUR : gksu, ktsuss ou kdesu sont requis pour que salix-update-notifier puisse fonctionner."
 
 #: src/salix-update-notifier:30
 #, sh-format
 msgid "ERROR: zenity must be installed for salix-update-notifier to work."
-msgstr ""
-"ERREUR : zenity doit être installé pour que salix-update-notifier puisse "
-"fonctionner."
+msgstr "ERREUR : zenity doit être installé pour que salix-update-notifier puisse fonctionner."
 
 #: src/salix-update-notifier:42
 #, sh-format
@@ -44,20 +39,13 @@ msgstr "Souhaitez vous installer les mises à jour ?"
 
 #: src/salix-update-notifier:46
 #, sh-format
-msgid ""
-"Package updates are available for your system.\\n\\nSelecting OK will "
-"perform the updates using gslapt. Root user privileges will be required in "
-"order to do that.\\n\\nProceed with updating?"
-msgstr ""
-"Des mises à jour de packages sont disponibles pour votre système.\\n\\nSi "
-"vous sélectionnez OK, les mises à jour seront effectuées par Gslapt. Les "
-"droits Root seront nécessaires.\\n\\nSouhaitez vous lancer la mise à jour ?"
+msgid "Package updates are available for your system.\\n\\nSelecting OK will perform the updates using gslapt. Root user privileges will be required in order to do that.\\n\\nProceed with updating?"
+msgstr "Des mises à jour de packages sont disponibles pour votre système.\\n\\nSi vous sélectionnez OK, les mises à jour seront effectuées par Gslapt. Les droits Root seront nécessaires.\\n\\nSouhaitez vous lancer la mise à jour ?"
 
 #: salix-update-notifier.desktop.in.h:1
-#, fuzzy
 msgid "Display a tray notification when package updates are available"
-msgstr "Des mises à jours de packages sont disponibles."
+msgstr "Affiche un notification iconifiée quand des mises à jour de paquets sont disponibles."
 
 #: salix-update-notifier.desktop.in.h:2
 msgid "Salix update notifier"
-msgstr ""
+msgstr "Notifieur de mises à jour pour Salix"
