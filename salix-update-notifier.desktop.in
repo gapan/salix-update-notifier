@@ -2,10 +2,8 @@
 Categories=Application;System;PackageManager;
 Exec=salix-update-notifier
 Icon=salix-update-notifier
-Name=Salix update notifier
-Name[de]=Salix Update-Benachrichtigung
-Comment=Display a tray notification when package updates are available
-Comment[de]=Zeigt eine Benachrichtigung, wenn Paketupdates verfügbar sind
+_Name=Salix update notifier
+_Comment=Display a tray notification when package updates are available
 Terminal=false
 Type=Application
 Version=1.0
