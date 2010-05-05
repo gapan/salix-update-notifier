@@ -2,7 +2,7 @@
 # Copyright (C) 2010
 # This file is distributed under the same license as the salix-update-notifier package.
 # Imar van Erven Dorens <gambit73@gmail.com>, 2010.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: 1.0\n"
@@ -18,39 +18,32 @@ msgstr ""
 #: src/salix-update-notifier:24
 #, sh-format
 msgid "ERROR: gksu, ktsuss or kdesu are required for salix-update-notifier to work."
-msgstr ""
+msgstr "FOUT: gksu, ktsuss of kdesu zijn vereist om salix-update-notifier te laten functioneren."
 
 #: src/salix-update-notifier:30
 #, sh-format
 msgid "ERROR: zenity must be installed for salix-update-notifier to work."
-msgstr ""
+msgstr "FOUT: zenity moet worden geïnstalleerd om salix-update-notifier te laten functioneren."
 
 #: src/salix-update-notifier:42
-#, fuzzy, sh-format
+#, sh-format
 msgid "Package updates are available."
-msgstr "Pakket `%s' is niet beschikbaar.\n"
+msgstr "Pakket updates zijn beschikbaar."
 
 #: src/salix-update-notifier:45
-#, fuzzy, sh-format
+#, sh-format
 msgid "Install package updates?"
-msgstr "Controleren op &updates..."
+msgstr "Installeer pakket updates?"
 
 #: src/salix-update-notifier:46
 #, sh-format
-msgid ""
-"Package updates are available for your system.\\n"
-"\\n"
-"Selecting OK will perform the updates using gslapt. Root user privileges will be required in order to do that.\\n"
-"\\n"
-"Proceed with updating?"
-msgstr ""
+msgid "Package updates are available for your system.\\n\\nSelecting OK will perform the updates using gslapt. Root user privileges will be required in order to do that.\\n\\nProceed with updating?"
+msgstr "Pakket updates zijn beschikbaar zijn voor uw systeem.\\n\\nOK zal de update uitvoeren met behulp van gslapt. Root gebruiksrechten zijn nodig om te kunnen updaten\\n\\nVerder gaan met updaten?"
 
 #: salix-update-notifier.desktop.in.h:1
 msgid "Display a tray notification when package updates are available"
-msgstr ""
+msgstr "Toon een melding op de systeembalk wanneer pakket updates beschikbaar zijn"
 
 #: salix-update-notifier.desktop.in.h:2
-#, fuzzy
 msgid "Salix update notifier"
-msgstr "Melding van nieuwere versie activeren"
-
+msgstr "Salix update kennisgever"
