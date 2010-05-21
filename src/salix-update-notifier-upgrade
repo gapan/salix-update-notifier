@@ -6,7 +6,7 @@ if [ ! `echo $LANG | grep -i utf` ]; then
 fi
 
 # Gettext internationalization
-export TEXTDOMAIN="salix-update-notifier-upgrade"
+export TEXTDOMAIN="salix-update-notifier"
 export TEXTDOMAINDIR="/usr/share/locale"
 . gettext.sh
 
