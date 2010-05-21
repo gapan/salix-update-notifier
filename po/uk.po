@@ -2,14 +2,14 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: Nameday\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-05-11 18:37+0200\n"
-"PO-Revision-Date: 2010-05-11 18:39+0100\n"
-"Last-Translator: Yarema aka Knedlyk <yupadmin@gmail.com>\n"
+"PO-Revision-Date: 2010-05-21 15:16+0200\n"
+"Last-Translator: George Vlahavas <vlahavas~at~gmail~dot~com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -19,9 +19,7 @@ msgstr ""
 #: src/salix-update-notifier:24
 #, sh-format
 msgid "ERROR: gksu, ktsuss or kdesu are required for salix-update-notifier to work."
-msgstr ""
-"\r\n"
-"ПОМИЛКА: gksu, ktsuss або kdesu вимагаються для роботи salix-update-notifier."
+msgstr "ПОМИЛКА: gksu, ktsuss або kdesu вимагаються для роботи salix-update-notifier."
 
 #: src/salix-update-notifier:30
 #, sh-format
@@ -40,8 +38,18 @@ msgstr "Встановити оновлення пакунків?"
 
 #: src/salix-update-notifier:46
 #, sh-format
-msgid "Package updates are available for your system.\\n\\nSelecting OK will perform the updates using gslapt. Root user privileges will be required in order to do that.\\n\\nProceed with updating?"
-msgstr "Оновлення пакунків доступні для Вашої системи.\\n\\nНатискання OK встановить оновлення, використовуючи gslapt. Вимагаються привілеї користувача root для цієї операції.\\n\\nЗапустити оновлення?"
+msgid ""
+"Package updates are available for your system.\\n"
+"\\n"
+"Selecting OK will perform the updates using gslapt. Root user privileges will be required in order to do that.\\n"
+"\\n"
+"Proceed with updating?"
+msgstr ""
+"Оновлення пакунків доступні для Вашої системи.\\n"
+"\\n"
+"Натискання OK встановить оновлення, використовуючи gslapt. Вимагаються привілеї користувача root для цієї операції.\\n"
+"\\n"
+"Запустити оновлення?"
 
 #: salix-update-notifier.desktop.in.h:1
 msgid "Display a tray notification when package updates are available"
@@ -50,3 +58,4 @@ msgstr "Показувати повідомлення в системному л
 #: salix-update-notifier.desktop.in.h:2
 msgid "Salix update notifier"
 msgstr "Повідомлення про оновлення пакунків Salix"
+
