@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-03-23 21:54+0200\n"
+"POT-Creation-Date: 2010-05-21 15:16+0300\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Boldizsár Lipka <lipka.boldizsar@gmail.com>\n"
 "Language-Team: \n"
@@ -14,13 +14,17 @@ msgstr ""
 
 #: src/salix-update-notifier:24
 #, sh-format
-msgid "ERROR: gksu, ktsuss or kdesu are required for salix-update-notifier to work."
-msgstr "HIBA: a salix-update-notifier használatához gksu-ra, kdesu-ra vagy ktsuss-ra is szükséged van."
+msgid ""
+"ERROR: gksu, ktsuss or kdesu are required for salix-update-notifier to work."
+msgstr ""
+"HIBA: a salix-update-notifier használatához gksu-ra, kdesu-ra vagy ktsuss-ra "
+"is szükséged van."
 
 #: src/salix-update-notifier:30
 #, sh-format
 msgid "ERROR: zenity must be installed for salix-update-notifier to work."
-msgstr "HIBA: a salix-update-notifier használatához zenity-t is telepítened kell."
+msgstr ""
+"HIBA: a salix-update-notifier használatához zenity-t is telepítened kell."
 
 #: src/salix-update-notifier:42
 #, sh-format
@@ -35,23 +39,43 @@ msgstr "Telepítsem a frissitéseket?"
 #: src/salix-update-notifier:46
 #, sh-format
 msgid ""
-"Package updates are available for your system.\\n"
-"\\n"
-"Selecting OK will perform the updates using gslapt. Root user privileges will be required in order to do that.\\n"
-"\\n"
-"Proceed with updating?"
+"Package updates are available for your system.\\n\\nSelecting OK will "
+"perform the updates using gslapt. Root user privileges will be required in "
+"order to do that.\\n\\nProceed with updating?"
 msgstr ""
-"Csomagfrissítések elérhetők a rendszerhez.\\n"
-"\\n"
-"Az OK gomb frissíti a rendszert a gslapt segítségével. Ehhez rendszergazdai jogok szükségesek.\\n"
-"\\n"
-"Folytatod?"
+"Csomagfrissítések elérhetők a rendszerhez.\\n\\nAz OK gomb frissíti a "
+"rendszert a gslapt segítségével. Ehhez rendszergazdai jogok szükségesek.\\n"
+"\\nFolytatod?"
+
+#: src/salix-update-notifier-upgrade:24
+#, sh-format
+msgid "Updating package cache"
+msgstr ""
+
+#: src/salix-update-notifier-upgrade:24
+#, sh-format
+msgid "Please wait while updating the package cache."
+msgstr ""
+
+#: src/salix-update-notifier-upgrade:30
+#, sh-format
+msgid "Error connecting to server"
+msgstr ""
+
+#: src/salix-update-notifier-upgrade:31
+#, sh-format
+msgid ""
+"There was an error connecting to at least one of the repositories.\\n"
+"\\nPlease check that you have a working internet connection and that the "
+"repository list in gslapt (or directly in /etc/slapt-get/slapt-getrc) is "
+"correctly set up."
+msgstr ""
 
 #: salix-update-notifier.desktop.in.h:1
 msgid "Display a tray notification when package updates are available"
-msgstr "Ikon megjelenítése az értesítési területen, ha vannak elérhető frissítések."
+msgstr ""
+"Ikon megjelenítése az értesítési területen, ha vannak elérhető frissítések."
 
 #: salix-update-notifier.desktop.in.h:2
 msgid "Salix update notifier"
 msgstr "Salix frissítéskezelő"
-

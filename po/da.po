@@ -2,12 +2,12 @@
 # Copyright (C) 2010
 # This file is distributed under the same license as the salix-update-notifier package.
 # Kris Thomsen <lakristho@gmail.com>, 2010.
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: salix-update-notifier\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-03-23 21:54+0200\n"
+"POT-Creation-Date: 2010-05-21 15:16+0300\n"
 "PO-Revision-Date: 2010-03-21 19:03+0100\n"
 "Last-Translator: Kris Thomsen <lakristho@gmail.com>\n"
 "Language-Team: Danish <dansk@dansk-gruppen.dk>\n"
@@ -17,13 +17,17 @@ msgstr ""
 
 #: src/salix-update-notifier:24
 #, sh-format
-msgid "ERROR: gksu, ktsuss or kdesu are required for salix-update-notifier to work."
-msgstr "FEJL: gksu, ktsuss eller kdesu er nødvendige for at salix-update-notifier vil virke."
+msgid ""
+"ERROR: gksu, ktsuss or kdesu are required for salix-update-notifier to work."
+msgstr ""
+"FEJL: gksu, ktsuss eller kdesu er nødvendige for at salix-update-notifier "
+"vil virke."
 
 #: src/salix-update-notifier:30
 #, sh-format
 msgid "ERROR: zenity must be installed for salix-update-notifier to work."
-msgstr "FEJL: zenity skal være installeret for at salix-update-notifier vil virke."
+msgstr ""
+"FEJL: zenity skal være installeret for at salix-update-notifier vil virke."
 
 #: src/salix-update-notifier:42
 #, sh-format
@@ -37,8 +41,38 @@ msgstr "Installér pakkeopdateringer?"
 
 #: src/salix-update-notifier:46
 #, sh-format
-msgid "Package updates are available for your system.\\n\\nSelecting OK will perform the updates using gslapt. Root user privileges will be required in order to do that.\\n\\nProceed with updating?"
-msgstr "Pakkeopdateringer er tilgængelige til dit system.\\n\\nHvis du vælger O.k. vil opdateringerne bliver udført med gslapt. Root-brugerprivilegier er påkrævet for at gøre dette.\\n\\nForsæt med at opdatere?"
+msgid ""
+"Package updates are available for your system.\\n\\nSelecting OK will "
+"perform the updates using gslapt. Root user privileges will be required in "
+"order to do that.\\n\\nProceed with updating?"
+msgstr ""
+"Pakkeopdateringer er tilgængelige til dit system.\\n\\nHvis du vælger O.k. "
+"vil opdateringerne bliver udført med gslapt. Root-brugerprivilegier er "
+"påkrævet for at gøre dette.\\n\\nForsæt med at opdatere?"
+
+#: src/salix-update-notifier-upgrade:24
+#, sh-format
+msgid "Updating package cache"
+msgstr ""
+
+#: src/salix-update-notifier-upgrade:24
+#, sh-format
+msgid "Please wait while updating the package cache."
+msgstr ""
+
+#: src/salix-update-notifier-upgrade:30
+#, sh-format
+msgid "Error connecting to server"
+msgstr ""
+
+#: src/salix-update-notifier-upgrade:31
+#, sh-format
+msgid ""
+"There was an error connecting to at least one of the repositories.\\n"
+"\\nPlease check that you have a working internet connection and that the "
+"repository list in gslapt (or directly in /etc/slapt-get/slapt-getrc) is "
+"correctly set up."
+msgstr ""
 
 #: salix-update-notifier.desktop.in.h:1
 msgid "Display a tray notification when package updates are available"

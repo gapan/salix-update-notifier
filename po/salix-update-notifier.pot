@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-03-23 21:54+0200\n"
+"POT-Creation-Date: 2010-05-21 15:16+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -43,6 +43,30 @@ msgid ""
 "Package updates are available for your system.\\n\\nSelecting OK will "
 "perform the updates using gslapt. Root user privileges will be required in "
 "order to do that.\\n\\nProceed with updating?"
+msgstr ""
+
+#: src/salix-update-notifier-upgrade:24
+#, sh-format
+msgid "Updating package cache"
+msgstr ""
+
+#: src/salix-update-notifier-upgrade:24
+#, sh-format
+msgid "Please wait while updating the package cache."
+msgstr ""
+
+#: src/salix-update-notifier-upgrade:30
+#, sh-format
+msgid "Error connecting to server"
+msgstr ""
+
+#: src/salix-update-notifier-upgrade:31
+#, sh-format
+msgid ""
+"There was an error connecting to at least one of the repositories.\\n"
+"\\nPlease check that you have a working internet connection and that the "
+"repository list in gslapt (or directly in /etc/slapt-get/slapt-getrc) is "
+"correctly set up."
 msgstr ""
 
 #: salix-update-notifier.desktop.in.h:1
