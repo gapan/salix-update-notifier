@@ -14,7 +14,7 @@ ERRORFILE="/var/run/salix-update-notifier/ERROR"
 rm -f $ERRORFILE
 
 do_update() {
-	slapt-get -u
+	/usr/sbin/slapt-get -u
 	if [ ! $? -eq 0 ]; then
 		touch $ERRORFILE
 	fi
