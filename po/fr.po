@@ -2,7 +2,7 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: salix-update-notifier\n"
@@ -30,37 +30,27 @@ msgstr "ERREUR : zenity doit être installé pour que salix-update-notifier puis
 #: src/salix-update-notifier:42
 #, sh-format
 msgid "Package updates are available."
-msgstr "Des mises à jours de packages sont disponibles."
+msgstr "Des mises à jours de paquets sont disponibles."
 
 #: src/salix-update-notifier:45
 #, sh-format
 msgid "Install package updates?"
-msgstr "Souhaitez vous installer les mises à jour ?"
+msgstr "Souhaitez vous installer les mises à jour ?"
 
 #: src/salix-update-notifier:46
 #, sh-format
-msgid ""
-"Package updates are available for your system.\\n"
-"\\n"
-"Selecting OK will perform the updates using gslapt. Root user privileges will be required in order to do that.\\n"
-"\\n"
-"Proceed with updating?"
-msgstr ""
-"Des mises à jour de packages sont disponibles pour votre système.\\n"
-"\\n"
-"Si vous sélectionnez OK, les mises à jour seront effectuées par Gslapt. Les droits Root seront nécessaires.\\n"
-"\\n"
-"Souhaitez vous lancer la mise à jour ?"
+msgid "Package updates are available for your system.\\n\\nSelecting OK will perform the updates using gslapt. Root user privileges will be required in order to do that.\\n\\nProceed with updating?"
+msgstr "Des mises à jour de paquets sont disponibles pour votre système.\\n\\nSi vous sélectionnez OK, les mises à jour seront effectuées par Gslapt. Les droits Root seront nécessaires.\\n\\nSouhaitez vous lancer la mise à jour ?"
 
 #: src/salix-update-notifier-upgrade:24
 #, sh-format
 msgid "Updating package cache"
-msgstr ""
+msgstr "Mise à jour du cache des paquets"
 
 #: src/salix-update-notifier-upgrade:24
 #, sh-format
 msgid "Please wait while updating the package cache."
-msgstr ""
+msgstr "Veuillez patientez pendant la mise à jour du cache des paquets."
 
 #: src/salix-update-notifier-upgrade:30
 #, sh-format
@@ -69,19 +59,13 @@ msgstr "Erreur de connexion au serveur"
 
 #: src/salix-update-notifier-upgrade:31
 #, sh-format
-msgid ""
-"There was an error connecting to at least one of the repositories.\\n"
-"\\n"
-"Please check that you have a working internet connection and that the repository list in gslapt (or directly in /etc/slapt-get/slapt-getrc) is correctly set up."
-msgstr ""
-"Une erreur de connexion s'est produite sur au moins un des dépôts.\\n"
-"Veuillez vérifier que votre connexion Internet soit correctement établie et que la liste des dépôts dans gslapt (ou directement dans /etc/slapt-get/slapt-getrc) soit correctement configurée."
+msgid "There was an error connecting to at least one of the repositories.\\n\\nPlease check that you have a working internet connection and that the repository list in gslapt (or directly in /etc/slapt-get/slapt-getrc) is correctly set up."
+msgstr "Une erreur de connexion s'est produite sur au moins un des dépôts.\\nVeuillez vérifier que votre connexion Internet soit correctement établie et que la liste des dépôts dans gslapt (ou directement dans /etc/slapt-get/slapt-getrc) soit correctement configurée."
 
 #: salix-update-notifier.desktop.in.h:1
 msgid "Display a tray notification when package updates are available"
-msgstr "Affiche un notification iconifiée quand des mises à jour de paquets sont disponibles."
+msgstr "Affiche une notification dans la barre d'état quand des mises à jour de paquets sont disponibles."
 
 #: salix-update-notifier.desktop.in.h:2
 msgid "Salix update notifier"
 msgstr "Notifieur de mises à jour pour Salix"
-
