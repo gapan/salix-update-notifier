@@ -17,7 +17,7 @@ export TEXTDOMAINDIR="/usr/share/locale"
 if [[ `which gksu 2> /dev/null` ]]; then
 	SUCOMMAND="gksu"
 elif [[ `which ktsuss 2> /dev/null` ]]; then
-	SUCOMMAND="ktsuss"
+	SUCOMMAND="ktsuss -u root"
 elif [[ `which kdesu 2> /dev/null` ]]; then
 	SUCOMMAND="kdesu"
 else
