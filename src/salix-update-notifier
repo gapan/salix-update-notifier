@@ -45,7 +45,7 @@ while true; do
 		--title "`eval_gettext 'Install package updates?'`" \
 		--text="`eval_gettext 'Package updates are available for your system.\n\nSelecting OK will perform the updates using gslapt. Root user privileges will be required in order to do that.\n\nProceed with updating?'`" \
 		--window-icon=/usr/share/pixmaps/salix-update-notifier.png \
-		&& $SUCOMMAND "gslapt --upgrade"
+		&& $SUCOMMAND "/usr/libexec/salix-update-notifier-upgrade"
 	fi
 
 	# Check if there is a config file that sets a different interval
