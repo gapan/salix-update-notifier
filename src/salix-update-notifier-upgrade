@@ -1,0 +1,35 @@
+#!/bin/bash
+
+# Translations only work with utf8 locales
+if [ ! `echo $LANG | grep -i utf` ]; then
+	LANG=C
+fi
+
+# Gettext internationalization
+export TEXTDOMAIN="salix-update-notifier-upgrade"
+export TEXTDOMAINDIR="/usr/share/locale"
+. gettext.sh
+
+ERRORFILE="/var/run/salix-update-notifier/ERROR"
+rm -f $ERRORFILE
+
+do_update() {
+	slapt-get -u
+	if [ ! $? -eq 0 ]; then
+		touch $ERRORFILE
+	fi
+}
+
+do_update | \
+(zenity --progress --pulsate --auto-close --title="`eval_gettext 'Updating package cache'`" --text="`eval_gettext 'Please wait while updating the package cache.'`")
+if [ $? -eq 0 ]; then
+	if [ ! -f $ERRORFILE ]; then
+		gslapt --upgrade
+	else
+		zenity --error \
+		--title="`eval_gettext 'Error connecting to server'`" \
+		--text="`eval_gettext 'There was an error connecting to at least one of the repositories.\n\nPlease check that you have a working internet connection and that the repository list in gslapt (or directly in /etc/slapt-get/slapt-getrc) is correctly set up.'`"
+	fi
+fi
+
+rm -f $ERRORFILE
