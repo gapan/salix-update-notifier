@@ -2,7 +2,7 @@
 # Copyright (C) 2010
 # This file is distributed under the same license as the salix-update-notifier package.
 # Imar van Erven Dorens <gambit73@gmail.com>, 2010.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: 1.0\n"
@@ -37,28 +37,18 @@ msgstr "Installeer pakket updates?"
 
 #: src/salix-update-notifier:46
 #, sh-format
-msgid ""
-"Package updates are available for your system.\\n"
-"\\n"
-"Selecting OK will perform the updates using gslapt. Root user privileges will be required in order to do that.\\n"
-"\\n"
-"Proceed with updating?"
-msgstr ""
-"Pakket updates zijn beschikbaar zijn voor uw systeem.\\n"
-"\\n"
-"OK zal de update uitvoeren met behulp van gslapt. Root gebruiksrechten zijn nodig om te kunnen updaten\\n"
-"\\n"
-"Verder gaan met updaten?"
+msgid "Package updates are available for your system.\\n\\nSelecting OK will perform the updates using gslapt. Root user privileges will be required in order to do that.\\n\\nProceed with updating?"
+msgstr "Pakket updates zijn beschikbaar zijn voor uw systeem.\\n\\nOK zal de update uitvoeren met behulp van gslapt. Root gebruiksrechten zijn nodig om te kunnen updaten\\n\\nVerder gaan met updaten?"
 
 #: src/salix-update-notifier-upgrade:24
 #, sh-format
 msgid "Updating package cache"
-msgstr ""
+msgstr "Actualisering pakketcache"
 
 #: src/salix-update-notifier-upgrade:24
 #, sh-format
 msgid "Please wait while updating the package cache."
-msgstr ""
+msgstr "Even geduld tijdens het bijwerken van het pakket cache."
 
 #: src/salix-update-notifier-upgrade:30
 #, sh-format
@@ -67,14 +57,8 @@ msgstr "Fout bij connectie maken naar de server"
 
 #: src/salix-update-notifier-upgrade:31
 #, sh-format
-msgid ""
-"There was an error connecting to at least one of the repositories.\\n"
-"\\n"
-"Please check that you have a working internet connection and that the repository list in gslapt (or directly in /etc/slapt-get/slapt-getrc) is correctly set up."
-msgstr ""
-"Er is een fout opgetreden bij een connectie naar een van de repositories.\\n"
-"\\n"
-"Controleer alstublieft of u een werkende internet connectie heeft en dat de repository lijst in gslapt (of direct in /etc/slapt-get/slapt-getrc) correct is ingesteld."
+msgid "There was an error connecting to at least one of the repositories.\\n\\nPlease check that you have a working internet connection and that the repository list in gslapt (or directly in /etc/slapt-get/slapt-getrc) is correctly set up."
+msgstr "Er is een fout opgetreden bij een connectie naar een van de repositories.\\n\\nControleer alstublieft of u een werkende internet connectie heeft en dat de repository lijst in gslapt (of direct in /etc/slapt-get/slapt-getrc) correct is ingesteld."
 
 #: salix-update-notifier.desktop.in.h:1
 msgid "Display a tray notification when package updates are available"
@@ -83,4 +67,3 @@ msgstr "Toon een melding op de systeembalk wanneer pakket updates beschikbaar zi
 #: salix-update-notifier.desktop.in.h:2
 msgid "Salix update notifier"
 msgstr "Salix update kennisgever"
-
