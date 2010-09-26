@@ -1,14 +1,14 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# Ingemar Karlsson <po@ingk.se>, 2010.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: salix update notifier\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-06-03 01:42+0300\n"
-"PO-Revision-Date: 2010-08-29 13:40+0100\n"
+"PO-Revision-Date: 2010-09-26 11:42+0100\n"
 "Last-Translator: Ingemar Karlsson <ingemar@ingk.se>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -48,7 +48,7 @@ msgid ""
 msgstr ""
 "Uppdateringar är tillgängliga för ditt system.\\n"
 "\\n"
-"Välj OK för att köra uppdatering med gslapt. Root användar rättigheter krävs för att göra det.\\n"
+"Välj OK för att köra uppdatering med gslapt. Root behörighet krävs för att göra det.\\n"
 "\\n"
 "Fortsätta med uppdateringen?"
 
