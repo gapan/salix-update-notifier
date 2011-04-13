@@ -2,20 +2,20 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
+# 
 msgid ""
 msgstr ""
-"Project-Id-Version: salix-update-notifier\n"
+"Project-Id-Version: Salix\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-06-03 01:42+0300\n"
-"PO-Revision-Date: 2010-05-21 15:24+0200\n"
-"Last-Translator: George Vlahavas <vlahavas~at~gmail~dot~com>\n"
-"Language-Team: \n"
+"PO-Revision-Date: 2011-04-05 17:58+0000\n"
+"Last-Translator: gapan <vlahavas@gmail.com>\n"
+"Language-Team: French <>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Poedit-Language: French\n"
-"X-Poedit-Country: FRANCE\n"
+"Language: fr\n"
+"Plural-Forms: nplurals=2; plural=(n > 1)\n"
 
 #: src/salix-update-notifier:24
 #, sh-format
@@ -62,23 +62,3 @@ msgstr ""
 #: salix-update-notifier.desktop.in.h:2
 msgid "Salix update notifier"
 msgstr "Notifieur de mises à jour pour Salix"
-
-#~ msgid "Updating package cache"
-#~ msgstr "Mise à jour du cache des paquets"
-
-#~ msgid "Please wait while updating the package cache."
-#~ msgstr "Veuillez patientez pendant la mise à jour du cache des paquets."
-
-#~ msgid "Error connecting to server"
-#~ msgstr "Erreur de connexion au serveur"
-
-#~ msgid ""
-#~ "There was an error connecting to at least one of the repositories.\\n"
-#~ "\\nPlease check that you have a working internet connection and that the "
-#~ "repository list in gslapt (or directly in /etc/slapt-get/slapt-getrc) is "
-#~ "correctly set up."
-#~ msgstr ""
-#~ "Une erreur de connexion s'est produite sur au moins un des dépôts."
-#~ "\\nVeuillez vérifier que votre connexion Internet soit correctement "
-#~ "établie et que la liste des dépôts dans gslapt (ou directement dans /etc/"
-#~ "slapt-get/slapt-getrc) soit correctement configurée."
