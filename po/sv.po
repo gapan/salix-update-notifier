@@ -1,31 +1,37 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# Ingemar Karlsson <po@ingk.se>, 2010.
-#
+# 
+# Translators:
+# gapan <vlahavas@gmail.com>, 2011.
 msgid ""
 msgstr ""
-"Project-Id-Version: salix update notifier\n"
+"Project-Id-Version: Salix\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-06-03 01:42+0300\n"
-"PO-Revision-Date: 2010-09-26 11:42+0100\n"
-"Last-Translator: Ingemar Karlsson <ingemar@ingk.se>\n"
-"Language-Team: \n"
+"PO-Revision-Date: 2011-04-05 16:40+0000\n"
+"Last-Translator: gapan <vlahavas@gmail.com>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Poedit-Language: Swedish\n"
-"X-Poedit-Country: SWEDEN\n"
+"Language: sv\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
 
 #: src/salix-update-notifier:24
 #, sh-format
-msgid "ERROR: gksu, ktsuss or kdesu are required for salix-update-notifier to work."
-msgstr "Fel: gksu, ktsuss eller kdesu krävs för att salix-update-notifier skall fungera."
+msgid ""
+"ERROR: gksu, ktsuss or kdesu are required for salix-update-notifier to work."
+msgstr ""
+"Fel: gksu, ktsuss eller kdesu krävs för att salix-update-notifier skall "
+"fungera."
 
 #: src/salix-update-notifier:30
 #, sh-format
 msgid "ERROR: zenity must be installed for salix-update-notifier to work."
-msgstr "FEL: zenity måste vara installerad för att salix-update-notifier skall fungera."
+msgstr ""
+"FEL: zenity måste vara installerad för att salix-update-notifier skall "
+"fungera."
 
 #: src/salix-update-notifier:42
 #, sh-format
@@ -40,17 +46,13 @@ msgstr "Installera uppdateringar?"
 #: src/salix-update-notifier:46
 #, sh-format
 msgid ""
-"Package updates are available for your system.\\n"
-"\\n"
-"Selecting OK will perform the updates using gslapt. Root user privileges will be required in order to do that.\\n"
-"\\n"
-"Proceed with updating?"
+"Package updates are available for your system.\\n\\nSelecting OK will "
+"perform the updates using gslapt. Root user privileges will be required in "
+"order to do that.\\n\\nProceed with updating?"
 msgstr ""
-"Uppdateringar är tillgängliga för ditt system.\\n"
-"\\n"
-"Välj OK för att köra uppdatering med gslapt. Root behörighet krävs för att göra det.\\n"
-"\\n"
-"Fortsätta med uppdateringen?"
+"Uppdateringar är tillgängliga för ditt system.\\n\\nVälj OK för att köra "
+"uppdatering med gslapt. Root behörighet krävs för att göra "
+"det.\\n\\nFortsätta med uppdateringen?"
 
 #: salix-update-notifier.desktop.in.h:1
 msgid "Display a tray notification when package updates are available"
@@ -59,4 +61,5 @@ msgstr "Visa meddelande när det finns uppdateringar"
 #: salix-update-notifier.desktop.in.h:2
 msgid "Salix update notifier"
 msgstr "Salix uppdaterings meddelande"
+
 

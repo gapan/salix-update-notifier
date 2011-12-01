@@ -1,26 +1,30 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+# gapan <vlahavas@gmail.com>, 2011.
 msgid ""
 msgstr ""
-"Project-Id-Version: salix-update-notifier\n"
+"Project-Id-Version: Salix\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-06-03 01:42+0300\n"
-"PO-Revision-Date: \n"
-"Last-Translator: George Vlahavas <vlahavas~at~gmail~dot~com>\n"
-"Language-Team: \n"
+"PO-Revision-Date: 2011-04-05 16:40+0000\n"
+"Last-Translator: gapan <vlahavas@gmail.com>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: 2\n"
-"X-Poedit-Language: Greek\n"
-"X-Poedit-Country: GREECE\n"
-"X-Poedit-SourceCharset: utf-8\n"
+"Language: el\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
 
 #: src/salix-update-notifier:24
 #, sh-format
 msgid ""
 "ERROR: gksu, ktsuss or kdesu are required for salix-update-notifier to work."
 msgstr ""
-"ΣΦΑΛΜΑ: Ένα από τα gksu, ktsuss ή kdesu θα πρέπει να είναι εγκατεστημένα για "
-"να λειτουργήσει το salix-update-notifier."
+"ΣΦΑΛΜΑ: Ένα από τα gksu, ktsuss ή kdesu θα πρέπει να είναι εγκατεστημένα για"
+" να λειτουργήσει το salix-update-notifier."
 
 #: src/salix-update-notifier:30
 #, sh-format
@@ -46,8 +50,8 @@ msgid ""
 "perform the updates using gslapt. Root user privileges will be required in "
 "order to do that.\\n\\nProceed with updating?"
 msgstr ""
-"Υπάρχουν διαθέσιμες ενημερώσεις πακέτων για το σύστημά σας\\n\\nΑν επιλέξετε "
-"Εντάξει θα πραγματοποιηθούν οι αναβαθμίσεις χρησιμοποιώντας το gslapt. Θα "
+"Υπάρχουν διαθέσιμες ενημερώσεις πακέτων για το σύστημά σας\\n\\nΑν επιλέξετε"
+" Εντάξει θα πραγματοποιηθούν οι αναβαθμίσεις χρησιμοποιώντας το gslapt. Θα "
 "χρειαστείτε δικαιώματα χρήστη root για να γίνει αυτό.\\n\\nΕπιθυμείτε να "
 "συνεχίσετε με την αναβάθμιση των πακέτων;"
 
@@ -61,24 +65,4 @@ msgstr ""
 msgid "Salix update notifier"
 msgstr "Ειδοποιητής αναβαθμίσεων πακέτων του Salix"
 
-#~ msgid "Updating package cache"
-#~ msgstr "Ανανέωση της τοπικής αποθήκης πακέτων"
 
-#~ msgid "Please wait while updating the package cache."
-#~ msgstr ""
-#~ "Παρακαλούμε περιμένετε όσο γίνεται η ανανέωση πληροφοριών της τοπικής "
-#~ "αποθήκης πακέτων."
-
-#~ msgid "Error connecting to server"
-#~ msgstr "Σφάλμα κατά τη σύνδεση με τον εξυπηρετητή"
-
-#~ msgid ""
-#~ "There was an error connecting to at least one of the repositories.\\n"
-#~ "\\nPlease check that you have a working internet connection and that the "
-#~ "repository list in gslapt (or directly in /etc/slapt-get/slapt-getrc) is "
-#~ "correctly set up."
-#~ msgstr ""
-#~ "Υπήρξε ένα σφάλμα κατά τη σύνδεση με τουλάχιστον μια αποθήκη λογισμικού."
-#~ "\\n\\n Παρακαλώ ελέγξτε ότι η σύνδεσή σας με το internet λειτουργεί σωστά "
-#~ "και οι αποθήκες λογισμικού είναι σωστά ορισμένες στο gslapt (ή κατευθείαν "
-#~ "στο /etc/slapt-get/slapt-getrc)."
