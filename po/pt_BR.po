@@ -30,9 +30,9 @@ msgstr ""
 
 #: src/salix-update-notifier:30
 #, sh-format
-msgid "ERROR: zenity must be installed for salix-update-notifier to work."
+msgid "ERROR: matedialog must be installed for salix-update-notifier to work."
 msgstr ""
-"ERRO: O zenity precisa estar instalado para que o salix-update-notifier "
+"ERRO: O matedialog precisa estar instalado para que o salix-update-notifier "
 "funcione."
 
 #: src/salix-update-notifier:42

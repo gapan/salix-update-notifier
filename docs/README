@@ -5,7 +5,7 @@ updates available and actually perform the package updates.
 
 salix-update-notifier can be used on any slackware or slackware based
 system that uses slapt-get/gslapt for package managemenet. It
-additionally requires zenity to be installed though, which is not
+additionally requires matedialog to be installed though, which is not
 included in the standard slackware packages and must be installed
 separately. It also requires one of gksu, ktsuss or kdesu to be present
 in the system.

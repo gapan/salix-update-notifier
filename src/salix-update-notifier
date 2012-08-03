@@ -25,9 +25,9 @@ else
 	exit 1
 fi
 
-# Check if zenity is present
-if [[ ! `which zenity 2> /dev/null` ]]; then
-	echo "`eval_gettext 'ERROR: zenity must be installed for salix-update-notifier to work.'`" >&2
+# Check if matedialog is present
+if [[ ! `which matedialog 2> /dev/null` ]]; then
+	echo "`eval_gettext 'ERROR: matedialog must be installed for salix-update-notifier to work.'`" >&2
 	exit 1
 fi
 
@@ -38,10 +38,10 @@ sleep 10m
 while true; do
 	if [[ `LANG=C /usr/sbin/slapt-get -s --upgrade | grep "Need to get"` ]]
 	then
-		zenity --notification \
+		matedialog --notification \
 		--text="`eval_gettext 'Package updates are available.'`" \
 		--window-icon=/usr/share/pixmaps/salix-update-notifier.png \
-		&& zenity --question \
+		&& matedialog --question \
 		--title "`eval_gettext 'Install package updates?'`" \
 		--text="`eval_gettext 'Package updates are available for your system.\n\nSelecting OK will perform the updates using gslapt. Root user privileges will be required in order to do that.\n\nProceed with updating?'`" \
 		--window-icon=/usr/share/pixmaps/salix-update-notifier.png \
