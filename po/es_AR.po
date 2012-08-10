@@ -7,9 +7,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Salix\n"
-"Report-Msgid-Bugs-To: \n"
+"Report-Msgid-Bugs-To: http://sourceforge.net/apps/trac/salix/\n"
 "POT-Creation-Date: 2010-06-03 01:42+0300\n"
-"PO-Revision-Date: 2011-04-05 16:40+0000\n"
+"PO-Revision-Date: 2012-08-03 00:39+0000\n"
 "Last-Translator: gapan <vlahavas@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -22,16 +22,12 @@ msgstr ""
 #, sh-format
 msgid ""
 "ERROR: gksu, ktsuss or kdesu are required for salix-update-notifier to work."
-msgstr ""
-"ERROR: Se necesita gksu, ktsuss o kdesu para que salix-update-notifier "
-"funcione."
+msgstr "ERROR: Se necesita gksu, ktsuss o kdesu para que salix-update-notifier funcione."
 
 #: src/salix-update-notifier:30
 #, sh-format
 msgid "ERROR: matedialog must be installed for salix-update-notifier to work."
-msgstr ""
-"ERROR: matedialog tiene que estar instalado para que salix-update-notifier "
-"funcione."
+msgstr "ERROR: matedialog tiene que estar instalado para que salix-update-notifier funcione."
 
 #: src/salix-update-notifier:42
 #, sh-format
@@ -49,19 +45,12 @@ msgid ""
 "Package updates are available for your system.\\n\\nSelecting OK will "
 "perform the updates using gslapt. Root user privileges will be required in "
 "order to do that.\\n\\nProceed with updating?"
-msgstr ""
-"Hay disponibles paquetes actualizados para su sistema.\\n\\nSelecionar "
-"Aceptar ejecutará la actualización mediante gslapt. Se necesitarán "
-"privilegios de root para hacerlo.\\n\\n¿Continuar con la actualización?"
+msgstr "Hay disponibles paquetes actualizados para su sistema.\\n\\nSelecionar Aceptar ejecutará la actualización mediante gslapt. Se necesitarán privilegios de root para hacerlo.\\n\\n¿Continuar con la actualización?"
 
 #: salix-update-notifier.desktop.in.h:1
 msgid "Display a tray notification when package updates are available"
-msgstr ""
-"Mostrar una notificación en la bandeja cuando haya disponible "
-"actualizaciones de paquetes."
+msgstr "Mostrar una notificación en la bandeja cuando haya disponible actualizaciones de paquetes."
 
 #: salix-update-notifier.desktop.in.h:2
 msgid "Salix update notifier"
 msgstr "Notificador de actualizaciones de Salix"
-
-

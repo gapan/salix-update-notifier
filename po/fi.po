@@ -7,9 +7,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Salix\n"
-"Report-Msgid-Bugs-To: \n"
+"Report-Msgid-Bugs-To: http://sourceforge.net/apps/trac/salix/\n"
 "POT-Creation-Date: 2010-06-03 01:42+0300\n"
-"PO-Revision-Date: 2011-04-05 16:40+0000\n"
+"PO-Revision-Date: 2012-08-03 00:39+0000\n"
 "Last-Translator: gapan <vlahavas@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -22,16 +22,12 @@ msgstr ""
 #, sh-format
 msgid ""
 "ERROR: gksu, ktsuss or kdesu are required for salix-update-notifier to work."
-msgstr ""
-"VIRHE: salix-päivitysten-ilmoittaja tarvitsee gksu:n, ktsuss:n tai kdesu:n "
-"toimiakseen."
+msgstr "VIRHE: salix-päivitysten-ilmoittaja tarvitsee gksu:n, ktsuss:n tai kdesu:n toimiakseen."
 
 #: src/salix-update-notifier:30
 #, sh-format
 msgid "ERROR: matedialog must be installed for salix-update-notifier to work."
-msgstr ""
-"VIRHE: matedialog täytyy olla asennettuna jotta salix-päivitysten-ilmoittaja "
-"toimisi."
+msgstr "VIRHE: matedialog täytyy olla asennettuna jotta salix-päivitysten-ilmoittaja toimisi."
 
 #: src/salix-update-notifier:42
 #, sh-format
@@ -49,10 +45,7 @@ msgid ""
 "Package updates are available for your system.\\n\\nSelecting OK will "
 "perform the updates using gslapt. Root user privileges will be required in "
 "order to do that.\\n\\nProceed with updating?"
-msgstr ""
-"Ohjelmapäivitykset ovat valmiina järjestelmääsi.\\n\\nValitsemalla OK "
-"suoritat päivitykset käyttäen gslaptia. Pääkäyttäjän oikeuksia tarvitaan "
-"tämän suorittamiseen.\\n\\nJatketaanko päivitystä?"
+msgstr "Ohjelmapäivitykset ovat valmiina järjestelmääsi.\\n\\nValitsemalla OK suoritat päivitykset käyttäen gslaptia. Pääkäyttäjän oikeuksia tarvitaan tämän suorittamiseen.\\n\\nJatketaanko päivitystä?"
 
 #: salix-update-notifier.desktop.in.h:1
 msgid "Display a tray notification when package updates are available"
@@ -61,5 +54,3 @@ msgstr "Näytä ilmoitus, kun ohjelmapäivityksiä on saatavilla."
 #: salix-update-notifier.desktop.in.h:2
 msgid "Salix update notifier"
 msgstr "Salix-päivitysilmoitus"
-
-

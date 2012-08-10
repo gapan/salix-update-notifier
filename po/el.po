@@ -7,9 +7,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Salix\n"
-"Report-Msgid-Bugs-To: \n"
+"Report-Msgid-Bugs-To: http://sourceforge.net/apps/trac/salix/\n"
 "POT-Creation-Date: 2010-06-03 01:42+0300\n"
-"PO-Revision-Date: 2011-04-05 16:40+0000\n"
+"PO-Revision-Date: 2012-08-03 00:39+0000\n"
 "Last-Translator: gapan <vlahavas@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -22,16 +22,12 @@ msgstr ""
 #, sh-format
 msgid ""
 "ERROR: gksu, ktsuss or kdesu are required for salix-update-notifier to work."
-msgstr ""
-"ΣΦΑΛΜΑ: Ένα από τα gksu, ktsuss ή kdesu θα πρέπει να είναι εγκατεστημένα για"
-" να λειτουργήσει το salix-update-notifier."
+msgstr "ΣΦΑΛΜΑ: Ένα από τα gksu, ktsuss ή kdesu θα πρέπει να είναι εγκατεστημένα για να λειτουργήσει το salix-update-notifier."
 
 #: src/salix-update-notifier:30
 #, sh-format
 msgid "ERROR: matedialog must be installed for salix-update-notifier to work."
-msgstr ""
-"ΣΦΑΛΜΑ: Το matedialog θα πρέπει να είναι εγκατεστημένο για να λειτουργήσει το "
-"salix-update-notifier."
+msgstr "ΣΦΑΛΜΑ: Το matedialog θα πρέπει να είναι εγκατεστημένο για να λειτουργήσει το salix-update-notifier."
 
 #: src/salix-update-notifier:42
 #, sh-format
@@ -49,20 +45,12 @@ msgid ""
 "Package updates are available for your system.\\n\\nSelecting OK will "
 "perform the updates using gslapt. Root user privileges will be required in "
 "order to do that.\\n\\nProceed with updating?"
-msgstr ""
-"Υπάρχουν διαθέσιμες ενημερώσεις πακέτων για το σύστημά σας\\n\\nΑν επιλέξετε"
-" Εντάξει θα πραγματοποιηθούν οι αναβαθμίσεις χρησιμοποιώντας το gslapt. Θα "
-"χρειαστείτε δικαιώματα χρήστη root για να γίνει αυτό.\\n\\nΕπιθυμείτε να "
-"συνεχίσετε με την αναβάθμιση των πακέτων;"
+msgstr "Υπάρχουν διαθέσιμες ενημερώσεις πακέτων για το σύστημά σας\\n\\nΑν επιλέξετε Εντάξει θα πραγματοποιηθούν οι αναβαθμίσεις χρησιμοποιώντας το gslapt. Θα χρειαστείτε δικαιώματα χρήστη root για να γίνει αυτό.\\n\\nΕπιθυμείτε να συνεχίσετε με την αναβάθμιση των πακέτων;"
 
 #: salix-update-notifier.desktop.in.h:1
 msgid "Display a tray notification when package updates are available"
-msgstr ""
-"Παρουσιάζει μια ενημέρωση στη μπάρα εργασίας όταν υπάρχουν διαθέσιμες "
-"ενημερώσεις πακέτων"
+msgstr "Παρουσιάζει μια ενημέρωση στη μπάρα εργασίας όταν υπάρχουν διαθέσιμες ενημερώσεις πακέτων"
 
 #: salix-update-notifier.desktop.in.h:2
 msgid "Salix update notifier"
 msgstr "Ειδοποιητής αναβαθμίσεων πακέτων του Salix"
-
-

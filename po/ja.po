@@ -7,9 +7,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Salix\n"
-"Report-Msgid-Bugs-To: \n"
+"Report-Msgid-Bugs-To: http://sourceforge.net/apps/trac/salix/\n"
 "POT-Creation-Date: 2010-06-03 01:42+0300\n"
-"PO-Revision-Date: 2011-04-05 16:40+0000\n"
+"PO-Revision-Date: 2012-08-03 00:39+0000\n"
 "Last-Translator: gapan <vlahavas@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -45,8 +45,7 @@ msgid ""
 "Package updates are available for your system.\\n\\nSelecting OK will "
 "perform the updates using gslapt. Root user privileges will be required in "
 "order to do that.\\n\\nProceed with updating?"
-msgstr ""
-"新しいバージョンのパッケージが、レポジトリーにあります。\\n\\nパッケージのgslaptを通してアップデートを行いたい場合は、OKをクリックしてください。ルートユーザである必要があります\\n\\nアップデートを行いますか。"
+msgstr "新しいバージョンのパッケージが、レポジトリーにあります。\\n\\nパッケージのgslaptを通してアップデートを行いたい場合は、OKをクリックしてください。ルートユーザである必要があります\\n\\nアップデートを行いますか。"
 
 #: salix-update-notifier.desktop.in.h:1
 msgid "Display a tray notification when package updates are available"
@@ -55,5 +54,3 @@ msgstr "アップデートできるパッケージがレポジトリーにある
 #: salix-update-notifier.desktop.in.h:2
 msgid "Salix update notifier"
 msgstr "Salix アップデートのお知らせ"
-
-
