@@ -41,9 +41,9 @@ install:
 	install -m 644 src/salix-update-notifier.conf $(DESTDIR)/etc/
 	install -m 644 src/salix-update-notifier.png $(DESTDIR)/usr/share/pixmaps/
 	for i in `ls po/*.mo|sed "s|po/\(.*\).mo|\1|"`; do \
-		install -d -m 755 $(DESTDIR)/usr/share/locale/$${i}/LC_MESSAGES ;\
+		install -d -m 755 $(DESTDIR)/$(PACKAGE_LOCALE_DIR)/$${i}/LC_MESSAGES ;\
 		install -m 644 po/$${i}.mo \
-		$(DESTDIR)/usr/share/locale/$${i}/LC_MESSAGES/salix-update-notifier.mo; \
+		$(DESTDIR)/$(PACKAGE_LOCALE_DIR)/$${i}/LC_MESSAGES/salix-update-notifier.mo; \
 	done
 
 
