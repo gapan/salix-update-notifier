@@ -1,6 +1,7 @@
 PREFIX ?= /usr/local
 DESTDIR ?= /
 PACKAGE_LOCALE_DIR ?= /$(PREFIX)/share/locale
+PIXMAPS_DIR ?= /$(PREFIX)/share/pixmaps
 
 all: mo desktop
 
@@ -33,13 +34,13 @@ install:
 	install -d -m 755 $(DESTDIR)/$(PREFIX)/bin/
 	install -d -m 755 $(DESTDIR)/etc/xdg/autostart
 	install -d -m 755 $(DESTDIR)/etc/cron.hourly
-	install -d -m 755 $(DESTDIR)/usr/share/pixmaps
+	install -d -m 755 $(DESTDIR)/$(PIXMAPS_DIR)
 	install -d -m 755 $(DESTDIR)/var/run/salix-update-notifier
 	install -m 755 src/salix-update-notifier $(DESTDIR)/$(PREFIX)/bin/
 	install -m 644 salix-update-notifier.desktop $(DESTDIR)/etc/xdg/autostart/
 	install -m 755 src/slapt-get-update $(DESTDIR)/etc/cron.hourly/
 	install -m 644 src/salix-update-notifier.conf $(DESTDIR)/etc/
-	install -m 644 src/salix-update-notifier.png $(DESTDIR)/usr/share/pixmaps/
+	install -m 644 src/salix-update-notifier.png $(DESTDIR)/$(PIXMAPS_DIR)/
 	for i in `ls po/*.mo|sed "s|po/\(.*\).mo|\1|"`; do \
 		install -d -m 755 $(DESTDIR)/$(PACKAGE_LOCALE_DIR)/$${i}/LC_MESSAGES ;\
 		install -m 644 po/$${i}.mo \
