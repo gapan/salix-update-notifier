@@ -1,6 +1,6 @@
 PREFIX ?= /usr/local
 DESTDIR ?= /
-PACKAGE_LOCALE_DIR ?= /usr/share/locale
+PACKAGE_LOCALE_DIR ?= /$(PREFIX)/share/locale
 
 all: mo desktop
 
