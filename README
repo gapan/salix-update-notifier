@@ -7,8 +7,8 @@ salix-update-notifier can be used on any slackware or slackware based
 system that uses slapt-get/gslapt for package managemenet. It
 additionally requires matedialog to be installed though, which is not
 included in the standard slackware packages and must be installed
-separately. It also requires one of gksu, ktsuss or kdesu to be present
-in the system.
+separately. It also requires one of gksu, ktsuss, kdesu or a suitable
+alternative to be present in the system.
 
 By clicking on the system tray notification, you will get a window
 prompting for action. You can cancel the operation and leave updating
