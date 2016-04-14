@@ -1,7 +1,7 @@
 [main]
 host = https://www.transifex.com
 
-[dotnew.dotnew]
+[salix.salix-update-notifier]
 file_filter = po/<lang>.po
 source_file = po/salix-update-notifier.pot
 source_lang = en
