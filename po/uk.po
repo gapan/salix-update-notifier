@@ -26,8 +26,8 @@ msgstr "ПОМИЛКА: gksu, ktsuss або kdesu вимагаються для 
 
 #: src/salix-update-notifier:30
 #, sh-format
-msgid "ERROR: matedialog must be installed for salix-update-notifier to work."
-msgstr "ПОМИЛКА: matedialog повинен бути встановлений для роботи salix-update-notifier."
+msgid "ERROR: zenity must be installed for salix-update-notifier to work."
+msgstr "ПОМИЛКА: zenity повинен бути встановлений для роботи salix-update-notifier."
 
 #: src/salix-update-notifier:42
 #, sh-format

@@ -28,8 +28,8 @@ msgstr "HATA: salix-update-notifier'ın çalışması için gksu, ktsuss veya kd
 
 #: src/salix-update-notifier:30
 #, sh-format
-msgid "ERROR: matedialog must be installed for salix-update-notifier to work."
-msgstr "HATA: salix-update-notifier'ın çalışması için matedialog yüklenmiş olması gerekiyor. "
+msgid "ERROR: zenity must be installed for salix-update-notifier to work."
+msgstr "HATA: salix-update-notifier'ın çalışması için zenity yüklenmiş olması gerekiyor. "
 
 #: src/salix-update-notifier:42
 #, sh-format

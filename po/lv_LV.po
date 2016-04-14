@@ -26,8 +26,8 @@ msgstr "KĻŪDA:  salix-update-notifier darbībai nepieciešams gksu, ktsuss vai
 
 #: src/salix-update-notifier:30
 #, sh-format
-msgid "ERROR: matedialog must be installed for salix-update-notifier to work."
-msgstr "KĻŪDA: salix-update-notifier darbībai nepieciešams uzinstalēts matedialog."
+msgid "ERROR: zenity must be installed for salix-update-notifier to work."
+msgstr "KĻŪDA: salix-update-notifier darbībai nepieciešams uzinstalēts zenity."
 
 #: src/salix-update-notifier:42
 #, sh-format

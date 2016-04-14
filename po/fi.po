@@ -26,8 +26,8 @@ msgstr "VIRHE: salix-päivitysten-ilmoittaja tarvitsee gksu:n, ktsuss:n tai kdes
 
 #: src/salix-update-notifier:30
 #, sh-format
-msgid "ERROR: matedialog must be installed for salix-update-notifier to work."
-msgstr "VIRHE: matedialog täytyy olla asennettuna jotta salix-päivitysten-ilmoittaja toimisi."
+msgid "ERROR: zenity must be installed for salix-update-notifier to work."
+msgstr "VIRHE: zenity täytyy olla asennettuna jotta salix-päivitysten-ilmoittaja toimisi."
 
 #: src/salix-update-notifier:42
 #, sh-format

@@ -26,8 +26,8 @@ msgstr "Chyba: jsou vyžadovány gksu, ktsuss nebo kdesu, aby mohl Salix manaže
 
 #: src/salix-update-notifier:30
 #, sh-format
-msgid "ERROR: matedialog must be installed for salix-update-notifier to work."
-msgstr "Chyba: aby mohl Salix manažer aktualizací fungovat, je nutné mít nainstalované matedialog."
+msgid "ERROR: zenity must be installed for salix-update-notifier to work."
+msgstr "Chyba: aby mohl Salix manažer aktualizací fungovat, je nutné mít nainstalované zenity."
 
 #: src/salix-update-notifier:42
 #, sh-format
