@@ -3,54 +3,182 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# laplume <laplume@libero.it>, 2011.
+# Antonio Sardei <laplume@libero.it>, 2011
+# Antonio Sardei <laplume@libero.it>, 2012
 msgid ""
 msgstr ""
-"Project-Id-Version: Salix\n"
-"Report-Msgid-Bugs-To: http://sourceforge.net/apps/trac/salix/\n"
-"POT-Creation-Date: 2010-06-03 01:42+0300\n"
-"PO-Revision-Date: 2012-08-03 00:39+0000\n"
+"Project-Id-Version: dotnew\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-09-14 21:46+0300\n"
+"PO-Revision-Date: 2013-11-20 09:30+0000\n"
 "Last-Translator: gapan <vlahavas@gmail.com>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language-Team: Italian (http://www.transifex.com/gapan/dotnew/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: it\n"
-"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: src/salix-update-notifier:24
+#: src/dotnew:20
 #, sh-format
-msgid ""
-"ERROR: gksu, ktsuss or kdesu are required for salix-update-notifier to work."
-msgstr "ERRORE: sono richiesti gksu, ktsuss or kdesu per far funzionare la notifica aggiornamenti di Salix."
+msgid "You need to be root to run this"
+msgstr "Devi essere root per eseguire questa operazione"
 
-#: src/salix-update-notifier:30
+#: src/dotnew:33 src/dotnew:44 src/dotnew:100 src/dotnew:103
 #, sh-format
-msgid "ERROR: matedialog must be installed for salix-update-notifier to work."
-msgstr "ERRORE: matedialog deve essere installato per far funzionare la notifica aggiornamenti di Salix"
+msgid "OK"
+msgstr "OK"
 
-#: src/salix-update-notifier:42
+#: src/dotnew:33 src/dotnew:44
 #, sh-format
-msgid "Package updates are available."
-msgstr "Aggiornamenti dei pacchetti disponibili"
+msgid "Cancel"
+msgstr "Annulla"
 
-#: src/salix-update-notifier:45
+#: src/dotnew:35 src/dotnew:46
 #, sh-format
-msgid "Install package updates?"
-msgstr "Installo aggiornamenti dei pacchetti?"
+msgid "New settings file found: $file\\n\\nWhat do you want to do with it?"
+msgstr "E' stato trovato un nuovo file di impostazione: $file\\n\\nCosa vuoi farne?"
 
-#: src/salix-update-notifier:46
+#: src/dotnew:36 src/dotnew:47 src/dotnew:62 src/dotnew-gtk:207
 #, sh-format
-msgid ""
-"Package updates are available for your system.\\n\\nSelecting OK will "
-"perform the updates using gslapt. Root user privileges will be required in "
-"order to do that.\\n\\nProceed with updating?"
-msgstr "Sono disponibile aggiornaenti dei pacchetti per il sistema.\\n\\nSelezionando OK si procederà agli aggiornamenti tramite gslapt. Per svolgere questa attività sono necessari privilegi di Amministratore.\\n\\nProcedo con con l'aggiornamento?"
+msgid "Replace"
+msgstr "Sostituisci"
 
-#: salix-update-notifier.desktop.in.h:1
-msgid "Display a tray notification when package updates are available"
-msgstr "Mostra una notifica sulla barra della attività quando sono disponibili aggiornamenti"
+#: src/dotnew:36 src/dotnew:47
+#, sh-format
+msgid "Replace the old settings file with the new one"
+msgstr "Sostituisci le vecchie impostazioni con le nuove"
 
-#: salix-update-notifier.desktop.in.h:2
-msgid "Salix update notifier"
-msgstr "Notifica degli aggiornamenti di Salix"
+#: src/dotnew:37 src/dotnew:48 src/dotnew:67 src/dotnew-gtk:209
+#, sh-format
+msgid "Delete"
+msgstr "Cancella"
+
+#: src/dotnew:37 src/dotnew:48
+#, sh-format
+msgid "Delete the new settings file"
+msgstr "Cancella il file delle nuove impostazioni"
+
+#: src/dotnew:38 src/dotnew:49 src/dotnew:70 src/dotnew-gtk.glade:38
+#, sh-format
+msgid "Diff"
+msgstr "Diff"
+
+#: src/dotnew:38 src/dotnew:49
+#, sh-format
+msgid "View the differences between the old and new settings files"
+msgstr "Vedi le differenze tra il vecchio e il nuovo file delle impostazioni"
+
+#: src/dotnew:39
+#, sh-format
+msgid "Use vimdiff to edit the old and new settings files"
+msgstr "Usa vimdiff per modificare i file  delle vecchie e nuove impostazioni"
+
+#: src/dotnew:40 src/dotnew:50
+#, sh-format
+msgid "Nothing"
+msgstr "Niente"
+
+#: src/dotnew:40 src/dotnew:50
+#, sh-format
+msgid "Do nothing for now, decide about it later"
+msgstr "Non fare nulla per adesso, decidi dopo"
+
+#: src/dotnew:90
+#, sh-format
+msgid "Yes"
+msgstr "Sì"
+
+#: src/dotnew:91
+#, sh-format
+msgid "No"
+msgstr "No"
+
+#: src/dotnew:92
+#, sh-format
+msgid "There is no $orig file present.\\nMove $i to $orig ?"
+msgstr "Non è presente alcune file $orig .\\nSposta $i a $orig ?"
+
+#: src/dotnew:99
+#, sh-format
+msgid "Ready"
+msgstr "Pronto"
+
+#: src/dotnew:101
+#, sh-format
+msgid "Done processing all .new files"
+msgstr "Processati tutti i file .new"
+
+#: src/dotnew:103 src/dotnew-gtk.glade:384
+#, sh-format
+msgid "No .new files"
+msgstr "Nessun file .new"
+
+#: src/dotnew:104 src/dotnew-gtk.glade:403
+#, sh-format
+msgid "There are no .new configuration files in your system"
+msgstr "Non ci sono file di configurazione .new nel tuo sistema"
+
+#: dotnew.desktop.in.h:1 dotnew-kde.desktop.in.h:1
+msgid "Manage .new system settings files"
+msgstr "Gestisci i file di configurazione di sistema .new"
+
+#: src/dotnew-gtk.glade:33
+msgid "Refresh configuration file list"
+msgstr "Aggiorna la lista dei file di configurazione"
+
+#: src/dotnew-gtk.glade:37
+msgid "Compare files line by line"
+msgstr "Compara i file riga per riga"
+
+#: src/dotnew-gtk.glade:51
+msgid "Use gvimdiff or vimdiff to merge diffs"
+msgstr "Usa gvimdiff o vimdiff per unire i diffs"
+
+#: src/dotnew-gtk.glade:65
+msgid "Use meld to merge diffs"
+msgstr "Usa meld per unire i diffs"
+
+#: src/dotnew-gtk.glade:88
+msgid "Mark all configuration files for replacement"
+msgstr "Marca tutti i file di configurazione per la sostituzione"
+
+#: src/dotnew-gtk.glade:89
+msgid "Replace all"
+msgstr "Sostituisci tutti"
+
+#: src/dotnew-gtk.glade:102
+msgid "Mark all new configuration files for deletion"
+msgstr "Marca tutti i file di configurazione per la cancellazione"
+
+#: src/dotnew-gtk.glade:103
+msgid "Delete all"
+msgstr "Cancella Tutti"
+
+#: src/dotnew-gtk.glade:116
+msgid "Unmark all checkboxes"
+msgstr "Smarca  tutte le selezioni"
+
+#: src/dotnew-gtk.glade:117
+msgid "Unmark all"
+msgstr "Smarca tutto"
+
+#: src/dotnew-gtk.glade:139
+msgid "Refresh"
+msgstr "Aggiorna"
+
+#: src/dotnew-gtk.glade:455
+msgid "A utility to manage .new system configuration files"
+msgstr "Una utilità per gestire i file di configurazione .new"
+
+#: src/dotnew-gtk.glade:1133
+msgid "translator-credits"
+msgstr "traduttori-crediti"
+
+#: src/dotnew-gtk:121
+msgid "vs"
+msgstr "contro"
+
+#: src/dotnew-gtk:211
+msgid "Configuration file"
+msgstr "File di configurazione"
