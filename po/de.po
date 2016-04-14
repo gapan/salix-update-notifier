@@ -3,180 +3,54 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# gapan <vlahavas@gmail.com>, 2011
 msgid ""
 msgstr ""
-"Project-Id-Version: dotnew\n"
+"Project-Id-Version: Salix\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-09-14 21:46+0300\n"
-"PO-Revision-Date: 2013-11-20 09:30+0000\n"
-"Last-Translator: gapan <vlahavas@gmail.com>\n"
-"Language-Team: German (http://www.transifex.com/gapan/dotnew/language/de/)\n"
+"POT-Creation-Date: 2010-06-03 01:42+0300\n"
+"PO-Revision-Date: 2015-08-11 11:25+0000\n"
+"Last-Translator: Dimitris Glezos <glezos@transifex.com>\n"
+"Language-Team: German (http://www.transifex.com/gapan/salix/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: de\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: src/dotnew:20
+#: src/salix-update-notifier:24
 #, sh-format
-msgid "You need to be root to run this"
-msgstr "Sie müssen root sein, um diese Anwendung auszuführen"
+msgid ""
+"ERROR: gksu, ktsuss or kdesu are required for salix-update-notifier to work."
+msgstr "FEHLER: gksu, ktsuss oder kdesu werden für salix-update-notifier benötigt."
 
-#: src/dotnew:33 src/dotnew:44 src/dotnew:100 src/dotnew:103
+#: src/salix-update-notifier:30
 #, sh-format
-msgid "OK"
-msgstr "OK"
+msgid "ERROR: matedialog must be installed for salix-update-notifier to work."
+msgstr "FEHLER: matedialog wird für salix-update-notifier benötigt."
 
-#: src/dotnew:33 src/dotnew:44
+#: src/salix-update-notifier:42
 #, sh-format
-msgid "Cancel"
-msgstr "Abbrechen"
+msgid "Package updates are available."
+msgstr "Paketupdates sind verfügbar."
 
-#: src/dotnew:35 src/dotnew:46
+#: src/salix-update-notifier:45
 #, sh-format
-msgid "New settings file found: $file\\n\\nWhat do you want to do with it?"
-msgstr "Neue Konfigurationsdatei gefunden: $file\\n\\nWas wollen Sie damit machen?"
+msgid "Install package updates?"
+msgstr "Paketupdates installieren?"
 
-#: src/dotnew:36 src/dotnew:47 src/dotnew:62 src/dotnew-gtk:207
+#: src/salix-update-notifier:46
 #, sh-format
-msgid "Replace"
-msgstr "Ersetzen"
+msgid ""
+"Package updates are available for your system.\\n\\nSelecting OK will "
+"perform the updates using gslapt. Root user privileges will be required in "
+"order to do that.\\n\\nProceed with updating?"
+msgstr "Für ihr System sind Paketupdates verfügbar.\\n\\nOK wird die Updates mit gslapt durchführen. Dazu werden root Benutzerrechte benötigt.\\n\\nMit dem Update fortfahren?"
 
-#: src/dotnew:36 src/dotnew:47
-#, sh-format
-msgid "Replace the old settings file with the new one"
-msgstr "Ersetze die alte Konfigurationsdatei mit der Neuen"
+#: salix-update-notifier.desktop.in.h:1
+msgid "Display a tray notification when package updates are available"
+msgstr "Zeigt eine Benachrichtigung, wenn Paketupdates verfügbar sind"
 
-#: src/dotnew:37 src/dotnew:48 src/dotnew:67 src/dotnew-gtk:209
-#, sh-format
-msgid "Delete"
-msgstr "Löschen"
-
-#: src/dotnew:37 src/dotnew:48
-#, sh-format
-msgid "Delete the new settings file"
-msgstr "Lösche die neue Konfigurationsdatei"
-
-#: src/dotnew:38 src/dotnew:49 src/dotnew:70 src/dotnew-gtk.glade:38
-#, sh-format
-msgid "Diff"
-msgstr "Diff"
-
-#: src/dotnew:38 src/dotnew:49
-#, sh-format
-msgid "View the differences between the old and new settings files"
-msgstr "Betrachte den Unterschied zwischen der alten und der neuen Konfigurationsdatei"
-
-#: src/dotnew:39
-#, sh-format
-msgid "Use vimdiff to edit the old and new settings files"
-msgstr "Benutze vimdiff um die alte und die neue Konfigurationsdatei zu bearbeiten"
-
-#: src/dotnew:40 src/dotnew:50
-#, sh-format
-msgid "Nothing"
-msgstr "Nichts"
-
-#: src/dotnew:40 src/dotnew:50
-#, sh-format
-msgid "Do nothing for now, decide about it later"
-msgstr "Jetzt nichts machen und später darüber entscheiden"
-
-#: src/dotnew:90
-#, sh-format
-msgid "Yes"
-msgstr "Ja"
-
-#: src/dotnew:91
-#, sh-format
-msgid "No"
-msgstr "Nein"
-
-#: src/dotnew:92
-#, sh-format
-msgid "There is no $orig file present.\\nMove $i to $orig ?"
-msgstr "Es existiert kein $orig Datei.\\nVerschiebe $i nach $orig ?"
-
-#: src/dotnew:99
-#, sh-format
-msgid "Ready"
-msgstr "Erledigt"
-
-#: src/dotnew:101
-#, sh-format
-msgid "Done processing all .new files"
-msgstr "Alle .new Dateien wurden bearbeitet"
-
-#: src/dotnew:103 src/dotnew-gtk.glade:384
-#, sh-format
-msgid "No .new files"
-msgstr "Keine .new Dateien"
-
-#: src/dotnew:104 src/dotnew-gtk.glade:403
-#, sh-format
-msgid "There are no .new configuration files in your system"
-msgstr "Es existieren keine .new Konfigurationsdateien in Ihrem System"
-
-#: dotnew.desktop.in.h:1 dotnew-kde.desktop.in.h:1
-msgid "Manage .new system settings files"
-msgstr "Verwalte die .new Konfigurationsdateien"
-
-#: src/dotnew-gtk.glade:33
-msgid "Refresh configuration file list"
-msgstr "Liste der Konfigurationsdateien auffrischen"
-
-#: src/dotnew-gtk.glade:37
-msgid "Compare files line by line"
-msgstr "Dateien zeilenweise vergleichen"
-
-#: src/dotnew-gtk.glade:51
-msgid "Use gvimdiff or vimdiff to merge diffs"
-msgstr "Gvimdiff oder vimdiff zum Zusammenführen der Diffs benutzen"
-
-#: src/dotnew-gtk.glade:65
-msgid "Use meld to merge diffs"
-msgstr "Meld zum Zusammenführen der Diffs benutzen"
-
-#: src/dotnew-gtk.glade:88
-msgid "Mark all configuration files for replacement"
-msgstr "Alle Konfigurationsdateien zum Ersetzen vormerken"
-
-#: src/dotnew-gtk.glade:89
-msgid "Replace all"
-msgstr "Alle ersetzen"
-
-#: src/dotnew-gtk.glade:102
-msgid "Mark all new configuration files for deletion"
-msgstr "Alle Konfigurationsdateien zum Löschen vormerken"
-
-#: src/dotnew-gtk.glade:103
-msgid "Delete all"
-msgstr "Alle löschen"
-
-#: src/dotnew-gtk.glade:116
-msgid "Unmark all checkboxes"
-msgstr "Alle Haken entfernen"
-
-#: src/dotnew-gtk.glade:117
-msgid "Unmark all"
-msgstr "Markierungen aufheben"
-
-#: src/dotnew-gtk.glade:139
-msgid "Refresh"
-msgstr "Neu laden"
-
-#: src/dotnew-gtk.glade:455
-msgid "A utility to manage .new system configuration files"
-msgstr "Verwalte die .new Konfigurationsdateien"
-
-#: src/dotnew-gtk.glade:1133
-msgid "translator-credits"
-msgstr "Thorsten Mühlfelder <thenktor~at~gmx.de>"
-
-#: src/dotnew-gtk:121
-msgid "vs"
-msgstr "vs"
-
-#: src/dotnew-gtk:211
-msgid "Configuration file"
-msgstr "Konfigurationsdatei"
+#: salix-update-notifier.desktop.in.h:2
+msgid "Salix update notifier"
+msgstr "Salix Update-Benachrichtigung"

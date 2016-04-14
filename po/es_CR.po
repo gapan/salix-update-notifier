@@ -3,41 +3,40 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# yesbook <mplanansky@seznam.cz>, 2012
 msgid ""
 msgstr ""
 "Project-Id-Version: Salix\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-06-03 01:42+0300\n"
-"PO-Revision-Date: 2015-08-11 11:25+0000\n"
-"Last-Translator: Dimitris Glezos <glezos@transifex.com>\n"
-"Language-Team: Czech (http://www.transifex.com/gapan/salix/language/cs/)\n"
+"PO-Revision-Date: 2016-03-22 21:24+0000\n"
+"Last-Translator: gapan <vlahavas@gmail.com>\n"
+"Language-Team: Spanish (Costa Rica) (http://www.transifex.com/gapan/salix/language/es_CR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: cs\n"
-"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+"Language: es_CR\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: src/salix-update-notifier:24
 #, sh-format
 msgid ""
 "ERROR: gksu, ktsuss or kdesu are required for salix-update-notifier to work."
-msgstr "Chyba: jsou vyžadovány gksu, ktsuss nebo kdesu, aby mohl Salix manažer aktualizací fungovat."
+msgstr ""
 
 #: src/salix-update-notifier:30
 #, sh-format
 msgid "ERROR: matedialog must be installed for salix-update-notifier to work."
-msgstr "Chyba: aby mohl Salix manažer aktualizací fungovat, je nutné mít nainstalované matedialog."
+msgstr ""
 
 #: src/salix-update-notifier:42
 #, sh-format
 msgid "Package updates are available."
-msgstr "Jsou dostupné aktualizace balíčků."
+msgstr ""
 
 #: src/salix-update-notifier:45
 #, sh-format
 msgid "Install package updates?"
-msgstr "Instalovat aktualizace balíčků?"
+msgstr ""
 
 #: src/salix-update-notifier:46
 #, sh-format
@@ -45,12 +44,12 @@ msgid ""
 "Package updates are available for your system.\\n\\nSelecting OK will "
 "perform the updates using gslapt. Root user privileges will be required in "
 "order to do that.\\n\\nProceed with updating?"
-msgstr "Pro váš systém jsou dostupné aktualizace balíčků.\\n\\nZvolením OK provedete aktualizaci s použitím programu gslapt. K této akci budou vyžadována práva Root.\\n\\nPokračovat s aktualizací?"
+msgstr ""
 
 #: salix-update-notifier.desktop.in.h:1
 msgid "Display a tray notification when package updates are available"
-msgstr "Zobrazit ikonu v systémové liště, pokud jsou dostupné aktualizace"
+msgstr ""
 
 #: salix-update-notifier.desktop.in.h:2
 msgid "Salix update notifier"
-msgstr "Salix manažer aktualizací"
+msgstr ""
