@@ -1,7 +1,7 @@
 PREFIX ?= /usr/local
 DESTDIR ?= /
-PACKAGE_LOCALE_DIR ?= /$(PREFIX)/share/locale
-PIXMAPS_DIR ?= /$(PREFIX)/share/pixmaps
+PACKAGE_LOCALE_DIR ?= $(PREFIX)/share/locale
+PIXMAPS_DIR ?= $(PREFIX)/share/pixmaps
 
 all: mo desktop
 
