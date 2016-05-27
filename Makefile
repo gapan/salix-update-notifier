@@ -3,33 +3,39 @@ DESTDIR ?= /
 PACKAGE_LOCALE_DIR ?= $(PREFIX)/share/locale
 PIXMAPS_DIR ?= $(PREFIX)/share/pixmaps
 
+.PHONY: all
 all: mo desktop
 
+.PHONY: mo
 mo:
 	for i in `ls po/*.po`; do \
 		msgfmt $$i -o `echo $$i | sed "s/\.po//"`.mo; \
 	done
 
+.PHONY: desktop
 desktop:
 	intltool-merge po/ -d -u salix-update-notifier.desktop.in salix-update-notifier.desktop
 
-
+.PHONY: updatepo
 updatepo:
 	for i in `ls po/*.po`; do \
 		msgmerge -UNs $$i po/salix-update-notifier.pot; \
 	done
 
+.PHONY: pot
 pot:
 	intltool-extract --type="gettext/ini" salix-update-notifier.desktop.in
 	xgettext --from-code=utf-8 -L shell -o po/salix-update-notifier.pot src/salix-update-notifier
 	xgettext --from-code=utf-8 -j -L C -kN_ -o po/salix-update-notifier.pot salix-update-notifier.desktop.in.h
 	rm salix-update-notifier.desktop.in.h
 
+.PHONY: clean
 clean:
 	rm -f salix-update-notifier.desktop
 	rm -f po/*.mo
 	rm -f po/*.po~
 
+.PHONY: install
 install:
 	install -d -m 755 $(DESTDIR)/$(PREFIX)/bin/
 	install -d -m 755 $(DESTDIR)/etc/xdg/autostart
@@ -47,5 +53,3 @@ install:
 		$(DESTDIR)/$(PACKAGE_LOCALE_DIR)/$${i}/LC_MESSAGES/salix-update-notifier.mo; \
 	done
 
-
-.PHONY: all man mo updatepo pot clean install
