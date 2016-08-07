@@ -18,7 +18,7 @@ def close_app(data=None):
 
 def make_menu(event_button, event_time, data=None):
     menu = gtk.Menu()
-    close_item = gtk.ImageMenuItem(gtk.STOCK_QUIT)
+    close_item = gtk.ImageMenuItem(gtk.STOCK_CLOSE)
 
     #Append the menu items    
     menu.append(close_item)
