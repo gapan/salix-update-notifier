@@ -26,6 +26,7 @@ updatepo:
 pot:
 	intltool-extract --type="gettext/ini" salix-update-notifier.desktop.in
 	xgettext --from-code=utf-8 -L shell -o po/salix-update-notifier.pot src/salix-update-notifier
+	xgettext --from-code=utf-8 -j -L python -o po/salix-update-notifier.pot src/salix-update-notifier-tray-icon
 	xgettext --from-code=utf-8 -j -L C -kN_ -o po/salix-update-notifier.pot salix-update-notifier.desktop.in.h
 	rm salix-update-notifier.desktop.in.h
 
