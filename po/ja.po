@@ -3,14 +3,15 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# ふうせん Fu-sen. | BALLOON a.k.a. Fu-sen., 2016
 # gapan <vlahavas@gmail.com>, 2011
 msgid ""
 msgstr ""
 "Project-Id-Version: Salix\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-06-03 01:42+0300\n"
-"PO-Revision-Date: 2016-04-14 17:22+0000\n"
-"Last-Translator: gapan <vlahavas@gmail.com>\n"
+"PO-Revision-Date: 2017-09-19 10:15+0000\n"
+"Last-Translator: ふうせん Fu-sen. | BALLOON a.k.a. Fu-sen.\n"
 "Language-Team: Japanese (http://www.transifex.com/gapan/salix/language/ja/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -22,22 +23,22 @@ msgstr ""
 #, sh-format
 msgid ""
 "ERROR: gksu, ktsuss or kdesu are required for salix-update-notifier to work."
-msgstr "エラー: salix-update-notifierを使うには、gksu、ktsussとkdesuが必要です。"
+msgstr "エラー: salix-update-notifier を使用するには、gksu・ktsuss・kdesu が必要です。"
 
 #: src/salix-update-notifier:30
 #, sh-format
 msgid "ERROR: zenity must be installed for salix-update-notifier to work."
-msgstr "エラー: salix-update-notifierを使うには、zenityが必要です。"
+msgstr "エラー: salix-update-notifier の動作には zenity が必要です。"
 
 #: src/salix-update-notifier:42
 #, sh-format
 msgid "Package updates are available."
-msgstr "新しいバージョンのパッケージが、レポジトリーに加えられました。"
+msgstr "更新パッケージが存在します。"
 
 #: src/salix-update-notifier:45
 #, sh-format
 msgid "Install package updates?"
-msgstr "パッケージのアップデートを行いますか。"
+msgstr "インストールされたパッケージを更新しますか？"
 
 #: src/salix-update-notifier:46
 #, sh-format
@@ -45,12 +46,12 @@ msgid ""
 "Package updates are available for your system.\\n\\nSelecting OK will "
 "perform the updates using gslapt. Root user privileges will be required in "
 "order to do that.\\n\\nProceed with updating?"
-msgstr "新しいバージョンのパッケージが、レポジトリーにあります。\\n\\nパッケージのgslaptを通してアップデートを行いたい場合は、OKをクリックしてください。ルートユーザである必要があります\\n\\nアップデートを行いますか。"
+msgstr "新しいバージョンのパッケージがリポジトリにあります。\\n\\nYes を選択すると gslapt を使用して更新が実行されます。 これを実行するには root ユーザー特権が必要です。\\n\\n更新を行いますか？"
 
 #: salix-update-notifier.desktop.in.h:1
 msgid "Display a tray notification when package updates are available"
-msgstr "アップデートできるパッケージがレポジトリーにある場合、トレイに表示する。"
+msgstr "更新可能パッケージがリボジトリにある場合はトレイに表示"
 
 #: salix-update-notifier.desktop.in.h:2
 msgid "Salix update notifier"
-msgstr "Salix アップデートのお知らせ"
+msgstr "Salix アップデート通知"

@@ -3,13 +3,13 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# Hugo Carvalho <hugokarvalho@hotmail.com>, 2011-2012,2014
+# Hugo Carvalho <hugokarvalho@hotmail.com>, 2011-2012,2014,2019
 msgid ""
 msgstr ""
 "Project-Id-Version: Salix\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-06-03 01:42+0300\n"
-"PO-Revision-Date: 2016-04-14 17:22+0000\n"
+"PO-Revision-Date: 2019-01-29 15:29+0000\n"
 "Last-Translator: Hugo Carvalho <hugokarvalho@hotmail.com>\n"
 "Language-Team: Portuguese (Portugal) (http://www.transifex.com/gapan/salix/language/pt_PT/)\n"
 "MIME-Version: 1.0\n"
@@ -45,7 +45,7 @@ msgid ""
 "Package updates are available for your system.\\n\\nSelecting OK will "
 "perform the updates using gslapt. Root user privileges will be required in "
 "order to do that.\\n\\nProceed with updating?"
-msgstr "Atualizações de pacotes estão disponíveis para o seu sistema.\n\nOK selecção irá realizar as atualizações usando o gslapt. Privilégios de usuário Root serão exigidos a fim de fazer essa.\n\nProceder com a atualização?"
+msgstr "Atualizações de pacotes estão disponíveis para o seu sistema.\\n\\nSelecionar OK executará as atualizações usando o gslapt. Serão necessários privilégios de utilizador Root para fazer isso.\\n\\nProceder com a atualização?"
 
 #: salix-update-notifier.desktop.in.h:1
 msgid "Display a tray notification when package updates are available"
