@@ -34,23 +34,35 @@ fi
 # Wait 10 mins before running for the first time
 sleep 10m
 
+# possible locations for the configuration file
+CONFIG_FILE_LOCAL=$HOME/.config/salix-update-notifier
+CONFIG_FILE_GLOBAL=/etc/salix-update-notifier.conf
+
 # Main loop
 while true; do
-	# Check if there is a config file that sets a different interval
-	# than the default and use that
-	if [ -f $HOME/.config/salix-update-notifier ]; then
-		INTERVAL=`grep "^interval=" $HOME/.config/salix-update-notifier | \
-		head -n1 | sed "s/interval=\(.*\)/\1/" `
-	elif [ -f /etc/salix-update-notifier.conf ]; then
-		INTERVAL=`grep "^interval=" /etc/salix-update-notifier.conf | \
-		head -n1 | sed "s/interval=\(.*\)/\1/" `
-	else
-		INTERVAL=$DEFAULT_INTERVAL
+	# Check if there is a config file that should be read
+	if [ -f $CONFIG_FILE_LOCAL ]; then
+		CONFIG_FILE=$CONFIG_FILE_LOCAL
+	elif [ -f $CONFIG_FILE_GLOBAL ]; then
+		CONFIG_FILE=$CONFIG_FILE_GLOBAL
+	fi
+
+	# Read configuration, includes the default interval and wheter to
+	# use a notification in addition to the tray icon
+	NOTIFY_SEND=true
+	INTERVAL=$DEFAULT_INTERVAL
+	if [ ! -z "$CONFIG_FILE" ]; then
+		INTERVAL=`grep "^interval=" $CONFIG_FILE | \
+			head -n1 | sed "s/interval=\(.*\)/\1/" `
+		grep -q "^notification=true$" $CONFIG_FILE && \
+			[ -x /usr/bin/notify-send ] && \
+			NOTIFY_SEND="notify-send -i salix-update-notifier `eval_gettext 'Package updates are available.'`"
 	fi
 
 	if [[ `LANG=C /usr/sbin/slapt-get -s --upgrade | grep "Need to get"` ]]
 	then
 		/usr/libexec/salix-update-notifier-tray-icon \
+		&& $NOTIFY_SEND \
 		&& zenity --question \
 		--title "`eval_gettext 'Install package updates?'`" \
 		--text="`eval_gettext 'Package updates are available for your system.\n\nSelecting OK will perform the updates using gslapt. Root user privileges will be required in order to do that.\n\nProceed with updating?'`" \
