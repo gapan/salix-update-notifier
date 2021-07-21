@@ -36,16 +36,6 @@ sleep 10m
 
 # Main loop
 while true; do
-	if [[ `LANG=C /usr/sbin/slapt-get -s --upgrade | grep "Need to get"` ]]
-	then
-		/usr/libexec/salix-update-notifier-tray-icon \
-		&& zenity --question \
-		--title "`eval_gettext 'Install package updates?'`" \
-		--text="`eval_gettext 'Package updates are available for your system.\n\nSelecting OK will perform the updates using gslapt. Root user privileges will be required in order to do that.\n\nProceed with updating?'`" \
-		--window-icon=/usr/share/pixmaps/salix-update-notifier.png \
-		&& $SUCOMMAND gslapt --upgrade
-	fi
-
 	# Check if there is a config file that sets a different interval
 	# than the default and use that
 	if [ -f $HOME/.config/salix-update-notifier ]; then
@@ -57,6 +47,17 @@ while true; do
 	else
 		INTERVAL=$DEFAULT_INTERVAL
 	fi
+
+	if [[ `LANG=C /usr/sbin/slapt-get -s --upgrade | grep "Need to get"` ]]
+	then
+		/usr/libexec/salix-update-notifier-tray-icon \
+		&& zenity --question \
+		--title "`eval_gettext 'Install package updates?'`" \
+		--text="`eval_gettext 'Package updates are available for your system.\n\nSelecting OK will perform the updates using gslapt. Root user privileges will be required in order to do that.\n\nProceed with updating?'`" \
+		--window-icon=/usr/share/pixmaps/salix-update-notifier.png \
+		&& $SUCOMMAND gslapt --upgrade
+	fi
+
 	# Wait until checking for updates again
 	sleep $INTERVAL || sleep $DEFAULT_INTERVAL
 done
