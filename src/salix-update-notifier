@@ -47,7 +47,7 @@ while true; do
 		CONFIG_FILE=$CONFIG_FILE_GLOBAL
 	fi
 
-	# Read configuration, includes the default interval and wheter to
+	# Read configuration, includes the default interval and whether to
 	# use a notification in addition to the tray icon
 	NOTIFY_SEND=true
 	INTERVAL=$DEFAULT_INTERVAL
