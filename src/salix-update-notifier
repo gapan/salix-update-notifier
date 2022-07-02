@@ -74,6 +74,6 @@ while true; do
 	fi
 
 	# Wait until checking for updates again
-	sleep $INTERVAL || sleep $DEFAULT_INTERVAL
+	sleep $INTERVAL 2> /dev/null || sleep $DEFAULT_INTERVAL
 done
 
