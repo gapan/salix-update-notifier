@@ -38,6 +38,9 @@ sleep 10m
 CONFIG_FILE_LOCAL=$HOME/.config/salix-update-notifier
 CONFIG_FILE_GLOBAL=/etc/salix-update-notifier.conf
 
+# the text to show in the notification
+NOTIFY_SEND_TEXT="`eval_gettext 'Package updates are available.'`"
+
 # Main loop
 while true; do
 	# Check if there is a config file that should be read
@@ -56,13 +59,13 @@ while true; do
 			head -n1 | sed "s/interval=\(.*\)/\1/" `
 		grep -q "^notification=true$" $CONFIG_FILE && \
 			[ -x /usr/bin/notify-send ] && \
-			NOTIFY_SEND="notify-send -i salix-update-notifier `eval_gettext 'Package updates are available.'`"
+			NOTIFY_SEND="/usr/bin/notify-send"
 	fi
 
 	if [[ `LANG=C /usr/sbin/slapt-get -s --upgrade | grep "Need to get"` ]]
 	then
 		/usr/libexec/salix-update-notifier-tray-icon \
-		&& $NOTIFY_SEND \
+		&& $NOTIFY_SEND -i salix-update-notifier "$NOTIFY_SEND_TEXT" \
 		&& zenity --question \
 		--title "`eval_gettext 'Install package updates?'`" \
 		--text="`eval_gettext 'Package updates are available for your system.\n\nSelecting OK will perform the updates using gslapt. Root user privileges will be required in order to do that.\n\nProceed with updating?'`" \
