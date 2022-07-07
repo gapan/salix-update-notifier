@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="64"
+   height="64"
+   version="1.1"
+   id="svg29"
+   sodipodi:docname="salix-update-notifier-tray.svg"
+   inkscape:version="1.1.2 (0a00cf5339, 2022-02-04)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview31"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     showgrid="false"
+     inkscape:zoom="10.234375"
+     inkscape:cx="28.922137"
+     inkscape:cy="31.951145"
+     inkscape:window-width="1920"
+     inkscape:window-height="1020"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg29" />
+  <defs
+     id="defs9">
+    <linearGradient
+       id="d"
+       x1="23.683"
+       x2="25.655"
+       y1="-25.544"
+       y2="75.049"
+       gradientUnits="userSpaceOnUse">
+      <stop
+         stop-color="#111"
+         offset="0"
+         id="stop2" />
+      <stop
+         stop-color="#4c4c4c"
+         offset=".54902"
+         id="stop4" />
+      <stop
+         stop-color="#888"
+         offset="1"
+         id="stop6" />
+    </linearGradient>
+  </defs>
+  <circle
+     cx="32"
+     cy="32"
+     r="27"
+     fill="#d35400"
+     stroke="#883500"
+     stroke-width="2"
+     style="fill-rule:evenodd;paint-order:stroke fill markers;fill:#66ff00;fill-opacity:1;stroke:#a34443;stroke-opacity:1"
+     id="circle11" />
+  <circle
+     cx="32"
+     cy="32"
+     fill="#d35400"
+     style="fill:#ee5e43;fill-opacity:1;fill-rule:evenodd;paint-order:stroke fill markers"
+     id="circle13"
+     r="27" />
+  <path
+     d="M 28.990527,11.585195 V 40.749323 L 15.447987,27.62555 10.933865,32.000084 32,52.414804 53.066135,32.000084 48.552014,27.62555 35.009473,40.749323 V 11.585195 Z"
+     fill="#fcfcfc"
+     id="path27"
+     style="stroke-width:1.72816" />
+</svg>

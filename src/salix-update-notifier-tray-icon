@@ -36,7 +36,7 @@ def on_left_click(event):
     sys.exit(0)
 
 if __name__ == '__main__':
-    icon = gtk.status_icon_new_from_icon_name("salix-update-notifier")
+    icon = gtk.status_icon_new_from_icon_name("updates-notifier")
     icon.set_tooltip_text(_('Package updates are available.'))
     icon.connect('popup-menu', on_right_click)
     icon.connect('activate', on_left_click)
