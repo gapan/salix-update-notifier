@@ -49,6 +49,7 @@ install:
 	install -m 755 src/slapt-get-update $(DESTDIR)/etc/cron.hourly/
 	install -m 644 src/salix-update-notifier.conf $(DESTDIR)/etc/
 	install -m 644 src/salix-update-notifier.png $(DESTDIR)/$(PIXMAPS_DIR)/
+	install -m 755 src/salix-update-notifier-loop $(DESTDIR)/usr/libexec/
 	install -m 755 src/salix-update-notifier-tray-icon $(DESTDIR)/usr/libexec/
 	for i in `ls po/*.mo|sed "s|po/\(.*\).mo|\1|"`; do \
 		install -d -m 755 $(DESTDIR)/$(PACKAGE_LOCALE_DIR)/$${i}/LC_MESSAGES ;\

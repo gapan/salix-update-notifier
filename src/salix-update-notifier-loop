@@ -1,0 +1,79 @@
+#!/bin/bash
+
+# The default interval is set to 2 hours
+DEFAULT_INTERVAL="2h"
+
+# Translations only work with utf8 locales
+if ! locale -k charmap|grep -q UTF-8 ; then
+	LANG=C
+fi
+
+# Gettext internationalization
+export TEXTDOMAIN="salix-update-notifier"
+export TEXTDOMAINDIR="/usr/share/locale"
+. gettext.sh
+
+# Determine if gksu or kdesu will be used
+if [[ `which gksu 2> /dev/null` ]]; then
+	SUCOMMAND="gksu"
+elif [[ `which ktsuss 2> /dev/null` ]]; then
+	SUCOMMAND="ktsuss -u root"
+elif [[ `which kdesu 2> /dev/null` ]]; then
+	SUCOMMAND="kdesu"
+else
+	echo "`eval_gettext 'ERROR: gksu, ktsuss or kdesu are required for salix-update-notifier to work.'`" >&2
+	exit 1
+fi
+
+# Check if zenity is present
+if [[ ! `which zenity 2> /dev/null` ]]; then
+	echo "`eval_gettext 'ERROR: zenity must be installed for salix-update-notifier to work.'`" >&2
+	exit 1
+fi
+
+# Wait 10 mins before running for the first time
+sleep 10m
+
+# possible locations for the configuration file
+CONFIG_FILE_LOCAL=$HOME/.config/salix-update-notifier
+CONFIG_FILE_GLOBAL=/etc/salix-update-notifier.conf
+
+# the text to show in the notification
+NOTIFY_SEND_TEXT="`eval_gettext 'Package updates are available.'`"
+
+# Main loop
+while true; do
+	# Check if there is a config file that should be read
+	if [ -f $CONFIG_FILE_LOCAL ]; then
+		CONFIG_FILE=$CONFIG_FILE_LOCAL
+	elif [ -f $CONFIG_FILE_GLOBAL ]; then
+		CONFIG_FILE=$CONFIG_FILE_GLOBAL
+	fi
+
+	# Read configuration, includes the default interval and whether to
+	# use a notification in addition to the tray icon
+	NOTIFY_SEND=true
+	INTERVAL=$DEFAULT_INTERVAL
+	if [ ! -z "$CONFIG_FILE" ]; then
+		INTERVAL=`grep "^interval=" $CONFIG_FILE | \
+			head -n1 | sed "s/interval=\(.*\)/\1/" `
+		grep -q "^notification=true$" $CONFIG_FILE && \
+			[ -x /usr/bin/notify-send ] && \
+			NOTIFY_SEND="/usr/bin/notify-send"
+	fi
+
+	if [[ `LANG=C /usr/sbin/slapt-get -s --upgrade | grep "Need to get"` ]]
+	then
+		/usr/libexec/salix-update-notifier-tray-icon \
+		&& $NOTIFY_SEND -i salix-update-notifier "$NOTIFY_SEND_TEXT" \
+		&& zenity --question \
+		--title "`eval_gettext 'Install package updates?'`" \
+		--text="`eval_gettext 'Package updates are available for your system.\n\nSelecting OK will perform the updates using gslapt. Root user privileges will be required in order to do that.\n\nProceed with updating?'`" \
+		--window-icon=/usr/share/pixmaps/salix-update-notifier.png \
+		&& $SUCOMMAND /usr/sbin/gslapt --upgrade
+	fi
+
+	# Wait until checking for updates again
+	sleep $INTERVAL 2> /dev/null || sleep $DEFAULT_INTERVAL
+done
+
