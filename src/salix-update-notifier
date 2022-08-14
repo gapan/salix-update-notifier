@@ -1,6 +1,6 @@
 #!/bin/bash
 
-pkill -uid $USER "/bin/bash /usr/libexec/salix-update-notifier-loop"
+pkill --full --uid $USER "/bin/bash /usr/libexec/salix-update-notifier-loop"
 sleep 2
 /usr/libexec/salix-update-notifier-loop
 
