@@ -6,7 +6,14 @@ DEFAULT_INITIAL_INTERVAL="10m"
 # The default interval between updates is set to 2 hours
 DEFAULT_INTERVAL="2h"
 
+# possible locations for the configuration file
+CONFIG_FILE_LOCAL=$HOME/.config/salix-update-notifier
+CONFIG_FILE_GLOBAL=/etc/salix-update-notifier.conf
+
 read_configuration() {
+	# Read configuration, includes the default interval and whether to
+	# use a notification in addition to the tray icon
+
 	# Check if there is a config file that should be read
 	if [ -f $CONFIG_FILE_LOCAL ]; then
 		CONFIG_FILE=$CONFIG_FILE_LOCAL
@@ -14,20 +21,19 @@ read_configuration() {
 		CONFIG_FILE=$CONFIG_FILE_GLOBAL
 	fi
 
-	# Read configuration, includes the default interval and whether to
-	# use a notification in addition to the tray icon
-	NOTIFY_SEND=true
-	INITIAL_INTERVAL=$DEFAULT_INITIAL_INTERVAL
-	INTERVAL=$DEFAULT_INTERVAL
 	if [ ! -z "$CONFIG_FILE" ]; then
+		grep -q "^notification=true$" $CONFIG_FILE && \
+			[ -x /usr/bin/notify-send ] && \
+			NOTIFY_SEND="/usr/bin/notify-send"
 		INITIAL_INTERVAL=`grep "^initial-interval=" $CONFIG_FILE | \
 			head -n1 | sed "s/initial-interval=\(.*\)/\1/" `
 		INTERVAL=`grep "^interval=" $CONFIG_FILE | \
 			head -n1 | sed "s/interval=\(.*\)/\1/" `
-		grep -q "^notification=true$" $CONFIG_FILE && \
-			[ -x /usr/bin/notify-send ] && \
-			NOTIFY_SEND="/usr/bin/notify-send"
 	fi
+
+	[ -z $NOTIFY_SEND ] && NOTIFY_SEND=true # default action is to do nothing by running the true command
+	[ -z $INITIAL_INTERVAL ] && INITIAL_INTERVAL=$DEFAULT_INITIAL_INTERVAL
+	[ -z $INTERVAL ] && INTERVAL=$DEFAULT_INTERVAL
 }
 
 # Translations only work with utf8 locales
@@ -62,10 +68,6 @@ fi
 read_configuration
 sleep $INITIAL_INTERVAL 2> /dev/null || sleep $DEFAULT_INITIAL_INTERVAL
 
-# possible locations for the configuration file
-CONFIG_FILE_LOCAL=$HOME/.config/salix-update-notifier
-CONFIG_FILE_GLOBAL=/etc/salix-update-notifier.conf
-
 # the text to show in the notification
 NOTIFY_SEND_TEXT="`eval_gettext 'Package updates are available.'`"
 
@@ -75,12 +77,13 @@ while true; do
 
 	if [[ `LANG=C /usr/sbin/slapt-get -s --upgrade | grep "Need to get"` ]]
 	then
-		/usr/libexec/salix-update-notifier-tray-icon \
-		&& $NOTIFY_SEND -i salix-update-notifier "$NOTIFY_SEND_TEXT" \
+		$NOTIFY_SEND -i salix-update-notifier "$NOTIFY_SEND_TEXT" \
+		& /usr/libexec/salix-update-notifier-tray-icon \
 		&& zenity --question \
 		--title "`eval_gettext 'Install package updates?'`" \
 		--text="`eval_gettext 'Package updates are available for your system.\n\nSelecting OK will perform the updates using gslapt. Root user privileges will be required in order to do that.\n\nProceed with updating?'`" \
-		--window-icon=/usr/share/pixmaps/salix-update-notifier.png \
+		--window-icon=/usr/share/icons/hicolor/scalable/apps/update-notifier.svg \
+		--no-wrap \
 		&& $SUCOMMAND /usr/sbin/gslapt --upgrade
 	fi
 
