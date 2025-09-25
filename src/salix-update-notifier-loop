@@ -58,12 +58,6 @@ else
 	exit 1
 fi
 
-# Check if zenity is present
-if [[ ! `which zenity 2> /dev/null` ]]; then
-	echo "`eval_gettext 'ERROR: zenity must be installed for salix-update-notifier to work.'`" >&2
-	exit 1
-fi
-
 # Wait before running for the first time
 read_configuration
 sleep $INITIAL_INTERVAL 2> /dev/null || sleep $DEFAULT_INITIAL_INTERVAL
@@ -79,11 +73,7 @@ while true; do
 	then
 		$NOTIFY_SEND -i salix-update-notifier "$NOTIFY_SEND_TEXT" \
 		& /usr/libexec/salix-update-notifier-tray-icon \
-		&& zenity --question \
-		--title "`eval_gettext 'Install package updates?'`" \
-		--text="`eval_gettext 'Package updates are available for your system.\n\nSelecting OK will perform the updates using gslapt. Root user privileges will be required in order to do that.\n\nProceed with updating?'`" \
-		--window-icon=/usr/share/icons/hicolor/scalable/apps/update-notifier.svg \
-		--no-wrap \
+		&& /usr/libexec/salix-update-notifier-upgrade-dialog \
 		&& $SUCOMMAND /usr/sbin/gslapt --upgrade
 	fi
 

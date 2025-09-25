@@ -5,12 +5,14 @@ WARNFLAGS = -Wall -Wno-deprecated-declarations
 GTKFLAGS = $(shell $(PKGCONFIG) --cflags gtk+-3.0)
 GTKLIBS = $(shell $(PKGCONFIG) --libs gtk+-3.0)
 
-TARGET = salix-update-notifier-tray-icon
-SRC = salix-update-notifier-tray-icon.c
+TARGETS = salix-update-notifier-tray-icon salix-update-notifier-upgrade-dialog
 
-$(TARGET): $(SRC)
-	$(CC) $(CFLAGS) $(GTKFLAGS) $(WARNFLAGS) -o $@ $^ $(GTKLIBS)
+# Default target (build all)
+all: $(TARGETS)
+
+# Pattern rule for building any target from its corresponding .c file
+%: %.c
+	$(CC) $(CFLAGS) $(GTKFLAGS) $(WARNFLAGS) -o $@ $< $(GTKLIBS)
 
 clean:
-	rm -f $(TARGET)
-
+	rm -f $(TARGETS)

@@ -30,8 +30,9 @@ updatepo:
 .PHONY: pot
 pot:
 	intltool-extract --type="gettext/ini" salix-update-notifier.desktop.in
-	xgettext --from-code=utf-8 -L shell -o po/salix-update-notifier.pot src/salix-update-notifier
+	xgettext --from-code=utf-8 -L shell -o po/salix-update-notifier.pot src/salix-update-notifier-loop
 	xgettext --from-code=utf-8 -j -L C -o po/salix-update-notifier.pot src/salix-update-notifier-tray-icon.c
+	xgettext --from-code=utf-8 -j -L C -o po/salix-update-notifier.pot src/salix-update-notifier-upgrade-dialog.c
 	xgettext --from-code=utf-8 -j -L C -kN_ -o po/salix-update-notifier.pot salix-update-notifier.desktop.in.h
 	rm salix-update-notifier.desktop.in.h
 
@@ -55,6 +56,7 @@ install:
 	install -m 755 src/salix-update-notifier-update $(DESTDIR)/etc/cron.hourly/
 	install -m 644 src/salix-update-notifier.conf $(DESTDIR)/etc/
 	install -m 755 src/salix-update-notifier-check-for-updates $(DESTDIR)/usr/libexec/
+	install -m 755 src/salix-update-notifier-upgrade-dialog $(DESTDIR)/usr/libexec/
 	install -m 755 src/salix-update-notifier-loop $(DESTDIR)/usr/libexec/
 	install -m 755 src/salix-update-notifier-tray-icon $(DESTDIR)/usr/libexec/
 	install -m 644 src/updates-notifier.svg $(DESTDIR)/usr/share/icons/hicolor/scalable/apps/
