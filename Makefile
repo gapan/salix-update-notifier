@@ -2,8 +2,14 @@ PREFIX ?= /usr/local
 DESTDIR ?= /
 PACKAGE_LOCALE_DIR ?= $(PREFIX)/share/locale
 
+SUBDIRS = src
+
 .PHONY: all
-all: mo desktop
+all: mo desktop $(SUBDIRS)
+
+.PHONY: $(SUBDIRS)
+$(SUBDIRS):
+	$(MAKE) -C $@ CFLAGS="$(CFLAGS)"
 
 .PHONY: mo
 mo:
@@ -31,6 +37,7 @@ pot:
 
 .PHONY: clean
 clean:
+	rm -f src/salix-update-notifier-tray-icon
 	rm -f salix-update-notifier.desktop
 	rm -f po/*.mo
 	rm -f po/*.po~
