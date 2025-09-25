@@ -55,7 +55,7 @@ int main(int argc, char *argv[]) {
 
     // Return codes:
     // 0 = yes, 1 = no or closed
-    if (response == GTK_RESPONSE_YES)
+    if (response == GTK_RESPONSE_OK)
         return 0;
     else
         return 1;
