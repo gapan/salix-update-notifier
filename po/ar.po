@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Salix\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-09-25 22:11+0300\n"
+"POT-Creation-Date: 2025-09-25 23:52+0300\n"
 "PO-Revision-Date: 2011-04-05 16:32+0000\n"
 "Last-Translator: محمد الحرقان <malham1@gmail.com>, 2012\n"
 "Language-Team: Arabic (http://app.transifex.com/gapan/salix/language/ar/)\n"
@@ -30,38 +30,38 @@ msgid ""
 "ERROR: gksu, ktsuss or kdesu are required for salix-update-notifier to work."
 msgstr "خطأ: يجب تثبيت gksu, ktsuss أو kdesu ليعمل منبه تحديث سلاك."
 
-#: src/salix-update-notifier-loop:63
-#, sh-format
-msgid "ERROR: zenity must be installed for salix-update-notifier to work."
-msgstr "خطأ: يجب تثبيت zenity ليعمل منبه تحديث سلاك."
-
 #: src/salix-update-notifier-upgrade-dialog.c:46
 msgid "Install package updates?"
 msgstr "تثبيت تحديثات الحزم؟"
-
-#: src/salix-update-notifier-loop:72
-#, sh-format
-msgid "Package updates are available."
-msgstr "يتوفر تحديث للحزم."
-
-#: salix-update-notifier.desktop.in.h:1
-msgid "Salix update notifier"
-msgstr "منبه تحديثات سلاك"
 
 #: src/salix-update-notifier-upgrade-dialog.c:29
 msgid "Package updates are available for your system."
 msgstr "تتوفر تحديثات للنظام."
 
+#: src/salix-update-notifier-loop:66
+#, sh-format
+msgid "Package updates are available."
+msgstr "يتوفر تحديث للحزم."
+
 #: src/salix-update-notifier-upgrade-dialog.c:32
 msgid "Proceed with updating?"
 msgstr "المتابعة مع التحديث؟"
+
+#: salix-update-notifier.desktop.in.h:1
+msgid "Salix update notifier"
+msgstr "منبه تحديثات سلاك"
 
 #: src/salix-update-notifier-upgrade-dialog.c:30
 msgid ""
 "Selecting OK will perform the updates using gslapt. Root user privileges "
 "will be required in order to do that."
 msgstr ""
-"عند اختيار موافق سيتم تحديثات باستخدام gslapt. يلزم صلاحيات المستخدم الجذر للقيام بذلك."
+"عند اختيار موافق سيتم تحديثات باستخدام gslapt. يلزم صلاحيات المستخدم الجذر "
+"للقيام بذلك."
+
+#, sh-format
+#~ msgid "ERROR: zenity must be installed for salix-update-notifier to work."
+#~ msgstr "خطأ: يجب تثبيت zenity ليعمل منبه تحديث سلاك."
 
 #, sh-format
 #~ msgid ""

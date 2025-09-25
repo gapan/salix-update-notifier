@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Salix\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-09-25 22:11+0300\n"
+"POT-Creation-Date: 2025-09-25 23:52+0300\n"
 "PO-Revision-Date: 2011-04-05 16:32+0000\n"
 "Last-Translator: Muha Aliss <muhaaliss@gmail.com>, 2021\n"
 "Language-Team: Turkish (http://app.transifex.com/gapan/salix/language/tr/)\n"
@@ -35,13 +35,6 @@ msgstr ""
 "HATA: salix-update-notifier'ın çalışması için gksu, ktsuss veya kdesu "
 "gerekli."
 
-#: src/salix-update-notifier-loop:63
-#, sh-format
-msgid "ERROR: zenity must be installed for salix-update-notifier to work."
-msgstr ""
-"HATA: salix-update-notifier'ın çalışması için zenity yüklenmiş olması "
-"gerekiyor. "
-
 #: src/salix-update-notifier-upgrade-dialog.c:46
 msgid "Install package updates?"
 msgstr "Paket güncellemelerini yüklemek ister misiniz?"
@@ -50,7 +43,7 @@ msgstr "Paket güncellemelerini yüklemek ister misiniz?"
 msgid "Package updates are available for your system."
 msgstr "Sisteminiz için paket güncellemeleri mevcut."
 
-#: src/salix-update-notifier-loop:72
+#: src/salix-update-notifier-loop:66
 #, sh-format
 msgid "Package updates are available."
 msgstr "Paket güncellemeleri mevcut."
@@ -68,7 +61,14 @@ msgid ""
 "Selecting OK will perform the updates using gslapt. Root user privileges "
 "will be required in order to do that."
 msgstr ""
-"Güncellemeleri gslapt ile yüklemek için Evet'e basın. Güncellemeler için yönetici ayrıcalıkları gerekmektedir."
+"Güncellemeleri gslapt ile yüklemek için Evet'e basın. Güncellemeler için "
+"yönetici ayrıcalıkları gerekmektedir."
+
+#, sh-format
+#~ msgid "ERROR: zenity must be installed for salix-update-notifier to work."
+#~ msgstr ""
+#~ "HATA: salix-update-notifier'ın çalışması için zenity yüklenmiş olması "
+#~ "gerekiyor. "
 
 #, sh-format
 #~ msgid ""

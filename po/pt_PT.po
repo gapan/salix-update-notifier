@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Salix\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-09-25 22:11+0300\n"
+"POT-Creation-Date: 2025-09-25 23:52+0300\n"
 "PO-Revision-Date: 2011-04-05 16:32+0000\n"
 "Last-Translator: Hugo Carvalho <hugokarvalho@hotmail.com>, "
 "2011-2012,2014,2019,2022\n"
@@ -35,12 +35,6 @@ msgstr ""
 "ERRO: gksu, ktuss ou kdesu são necessários para que o salix-update-notifier "
 "funcione."
 
-#: src/salix-update-notifier-loop:63
-#, sh-format
-msgid "ERROR: zenity must be installed for salix-update-notifier to work."
-msgstr ""
-"ERRO: zenity deve estar instalado para que o salix-update-notifier funcione."
-
 #: src/salix-update-notifier-upgrade-dialog.c:46
 msgid "Install package updates?"
 msgstr "Instalar atualizações de pacotes?"
@@ -49,7 +43,7 @@ msgstr "Instalar atualizações de pacotes?"
 msgid "Package updates are available for your system."
 msgstr "Atualizações de pacotes estão disponíveis para o seu sistema."
 
-#: src/salix-update-notifier-loop:72
+#: src/salix-update-notifier-loop:66
 #, sh-format
 msgid "Package updates are available."
 msgstr "Atualizações de pacotes estão disponíveis."
@@ -67,8 +61,14 @@ msgid ""
 "Selecting OK will perform the updates using gslapt. Root user privileges "
 "will be required in order to do that."
 msgstr ""
-"Selecionar OK executará as atualizações usando o gslapt. Serão necessários privilégios de utilizador Root para fazer isso."
+"Selecionar OK executará as atualizações usando o gslapt. Serão necessários "
+"privilégios de utilizador Root para fazer isso."
 
+#, sh-format
+#~ msgid "ERROR: zenity must be installed for salix-update-notifier to work."
+#~ msgstr ""
+#~ "ERRO: zenity deve estar instalado para que o salix-update-notifier "
+#~ "funcione."
 
 #, sh-format
 #~ msgid ""

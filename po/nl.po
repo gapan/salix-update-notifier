@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Salix\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-09-25 22:11+0300\n"
+"POT-Creation-Date: 2025-09-25 23:52+0300\n"
 "PO-Revision-Date: 2011-04-05 16:32+0000\n"
 "Last-Translator: Gambit <gambit73@gmail.com>, 2016\n"
 "Language-Team: Dutch (http://app.transifex.com/gapan/salix/language/nl/)\n"
@@ -32,13 +32,6 @@ msgstr ""
 "FOUT: gksu, ktsuss of kdesu zijn vereist om salix-update-notifier te laten "
 "functioneren."
 
-#: src/salix-update-notifier-loop:63
-#, sh-format
-msgid "ERROR: zenity must be installed for salix-update-notifier to work."
-msgstr ""
-"FOUT: zenity moet geïnstalleerd zijn om salix-update-notifier te laten "
-"functioneren."
-
 #: src/salix-update-notifier-upgrade-dialog.c:46
 msgid "Install package updates?"
 msgstr "Installeer pakket updates?"
@@ -47,7 +40,7 @@ msgstr "Installeer pakket updates?"
 msgid "Package updates are available for your system."
 msgstr "Pakket updates zijn beschikbaar zijn voor uw systeem."
 
-#: src/salix-update-notifier-loop:72
+#: src/salix-update-notifier-loop:66
 #, sh-format
 msgid "Package updates are available."
 msgstr "Pakket updates zijn beschikbaar."
@@ -65,7 +58,14 @@ msgid ""
 "Selecting OK will perform the updates using gslapt. Root user privileges "
 "will be required in order to do that."
 msgstr ""
-"OK zal de update uitvoeren met behulp van gslapt. Root gebruiksrechten zijn nodig om te kunnen updaten."
+"OK zal de update uitvoeren met behulp van gslapt. Root gebruiksrechten zijn "
+"nodig om te kunnen updaten."
+
+#, sh-format
+#~ msgid "ERROR: zenity must be installed for salix-update-notifier to work."
+#~ msgstr ""
+#~ "FOUT: zenity moet geïnstalleerd zijn om salix-update-notifier te laten "
+#~ "functioneren."
 
 #, sh-format
 #~ msgid ""

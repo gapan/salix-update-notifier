@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Salix\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-09-25 22:11+0300\n"
+"POT-Creation-Date: 2025-09-25 23:52+0300\n"
 "PO-Revision-Date: 2011-04-05 16:32+0000\n"
 "Last-Translator: Caarmi, 2021\n"
 "Language-Team: Interlingue (http://app.transifex.com/gapan/salix/language/"
@@ -31,12 +31,6 @@ msgstr ""
 "ERRORE: gksu, ktsuss o kdesu deve esset installat por operation de salix-"
 "update-notifier."
 
-#: src/salix-update-notifier-loop:63
-#, sh-format
-msgid "ERROR: zenity must be installed for salix-update-notifier to work."
-msgstr ""
-"ERRORE: zenity deve esset installat por operation de salix-update-notifier."
-
 #: src/salix-update-notifier-upgrade-dialog.c:46
 msgid "Install package updates?"
 msgstr "Installar li actualisamentes de paccages?"
@@ -45,7 +39,7 @@ msgstr "Installar li actualisamentes de paccages?"
 msgid "Package updates are available for your system."
 msgstr ""
 
-#: src/salix-update-notifier-loop:72
+#: src/salix-update-notifier-loop:66
 #, sh-format
 msgid "Package updates are available."
 msgstr "Actualisamentes de paccages es disponibil."
@@ -63,3 +57,9 @@ msgid ""
 "Selecting OK will perform the updates using gslapt. Root user privileges "
 "will be required in order to do that."
 msgstr ""
+
+#, sh-format
+#~ msgid "ERROR: zenity must be installed for salix-update-notifier to work."
+#~ msgstr ""
+#~ "ERRORE: zenity deve esset installat por operation de salix-update-"
+#~ "notifier."

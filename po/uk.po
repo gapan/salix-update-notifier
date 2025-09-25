@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Salix\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-09-25 22:11+0300\n"
+"POT-Creation-Date: 2025-09-25 23:52+0300\n"
 "PO-Revision-Date: 2011-04-05 16:32+0000\n"
 "Last-Translator: gapan <vlahavas@gmail.com>, 2011\n"
 "Language-Team: Ukrainian (http://app.transifex.com/gapan/salix/language/"
@@ -34,12 +34,6 @@ msgid ""
 msgstr ""
 "ПОМИЛКА: gksu, ktsuss або kdesu вимагаються для роботи salix-update-notifier."
 
-#: src/salix-update-notifier-loop:63
-#, sh-format
-msgid "ERROR: zenity must be installed for salix-update-notifier to work."
-msgstr ""
-"ПОМИЛКА: zenity повинен бути встановлений для роботи salix-update-notifier."
-
 #: src/salix-update-notifier-upgrade-dialog.c:46
 msgid "Install package updates?"
 msgstr "Встановити оновлення пакунків?"
@@ -48,7 +42,7 @@ msgstr "Встановити оновлення пакунків?"
 msgid "Package updates are available for your system."
 msgstr "Оновлення пакунків доступні для Вашої системи."
 
-#: src/salix-update-notifier-loop:72
+#: src/salix-update-notifier-loop:66
 #, sh-format
 msgid "Package updates are available."
 msgstr "Доступне оновлення пакунків."
@@ -66,7 +60,14 @@ msgid ""
 "Selecting OK will perform the updates using gslapt. Root user privileges "
 "will be required in order to do that."
 msgstr ""
-"Натискання OK встановить оновлення, використовуючи gslapt. Вимагаються привілеї користувача root для цієї операції."
+"Натискання OK встановить оновлення, використовуючи gslapt. Вимагаються "
+"привілеї користувача root для цієї операції."
+
+#, sh-format
+#~ msgid "ERROR: zenity must be installed for salix-update-notifier to work."
+#~ msgstr ""
+#~ "ПОМИЛКА: zenity повинен бути встановлений для роботи salix-update-"
+#~ "notifier."
 
 #, sh-format
 #~ msgid ""

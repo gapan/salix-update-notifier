@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Salix\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-09-25 22:11+0300\n"
+"POT-Creation-Date: 2025-09-25 23:52+0300\n"
 "PO-Revision-Date: 2011-04-05 16:32+0000\n"
 "Last-Translator: yesbook <mplanansky@seznam.cz>, 2012\n"
 "Language-Team: Czech (http://app.transifex.com/gapan/salix/language/cs/)\n"
@@ -32,40 +32,40 @@ msgstr ""
 "Chyba: jsou vyžadovány gksu, ktsuss nebo kdesu, aby mohl Salix manažer "
 "aktualizací fungovat."
 
-#: src/salix-update-notifier-loop:63
-#, sh-format
-msgid "ERROR: zenity must be installed for salix-update-notifier to work."
-msgstr ""
-"Chyba: aby mohl Salix manažer aktualizací fungovat, je nutné mít "
-"nainstalované zenity."
-
 #: src/salix-update-notifier-upgrade-dialog.c:46
 msgid "Install package updates?"
 msgstr "Instalovat aktualizace balíčků?"
-
-#: src/salix-update-notifier-loop:72
-#, sh-format
-msgid "Package updates are available."
-msgstr "Jsou dostupné aktualizace balíčků."
-
-#: salix-update-notifier.desktop.in.h:1
-msgid "Salix update notifier"
-msgstr "Salix manažer aktualizací"
 
 #: src/salix-update-notifier-upgrade-dialog.c:29
 msgid "Package updates are available for your system."
 msgstr "Pro váš systém jsou dostupné aktualizace balíčků."
 
+#: src/salix-update-notifier-loop:66
+#, sh-format
+msgid "Package updates are available."
+msgstr "Jsou dostupné aktualizace balíčků."
+
 #: src/salix-update-notifier-upgrade-dialog.c:32
 msgid "Proceed with updating?"
 msgstr "Pokračovat s aktualizací?"
+
+#: salix-update-notifier.desktop.in.h:1
+msgid "Salix update notifier"
+msgstr "Salix manažer aktualizací"
 
 #: src/salix-update-notifier-upgrade-dialog.c:30
 msgid ""
 "Selecting OK will perform the updates using gslapt. Root user privileges "
 "will be required in order to do that."
 msgstr ""
-"Zvolením OK provedete aktualizaci s použitím programu gslapt. K této akci budou vyžadována práva Root."
+"Zvolením OK provedete aktualizaci s použitím programu gslapt. K této akci "
+"budou vyžadována práva Root."
+
+#, sh-format
+#~ msgid "ERROR: zenity must be installed for salix-update-notifier to work."
+#~ msgstr ""
+#~ "Chyba: aby mohl Salix manažer aktualizací fungovat, je nutné mít "
+#~ "nainstalované zenity."
 
 #, sh-format
 #~ msgid ""

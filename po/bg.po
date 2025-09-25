@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Salix\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-09-25 22:11+0300\n"
+"POT-Creation-Date: 2025-09-25 23:52+0300\n"
 "PO-Revision-Date: 2011-04-05 16:32+0000\n"
 "Last-Translator: Georgi Georgiev (RacerBG) <g.georgiev.shumen@gmail.com>, "
 "2014\n"
@@ -32,40 +32,40 @@ msgstr ""
 "ГРЕШКА: gksu, ktsuss или kdesu са необходими за да функционира salix-update-"
 "notifier."
 
-#: src/salix-update-notifier-loop:63
-#, sh-format
-msgid "ERROR: zenity must be installed for salix-update-notifier to work."
-msgstr ""
-"ГРЕШКА: zenity трябва да бъде инсталиран за да функционира salix-update-"
-"notifier."
-
 #: src/salix-update-notifier-upgrade-dialog.c:46
 msgid "Install package updates?"
 msgstr "Инсталиране на актуализациите?"
-
-#: src/salix-update-notifier-loop:72
-#, sh-format
-msgid "Package updates are available."
-msgstr "Налични са актуализации."
-
-#: salix-update-notifier.desktop.in.h:1
-msgid "Salix update notifier"
-msgstr "Уведомител за актуализации на Salix"
 
 #: src/salix-update-notifier-upgrade-dialog.c:29
 msgid "Package updates are available for your system."
 msgstr "Налични са актуализации за системата ви."
 
+#: src/salix-update-notifier-loop:66
+#, sh-format
+msgid "Package updates are available."
+msgstr "Налични са актуализации."
+
 #: src/salix-update-notifier-upgrade-dialog.c:32
 msgid "Proceed with updating?"
 msgstr "Продължаване?"
+
+#: salix-update-notifier.desktop.in.h:1
+msgid "Salix update notifier"
+msgstr "Уведомител за актуализации на Salix"
 
 #: src/salix-update-notifier-upgrade-dialog.c:30
 msgid ""
 "Selecting OK will perform the updates using gslapt. Root user privileges "
 "will be required in order to do that."
 msgstr ""
-"Чрез натискане на ОК ще ги инсталирате с gslapt. Нужни са ви администраторски права за това."
+"Чрез натискане на ОК ще ги инсталирате с gslapt. Нужни са ви "
+"администраторски права за това."
+
+#, sh-format
+#~ msgid "ERROR: zenity must be installed for salix-update-notifier to work."
+#~ msgstr ""
+#~ "ГРЕШКА: zenity трябва да бъде инсталиран за да функционира salix-update-"
+#~ "notifier."
 
 #, sh-format
 #~ msgid ""

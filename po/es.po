@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Salix\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-09-25 22:11+0300\n"
+"POT-Creation-Date: 2025-09-25 23:52+0300\n"
 "PO-Revision-Date: 2011-04-05 16:32+0000\n"
 "Last-Translator: gapan <vlahavas@gmail.com>, 2011\n"
 "Language-Team: Spanish (http://app.transifex.com/gapan/salix/language/es/)\n"
@@ -33,40 +33,40 @@ msgstr ""
 "ERROR: Se necesita gksu, ktsuss o kdesu para que salix-update-notifier "
 "funcione."
 
-#: src/salix-update-notifier-loop:63
-#, sh-format
-msgid "ERROR: zenity must be installed for salix-update-notifier to work."
-msgstr ""
-"ERROR: zenity tiene que estar instalado para que salix-update-notifier "
-"funcione."
-
 #: src/salix-update-notifier-upgrade-dialog.c:46
 msgid "Install package updates?"
 msgstr "¿Instalar actualizaciones de paquetes?"
-
-#: src/salix-update-notifier-loop:72
-#, sh-format
-msgid "Package updates are available."
-msgstr "Hay disponibles actualizaciones de paquetes."
-
-#: salix-update-notifier.desktop.in.h:1
-msgid "Salix update notifier"
-msgstr "Notificador de actualizaciones de Salix"
 
 #: src/salix-update-notifier-upgrade-dialog.c:29
 msgid "Package updates are available for your system."
 msgstr "Hay disponibles paquetes actualizados para su sistema."
 
+#: src/salix-update-notifier-loop:66
+#, sh-format
+msgid "Package updates are available."
+msgstr "Hay disponibles actualizaciones de paquetes."
+
 #: src/salix-update-notifier-upgrade-dialog.c:32
 msgid "Proceed with updating?"
 msgstr "¿Continuar con la actualización?"
+
+#: salix-update-notifier.desktop.in.h:1
+msgid "Salix update notifier"
+msgstr "Notificador de actualizaciones de Salix"
 
 #: src/salix-update-notifier-upgrade-dialog.c:30
 msgid ""
 "Selecting OK will perform the updates using gslapt. Root user privileges "
 "will be required in order to do that."
 msgstr ""
-"Seleccionar Aceptar ejecutará la actualización mediante gslapt. Se necesitarán privilegios de root para hacerlo."
+"Seleccionar Aceptar ejecutará la actualización mediante gslapt. Se "
+"necesitarán privilegios de root para hacerlo."
+
+#, sh-format
+#~ msgid "ERROR: zenity must be installed for salix-update-notifier to work."
+#~ msgstr ""
+#~ "ERROR: zenity tiene que estar instalado para que salix-update-notifier "
+#~ "funcione."
 
 #, sh-format
 #~ msgid ""

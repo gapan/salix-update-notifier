@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Salix\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-09-25 22:11+0300\n"
+"POT-Creation-Date: 2025-09-25 23:52+0300\n"
 "PO-Revision-Date: 2011-04-05 16:32+0000\n"
 "Last-Translator: Panwar108 <caspian7pena@gmail.com>, 2020\n"
 "Language-Team: Hindi (India) (http://app.transifex.com/gapan/salix/language/"
@@ -29,11 +29,6 @@ msgid ""
 "ERROR: gksu, ktsuss or kdesu are required for salix-update-notifier to work."
 msgstr "त्रुटि : सेलिक्स-अपडेट-सूचक के उपयोग हेतु gksu, ktsuss या kdesu आवश्यक है।"
 
-#: src/salix-update-notifier-loop:63
-#, sh-format
-msgid "ERROR: zenity must be installed for salix-update-notifier to work."
-msgstr "त्रुटि : सेलिक्स-अपडेट-सूचक के उपयोग हेतु ज़ेनिटी इंस्टॉल होना आवश्यक है।"
-
 #: src/salix-update-notifier-upgrade-dialog.c:46
 msgid "Install package updates?"
 msgstr "पैकेज अपडेट इंस्टॉल करें?"
@@ -42,7 +37,7 @@ msgstr "पैकेज अपडेट इंस्टॉल करें?"
 msgid "Package updates are available for your system."
 msgstr "सिस्टम हेतु पैकेज अपडेट उपलब्ध हैं।"
 
-#: src/salix-update-notifier-loop:72
+#: src/salix-update-notifier-loop:66
 #, sh-format
 msgid "Package updates are available."
 msgstr "पैकेज हेतु अपडेट उपलब्ध हैं।"
@@ -60,7 +55,12 @@ msgid ""
 "Selecting OK will perform the updates using gslapt. Root user privileges "
 "will be required in order to do that."
 msgstr ""
-"'ठीक है' के चयन उपरांत gslapt द्वारा अपडेट की जाएँगी। इस हेतु रुट उपयोक्ता विशेषाधिकार आवश्यक है।"
+"'ठीक है' के चयन उपरांत gslapt द्वारा अपडेट की जाएँगी। इस हेतु रुट उपयोक्ता विशेषाधिकार "
+"आवश्यक है।"
+
+#, sh-format
+#~ msgid "ERROR: zenity must be installed for salix-update-notifier to work."
+#~ msgstr "त्रुटि : सेलिक्स-अपडेट-सूचक के उपयोग हेतु ज़ेनिटी इंस्टॉल होना आवश्यक है।"
 
 #, sh-format
 #~ msgid ""

@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Salix\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-09-25 22:11+0300\n"
+"POT-Creation-Date: 2025-09-25 23:52+0300\n"
 "PO-Revision-Date: 2011-04-05 16:32+0000\n"
 "Last-Translator: 🎈 BALLOON | FU-SEN, 2016\n"
 "Language-Team: Japanese (http://app.transifex.com/gapan/salix/language/ja/)\n"
@@ -31,11 +31,6 @@ msgstr ""
 "エラー: salix-update-notifier を使用するには、gksu・ktsuss・kdesu が必要で"
 "す。"
 
-#: src/salix-update-notifier-loop:63
-#, sh-format
-msgid "ERROR: zenity must be installed for salix-update-notifier to work."
-msgstr "エラー: salix-update-notifier の動作には zenity が必要です。"
-
 #: src/salix-update-notifier-upgrade-dialog.c:46
 msgid "Install package updates?"
 msgstr "インストールされたパッケージを更新しますか？"
@@ -44,7 +39,7 @@ msgstr "インストールされたパッケージを更新しますか？"
 msgid "Package updates are available for your system."
 msgstr "新しいバージョンのパッケージがリポジトリにあります。"
 
-#: src/salix-update-notifier-loop:72
+#: src/salix-update-notifier-loop:66
 #, sh-format
 msgid "Package updates are available."
 msgstr "更新パッケージが存在します。"
@@ -62,7 +57,12 @@ msgid ""
 "Selecting OK will perform the updates using gslapt. Root user privileges "
 "will be required in order to do that."
 msgstr ""
-"Yes を選択すると gslapt を使用して更新が実行されます。これを実行するには root ユーザー特権が必要です。"
+"Yes を選択すると gslapt を使用して更新が実行されます。これを実行するには "
+"root ユーザー特権が必要です。"
+
+#, sh-format
+#~ msgid "ERROR: zenity must be installed for salix-update-notifier to work."
+#~ msgstr "エラー: salix-update-notifier の動作には zenity が必要です。"
 
 #, sh-format
 #~ msgid ""
