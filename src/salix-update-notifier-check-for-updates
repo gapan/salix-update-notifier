@@ -7,7 +7,7 @@ if [ $? -eq 0 ]; then
     exit 0
 fi
 
-FLATPAK_UPDATES=$( flatpak remote-ls --updates | wc -l )
+FLATPAK_UPDATES=$( /usr/bin/flatpak remote-ls --updates | wc -l )
 if [ $FLATPAK_UPDATES -gt 0 ]; then
     exit 0
 fi
