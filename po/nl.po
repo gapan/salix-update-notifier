@@ -1,7 +1,7 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# 
+#
 # Translators:
 # Gambit <gambit73@gmail.com>, 2016
 # gapan <vlahavas@gmail.com>, 2011
@@ -9,49 +9,70 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Salix\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-06-03 01:42+0300\n"
+"POT-Creation-Date: 2025-09-25 22:11+0300\n"
 "PO-Revision-Date: 2011-04-05 16:32+0000\n"
 "Last-Translator: Gambit <gambit73@gmail.com>, 2016\n"
 "Language-Team: Dutch (http://app.transifex.com/gapan/salix/language/nl/)\n"
+"Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: nl\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: src/salix-update-notifier:24
+#: salix-update-notifier.desktop.in.h:2
+msgid "Display a tray notification when package updates are available"
+msgstr ""
+"Toon een melding op de systeembalk wanneer pakket updates beschikbaar zijn"
+
+#: src/salix-update-notifier-loop:57
 #, sh-format
 msgid ""
 "ERROR: gksu, ktsuss or kdesu are required for salix-update-notifier to work."
-msgstr "FOUT: gksu, ktsuss of kdesu zijn vereist om salix-update-notifier te laten functioneren."
+msgstr ""
+"FOUT: gksu, ktsuss of kdesu zijn vereist om salix-update-notifier te laten "
+"functioneren."
 
-#: src/salix-update-notifier:30
+#: src/salix-update-notifier-loop:63
 #, sh-format
 msgid "ERROR: zenity must be installed for salix-update-notifier to work."
-msgstr "FOUT: zenity moet geïnstalleerd zijn om salix-update-notifier te laten functioneren."
+msgstr ""
+"FOUT: zenity moet geïnstalleerd zijn om salix-update-notifier te laten "
+"functioneren."
 
-#: src/salix-update-notifier:42
+#: src/salix-update-notifier-upgrade-dialog.c:46
+msgid "Install package updates?"
+msgstr "Installeer pakket updates?"
+
+#: src/salix-update-notifier-upgrade-dialog.c:29
+msgid "Package updates are available for your system."
+msgstr "Pakket updates zijn beschikbaar zijn voor uw systeem."
+
+#: src/salix-update-notifier-loop:72
 #, sh-format
 msgid "Package updates are available."
 msgstr "Pakket updates zijn beschikbaar."
 
-#: src/salix-update-notifier:45
-#, sh-format
-msgid "Install package updates?"
-msgstr "Installeer pakket updates?"
-
-#: src/salix-update-notifier:46
-#, sh-format
-msgid ""
-"Package updates are available for your system.\\n\\nSelecting OK will "
-"perform the updates using gslapt. Root user privileges will be required in "
-"order to do that.\\n\\nProceed with updating?"
-msgstr "Pakket updates zijn beschikbaar zijn voor uw systeem.\\n\\nOK zal de update uitvoeren met behulp van gslapt. Root gebruiksrechten zijn nodig om te kunnen updaten\\n\\nVerder gaan met updaten?"
+#: src/salix-update-notifier-upgrade-dialog.c:32
+msgid "Proceed with updating?"
+msgstr "Verder gaan met updaten?"
 
 #: salix-update-notifier.desktop.in.h:1
-msgid "Display a tray notification when package updates are available"
-msgstr "Toon een melding op de systeembalk wanneer pakket updates beschikbaar zijn"
-
-#: salix-update-notifier.desktop.in.h:2
 msgid "Salix update notifier"
 msgstr "Salix update kennisgever"
+
+#: src/salix-update-notifier-upgrade-dialog.c:30
+msgid ""
+"Selecting OK will perform the updates using gslapt. Root user privileges "
+"will be required in order to do that."
+msgstr ""
+"OK zal de update uitvoeren met behulp van gslapt. Root gebruiksrechten zijn nodig om te kunnen updaten."
+
+#, sh-format
+#~ msgid ""
+#~ "Package updates are available for your system.\\n\\nSelecting OK will "
+#~ "perform the updates using gslapt. Root user privileges will be required "
+#~ "in order to do that.\\n\\nProceed with updating?"
+#~ msgstr ""
+#~ "Pakket updates zijn beschikbaar zijn voor uw systeem.\\n\\nOK zal de "
+#~ "update uitvoeren met behulp van gslapt. Root gebruiksrechten zijn nodig "
+#~ "om te kunnen updaten\\n\\nVerder gaan met updaten?"

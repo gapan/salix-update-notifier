@@ -37,7 +37,7 @@ int main(int argc, char *argv[]) {
         NULL,
         GTK_DIALOG_MODAL,
         GTK_MESSAGE_QUESTION,
-        GTK_BUTTONS_YES_NO,
+        GTK_BUTTONS_OK_CANCEL,
         "%s",
         gettext(message)
     );
