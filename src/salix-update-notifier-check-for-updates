@@ -1,0 +1,15 @@
+#!/bin/bash
+
+export LANG=C
+
+/usr/sbin/slapt-get -s --upgrade | grep "Need to get" &> /dev/null
+if [ $? -eq 0 ]; then
+    exit 0
+fi
+
+FLATPAK_UPDATES=$( flatpak remote-ls --updates | wc -l )
+if [ $FLATPAK_UPDATES -gt 0 ]; then
+    exit 0
+fi
+
+return 1

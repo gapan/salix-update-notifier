@@ -1,7 +1,0 @@
-#!/bin/sh
-#
-# This scripts updates the slapt-get package database and is to be
-# placed inside /etc/cron.hourly or another cron directory
-
-/usr/sbin/slapt-get -u
-

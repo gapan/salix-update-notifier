@@ -52,8 +52,9 @@ install:
 	install -d -m 755 $(DESTDIR)/usr/share/icons/hicolor/scalable/apps
 	install -m 755 src/salix-update-notifier $(DESTDIR)/$(PREFIX)/bin/
 	install -m 644 salix-update-notifier.desktop $(DESTDIR)/etc/xdg/autostart/
-	install -m 755 src/slapt-get-update $(DESTDIR)/etc/cron.hourly/
+	install -m 755 src/salix-update-notifier-update $(DESTDIR)/etc/cron.hourly/
 	install -m 644 src/salix-update-notifier.conf $(DESTDIR)/etc/
+	install -m 755 src/salix-update-notifier-check-for-updates $(DESTDIR)/usr/libexec/
 	install -m 755 src/salix-update-notifier-loop $(DESTDIR)/usr/libexec/
 	install -m 755 src/salix-update-notifier-tray-icon $(DESTDIR)/usr/libexec/
 	install -m 644 src/updates-notifier.svg $(DESTDIR)/usr/share/icons/hicolor/scalable/apps/

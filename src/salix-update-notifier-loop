@@ -75,7 +75,7 @@ NOTIFY_SEND_TEXT="`eval_gettext 'Package updates are available.'`"
 while true; do
 	read_configuration
 
-	if [[ `LANG=C /usr/sbin/slapt-get -s --upgrade | grep "Need to get"` ]]
+	if /usr/libexec/salix-update-notifier-check-for-updates
 	then
 		$NOTIFY_SEND -i salix-update-notifier "$NOTIFY_SEND_TEXT" \
 		& /usr/libexec/salix-update-notifier-tray-icon \

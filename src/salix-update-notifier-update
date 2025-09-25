@@ -1,0 +1,13 @@
+#!/bin/sh
+#
+# This script updates the slapt-get package database and it also syncs the
+# flatpak cache. The latter part is needed so that the version numbers that
+# flatpak remote-ls and flatpak remote-info show the correct version that
+# is avaliable online. Also see:
+# https://github.com/flatpak/flatpak/issues/5903
+# and
+# https://github.com/flatpak/flatpak/issues/5974
+# This script is to be placed inside /etc/cron.hourly or another cron directory
+
+/usr/sbin/slapt-get -u
+/usr/bin/flatpak remote-ls --updates
