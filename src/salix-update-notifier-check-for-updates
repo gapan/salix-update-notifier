@@ -14,4 +14,4 @@ if [ -x /usr/bin/flatpak ]; then
     fi
 fi
 
-return 1
+exit 1
