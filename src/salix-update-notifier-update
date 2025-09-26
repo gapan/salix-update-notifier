@@ -10,4 +10,4 @@
 # This script is to be placed inside /etc/cron.hourly or another cron directory
 
 /usr/sbin/slapt-get -u
-/usr/bin/flatpak remote-ls --updates
+/usr/bin/flatpak update --appstream
