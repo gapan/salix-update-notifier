@@ -1,0 +1,245 @@
+#!/usr/bin/env python3
+# vim:et:sta:sts=4:sw=4:ts=8:tw=79:
+
+import gi
+gi.require_version('Gtk', '3.0')
+from gi.repository import Gtk, GLib
+from enum import Enum
+import subprocess
+import threading
+import os
+
+# Internationalization
+import locale
+import gettext
+locale.setlocale(locale.LC_ALL, '')
+locale.bindtextdomain("salix-update-notifier", "/usr/share/locale")
+gettext.bindtextdomain("salix-update-notifier", "/usr/share/locale")
+gettext.textdomain("salix-update-notifier")
+_ = gettext.gettext
+
+#
+# slapt-get-logic
+#
+def _get_slapt_get_upgrades():
+    """
+    Get a list of packages that can be upgraded along with their respective versions.
+
+    Returns:
+        list: A list of dictionaries containing the package name, old version, 
+        and new version.
+    """
+    # Run the command and capture its output
+    command = "slapt-get --upgrade --simulate"
+    new_env = dict(subprocess.os.environ)
+    new_env['LANG'] = 'C.utf8'
+    output = subprocess.check_output(command, shell=True, env=new_env).decode('utf-8')
+
+    # Split the output into lines
+    lines = output.splitlines()
+
+    # Initialize an empty list to store the packages to be upgraded
+    upgrades = []
+
+    # Initialize a flag to indicate when we're parsing the upgrade lines
+    parsing_upgrades = False
+
+    # Iterate over each line in the output
+    for line in lines:
+        # Check if we're starting to parse the upgrades
+        if line.startswith('After unpacking'):
+            parsing_upgrades = True
+            continue
+        if line == "Done":
+            break
+        # If we're parsing upgrades and the line is not empty
+        if parsing_upgrades and line.strip():
+            # If the line contains 'is to be upgraded to version'
+            if 'is to be upgraded to version' in line:
+                # Extract the package name, old version, and new version
+                package_info = line.split('is to be upgraded to version')
+                package_name_version = package_info[0].strip().split('-')
+                package_name = '-'.join(package_name_version[:-3])
+                old_version = package_name_version[-3]
+                new_version = package_info[1].strip().split('-')[0]
+                upgrades.append({
+                    'name': package_name,
+                    'old_version': old_version,
+                    'new_version': new_version
+                })
+            else:
+                # If the line just contains package names, 
+                # we'll assume they have no version information
+                package_names = line.split()
+                for package_name in package_names:
+                    upgrades.append({
+                        'name': package_name,
+                        'old_version': None,
+                        'new_version': None
+                    })
+    return upgrades
+
+#
+# flatpak logic
+#
+def _get_installed_flatpak_apps():
+    """Get a list of installed flatpaks."""
+    output = subprocess.check_output(["flatpak", "list", "--app", "--columns=application,branch,version"]).decode("utf-8")
+    lines = output.splitlines()
+    installed_flatpaks = {}
+    for line in lines:
+        columns = line.split()
+        app_id = columns[0]
+        branch = columns[1]
+        if len(columns) == 2:
+            version = f"({branch})"
+        else:
+            version = f"{columns[2]} ({branch})"
+        installed_flatpaks[app_id] = version
+    return installed_flatpaks
+
+def _get_available_flatpak_updates():
+    """Get a list of available flatpak updates."""
+    output = subprocess.check_output(["flatpak", "remote-ls", "--updates", "--columns=version,branch,application,name"]).decode("utf-8")
+    lines = output.splitlines()
+    available_updates = []
+    for line in lines:
+        columns = line.split()
+        if line.startswith('\t'):
+            version = f"({columns[0]})"
+            app_id = columns[1]
+            name = " ".join(columns[2:])
+        else:
+            version = f"{columns[0]} ({columns[1]})"
+            app_id = columns[2]
+            name = " ".join(columns[3:])
+        available_updates.append({
+            'name': name,
+            'id': app_id,
+            'new_version': version
+        })
+    return available_updates
+
+def _get_flatpak_app_upgrades():
+    """Get a list of flatpaks that can be upgraded."""
+    installed_flatpaks = _get_installed_flatpak_apps()
+    available_updates = _get_available_flatpak_updates()
+    available_app_updates = []
+    for flatpak in available_updates:
+        try:
+            flatpak['old_version'] = installed_flatpaks[flatpak['id']]
+            available_app_updates.append(flatpak)
+        except KeyError:
+            pass
+    return available_app_updates
+
+#
+# Just a helper enum
+#
+class PkgType(Enum):
+    SLACK = 1
+    FLATPAK = 2
+
+#
+# GUI
+#
+class SalixUpdateManager:
+
+    def _add_listbox_entry(self, pkg, pkg_type):
+        # Create row container
+        row_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=12)
+        row_box.set_margin_start(8)
+        row_box.set_margin_end(8)
+        row_box.set_margin_top(4)
+        row_box.set_margin_bottom(4)
+        # Create icon - you can choose different sizes:
+        # Gtk.IconSize.MENU (16px), Gtk.IconSize.SMALL_TOOLBAR (16px),
+        # Gtk.IconSize.LARGE_TOOLBAR (24px), Gtk.IconSize.DND (32px)
+        if pkg_type == PkgType.SLACK:
+            icon = Gtk.Image.new_from_icon_name('package', Gtk.IconSize.DND)
+            label_text = f"{pkg['name']} {pkg['old_version']} -> {pkg['new_version']}"
+        elif pkg_type == PkgType.FLATPAK:
+            icon = Gtk.Image.new_from_icon_name('flatpak-software', Gtk.IconSize.DND)
+            label_text = f"{pkg['name']} ({pkg['id']}) {pkg['old_version']} -> {pkg['new_version']}"
+        else:
+            return
+        label = Gtk.Label(label=label_text)
+        label.set_xalign(0)
+        label.set_hexpand(True)
+        # Assemble row
+        row_box.pack_start(icon, False, False, 0)
+        row_box.pack_start(label, True, True, 0)
+        row = Gtk.ListBoxRow()
+        row.add(row_box)
+        self.list_box.add(row)
+
+    def gtk_main_quit(self, widget, data=None):
+        Gtk.main_quit()
+
+    def on_button_OK_clicked(self, widget, data=None):
+        self.stack.set_visible_child_name("page1")
+        self.button_OK.set_sensitive(False)
+        self.progressbar_pulse.pulse()
+
+    def on_button_cancel_clicked(self, widget, data=None):
+        Gtk.main_quit()
+
+    def on_button_reading_cancel_clicked(self, widget, data=None):
+        # stop background task and...
+        Gtk.main_quit()
+    
+    def update_progressbar_reading(self):
+        if self.reading_task_running:
+            self.progressbar_reading.pulse()
+            return True
+        return False
+
+    def populate_updates_list(self):
+        self.reading_task_running = True
+        self.slapt_get_upgrades = _get_slapt_get_upgrades()
+        self.flatpak_upgrades = _get_flatpak_app_upgrades()
+        for pkg in self.slapt_get_upgrades:
+            self._add_listbox_entry(pkg, PkgType.SLACK)
+        for flatpak in self.flatpak_upgrades:
+            self._add_listbox_entry(flatpak, PkgType.FLATPAK)
+        self.list_box.show_all()
+        self.reading_task_running = False
+        GLib.idle_add(self.dialog_reading.hide)
+
+    def __init__(self):
+        builder = Gtk.Builder()
+        builder.set_translation_domain("salix-update-manager")
+        if os.path.exists('salix-update-manager.ui'):
+            builder.add_from_file('salix-update-manager.ui')
+        elif os.path.exists('/usr/share/salix-update-notifier/salix-update-manager.ui'):
+            builder.add_from_file(
+                '/usr/share/salix-update-notifier/salix-update-notifier-upgrade.ui')
+        self.window = builder.get_object('salix-update-notifier-upgrade')
+        self.list_box = builder.get_object('list_box')
+        self.stack = builder.get_object('stack')
+        self.button_OK = builder.get_object('button_OK')
+        self.progressbar_pulse = builder.get_object('progressbar_pulse')
+        self.progressbar_pct = builder.get_object('progressbar_pct')
+
+        self.dialog_reading = builder.get_object('dialog_reading')
+        self.progressbar_reading = builder.get_object('progressbar_reading')
+        self.button_reading_cancel = builder.get_object('button_reading_cancel')
+
+        builder.connect_signals(self)
+
+        self.dialog_reading.show()
+        self.reading_task_running = False
+        # Start pulsating progressbar
+        self.progressbar_reading.pulse()
+        self.pulse_timeout_id = GLib.timeout_add(100,
+                self.update_progressbar_reading)
+        # Start background task
+        self.populate_updates_task = threading.Thread(target=self.populate_updates_list)
+        self.populate_updates_task.daemon = True
+        self.populate_updates_task.start()
+        self.updates_complete = False
+
+if __name__ == "__main__":
+    app = SalixUpdateManager()
+    app.window.show()
+    Gtk.main()
