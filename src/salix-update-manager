@@ -7,6 +7,7 @@ from gi.repository import Gtk, GLib
 from enum import Enum
 import subprocess
 import threading
+import time
 import os
 
 # Internationalization
@@ -187,6 +188,9 @@ class SalixUpdateManager:
     def on_button_reading_cancel_clicked(self, widget, data=None):
         # stop background task and...
         Gtk.main_quit()
+
+    def on_button_no_updates_exit_clicked(self, widget, data=None):
+        Gtk.main_quit()
     
     def update_progressbar_reading(self):
         if self.reading_task_running:
@@ -205,6 +209,22 @@ class SalixUpdateManager:
         self.list_box.show_all()
         self.reading_task_running = False
         GLib.idle_add(self.dialog_reading.hide)
+        len_slapt = len(self.slapt_get_upgrades)
+        len_flat = len(self.flatpak_upgrades)
+        if len_slapt == 0 and len_flat == 0:
+            GLib.idle_add(self.dialog_reading.hide)
+            GLib.idle_add(self.dialog_no_updates.show)
+            while True: # Nothing to do, so just wait until the user exits
+                time.sleep(5)
+        elif len_slapt == 0:
+            summary = _("%d flatpak apps will be updated.")
+        elif len_flat == 0:
+            summary = _("%d packages will be updated.")
+        else:
+            summary = _("%d packages and %d flatpak apps will be updated.")
+        GLib.idle_add(self.label_update_summary.set_text, summary % (len_slapt, len_flat))
+        GLib.idle_add(self.label_question.set_text,
+                f"Do you want to proceed with these software updates?")
 
     def __init__(self):
         builder = Gtk.Builder()
@@ -214,6 +234,7 @@ class SalixUpdateManager:
         elif os.path.exists('/usr/share/salix-update-notifier/salix-update-manager.ui'):
             builder.add_from_file(
                 '/usr/share/salix-update-notifier/salix-update-notifier-upgrade.ui')
+
         self.window = builder.get_object('salix-update-notifier-upgrade')
         self.list_box = builder.get_object('list_box')
         self.stack = builder.get_object('stack')
@@ -224,6 +245,11 @@ class SalixUpdateManager:
         self.dialog_reading = builder.get_object('dialog_reading')
         self.progressbar_reading = builder.get_object('progressbar_reading')
         self.button_reading_cancel = builder.get_object('button_reading_cancel')
+        self.label_update_summary = builder.get_object('label_update_summary')
+        self.label_question = builder.get_object('label_question')
+
+        self.dialog_no_updates = builder.get_object('dialog_no_updates')
+        self.button_no_updates_exit = builder.get_object('button_no_updates_exit')
 
         builder.connect_signals(self)
 
