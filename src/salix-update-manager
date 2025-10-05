@@ -180,7 +180,14 @@ class SalixUpdateManager:
     def on_button_OK_clicked(self, widget, data=None):
         self.stack.set_visible_child_name("page1")
         self.button_OK.set_sensitive(False)
+        self.updates_task_running = False
         self.progressbar_pulse.pulse()
+        self.pulse_timeout_id = GLib.timeout_add(100,
+                self.update_progress)
+        self.updates_task_running = True
+        self.updates_task = threading.Thread(target=self.perform_updates)
+        self.updates_task.daemon = True
+        self.updates_task.start()
 
     def on_button_cancel_clicked(self, widget, data=None):
         Gtk.main_quit()
@@ -191,6 +198,12 @@ class SalixUpdateManager:
 
     def on_button_no_updates_exit_clicked(self, widget, data=None):
         Gtk.main_quit()
+
+    def update_progress(self):
+        if self.updates_task_running:
+            self.progressbar_pulse.pulse()
+            return True
+        return False
     
     def update_progressbar_reading(self):
         if self.reading_task_running:
@@ -198,33 +211,101 @@ class SalixUpdateManager:
             return True
         return False
 
-    def populate_updates_list(self):
-        self.reading_task_running = True
-        self.slapt_get_upgrades = _get_slapt_get_upgrades()
-        self.flatpak_upgrades = _get_flatpak_app_upgrades()
+    def perform_updates(self):
+        self.updates_task_running = True
+        try:
+            len_slapt = len(self.slapt_get_upgrades)
+            len_flat = len(self.flatpak_upgrades)
+            # steps = packages + flatpak apps + remove unused flatpak runtimes +
+            # update all remaining (runtime) flatpaks
+            steps = 2*len_slapt + len_flat + 2
+            # download packages with slapt-get
+            env = os.environ.copy()
+            env["LANG"] = "C.utf8"
+            process = subprocess.Popen(
+                ["slapt-get", "--upgrade", "--download-only", "--no-prompt"],
+                stdout=subprocess.PIPE,
+                stderr=subprocess.STDOUT,
+                universal_newlines=True,
+                bufsize=1,
+                env=env
+            )
+            total = 0
+            current = 0
+            parsing_progress = False
+            for line in process.stdout:
+                line = line.strip()
+                print("DEBUG:", line)
+                if line.startswith("Need to get"):
+                    parsing_progress = True
+                    continue
+                if line == "Done":
+                    parsing_progress = False
+                    break
+                if parsing_progress and line != "":
+                    current_step = int(line.split(" ")[0].split("/")[0])
+                    current_pkg = line.split(" ")[3]
+                    current_pkg_ver = line.split(" ")[4]
+                    GLib.idle_add(self.label_upgrade.set_text, "Downloading %s %s" %
+                            (current_pkg, current_pkg_ver))
+                    current_pct = current_step / steps
+                    GLib.idle_add(self.progressbar_pct.set_fraction, current_pct)
+                    GLib.idle_add(self.label_pct.set_text, str(current_pct))
+            process.wait()
+        except Exception as e:
+            print("perform_updates error:", e)
+        finally:
+            self.updates_task_running = False
+            GLib.idle_add(self.label_upgrade.set_text, "Done")
+
+    def _on_updates_parsed(self, slapt_upgrades, flatpak_upgrades):
+        # This runs on the main (GTK) thread:
+        self.slapt_get_upgrades = slapt_upgrades
+        self.flatpak_upgrades = flatpak_upgrades
+
         for pkg in self.slapt_get_upgrades:
+            # call _add_listbox_entry directly — now we're on main thread
             self._add_listbox_entry(pkg, PkgType.SLACK)
         for flatpak in self.flatpak_upgrades:
             self._add_listbox_entry(flatpak, PkgType.FLATPAK)
+
         self.list_box.show_all()
         self.reading_task_running = False
-        GLib.idle_add(self.dialog_reading.hide)
+        self.dialog_reading.hide()
+
         len_slapt = len(self.slapt_get_upgrades)
         len_flat = len(self.flatpak_upgrades)
+
         if len_slapt == 0 and len_flat == 0:
-            GLib.idle_add(self.dialog_reading.hide)
-            GLib.idle_add(self.dialog_no_updates.show)
-            while True: # Nothing to do, so just wait until the user exits
-                time.sleep(5)
-        elif len_slapt == 0:
-            summary = _("%d flatpak apps will be updated.")
-        elif len_flat == 0:
-            summary = _("%d packages will be updated.")
+            self.dialog_no_updates.show()
+            # remove the infinite sleep loop — let the user close dialogs normally
         else:
-            summary = _("%d packages and %d flatpak apps will be updated.")
-        GLib.idle_add(self.label_update_summary.set_text, summary % (len_slapt, len_flat))
-        GLib.idle_add(self.label_question.set_text,
-                f"Do you want to proceed with these software updates?")
+            if len_slapt == 0:
+                summary = _("%d flatpak apps will be updated.")
+            elif len_flat == 0:
+                summary = _("%d packages will be updated.")
+            else:
+                summary = _("%d packages and %d flatpak apps will be updated.")
+            self.label_update_summary.set_text(summary % (len_slapt, len_flat))
+            self.label_question.set_text("Do you want to proceed with these software updates?")
+
+        return False  # stop the idle handler
+
+    def populate_updates_list(self):
+        # This runs in a worker thread: do only blocking I/O & parsing here.
+        self.reading_task_running = True
+        try:
+            slapt_upgrades = _get_slapt_get_upgrades()
+        except Exception as e:
+            slapt_upgrades = []
+            print("Error getting slapt-get upgrades:", e)
+        try:
+            flatpak_upgrades = _get_flatpak_app_upgrades()
+        except Exception as e:
+            flatpak_upgrades = []
+            print("Error getting flatpak upgrades:", e)
+        # Now schedule the UI update on the main thread
+        GLib.idle_add(self._on_updates_parsed, slapt_upgrades, flatpak_upgrades)
 
     def __init__(self):
         builder = Gtk.Builder()
@@ -233,13 +314,15 @@ class SalixUpdateManager:
             builder.add_from_file('salix-update-manager.ui')
         elif os.path.exists('/usr/share/salix-update-notifier/salix-update-manager.ui'):
             builder.add_from_file(
-                '/usr/share/salix-update-notifier/salix-update-notifier-upgrade.ui')
+                '/usr/share/salix-update-notifier/salix-update-manager.ui')
 
         self.window = builder.get_object('salix-update-notifier-upgrade')
         self.list_box = builder.get_object('list_box')
         self.stack = builder.get_object('stack')
         self.button_OK = builder.get_object('button_OK')
+        self.label_upgrade = builder.get_object('label_upgrade')
         self.progressbar_pulse = builder.get_object('progressbar_pulse')
+        self.label_pct = builder.get_object('label_pct')
         self.progressbar_pct = builder.get_object('progressbar_pct')
 
         self.dialog_reading = builder.get_object('dialog_reading')

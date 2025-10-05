@@ -145,7 +145,7 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkProgressBar">
+                  <object class="GtkProgressBar" id="progressbar_pct">
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
                   </object>
