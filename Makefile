@@ -46,6 +46,7 @@ clean:
 .PHONY: install
 install:
 	install -d -m 755 $(DESTDIR)/$(PREFIX)/bin/
+	install -d -m 755 $(DESTDIR)/$(PREFIX)/sbin/
 	install -d -m 755 $(DESTDIR)/etc/xdg/autostart
 	install -d -m 755 $(DESTDIR)/etc/cron.hourly
 	install -d -m 755 $(DESTDIR)/var/run/salix-update-notifier
@@ -59,6 +60,7 @@ install:
 	install -m 755 src/salix-update-notifier-upgrade-dialog $(DESTDIR)/usr/libexec/
 	install -m 755 src/salix-update-notifier-loop $(DESTDIR)/usr/libexec/
 	install -m 755 src/salix-update-notifier-tray-icon $(DESTDIR)/usr/libexec/
+	install -m 755 src/salix-update-manager $(DESTDIR)/usr/sbin/
 	install -m 644 src/updates-notifier.svg $(DESTDIR)/usr/share/icons/hicolor/scalable/apps/
 	install -m 644 src/update-notifier.svg $(DESTDIR)/usr/share/icons/hicolor/scalable/apps/
 	for i in `ls po/*.mo|sed "s|po/\(.*\).mo|\1|"`; do \
