@@ -52,6 +52,7 @@ install:
 	install -d -m 755 $(DESTDIR)/var/run/salix-update-notifier
 	install -d -m 755 $(DESTDIR)/usr/libexec
 	install -d -m 755 $(DESTDIR)/usr/share/icons/hicolor/scalable/apps
+	install -d -m 755 $(DESTDIR)/usr/share/salix-update-notifier
 	install -m 755 src/salix-update-notifier $(DESTDIR)/$(PREFIX)/bin/
 	install -m 644 salix-update-notifier.desktop $(DESTDIR)/etc/xdg/autostart/
 	install -m 755 src/salix-update-notifier-update $(DESTDIR)/etc/cron.hourly/
@@ -63,6 +64,7 @@ install:
 	install -m 755 src/salix-update-manager $(DESTDIR)/usr/sbin/
 	install -m 644 src/updates-notifier.svg $(DESTDIR)/usr/share/icons/hicolor/scalable/apps/
 	install -m 644 src/update-notifier.svg $(DESTDIR)/usr/share/icons/hicolor/scalable/apps/
+	install -m 644 src/salix-update-manager.ui $(DESTDIR)/usr/share/salix-update-notifier/
 	for i in `ls po/*.mo|sed "s|po/\(.*\).mo|\1|"`; do \
 		install -d -m 755 $(DESTDIR)/$(PACKAGE_LOCALE_DIR)/$${i}/LC_MESSAGES ;\
 		install -m 644 po/$${i}.mo \
