@@ -356,6 +356,7 @@ class SalixUpdateManager:
     def _perform_updates_download_flatpaks(self, current_step, steps):
         # This runs in a worker thread: do only blocking I/O & parsing here.
         # All GTK actions should be added with GLib.idle_add
+        print(self.flatpak_all_upgrades)
         try:
             env = os.environ.copy()
             env["LANG"] = "C.utf8"
@@ -373,9 +374,9 @@ class SalixUpdateManager:
                 print("DEBUG:", line)
                 if line.startswith("Updating "):
                     current_step = current_step + 1
-                    current_pkg = line.split(" ")[1]
+                    current_flatpak_id = line.split(" ")[1].split("/")[1]
                     GLib.idle_add(self.label_upgrade.set_text, _("Downloading %s") %
-                            (current_pkg))
+                            (current_flatpak_id))
                     current_pct_frac = current_step / steps
                     current_pct = round(100 * current_pct_frac)
                     GLib.idle_add(self.progressbar_pct.set_fraction, current_pct_frac)
