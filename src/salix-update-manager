@@ -185,7 +185,7 @@ class SalixUpdateManager:
         self.pulse_timeout_id = GLib.timeout_add(100,
                 self.update_progress)
         self.updates_task_running = True
-        self.updates_task = threading.Thread(target=self.perform_updates)
+        self.updates_task = threading.Thread(target=self._perform_updates)
         self.updates_task.daemon = True
         self.updates_task.start()
 
@@ -197,6 +197,12 @@ class SalixUpdateManager:
         Gtk.main_quit()
 
     def on_button_no_updates_exit_clicked(self, widget, data=None):
+        Gtk.main_quit()
+
+    def on_button_error_exit_clicked(self, widget, data=None):
+        Gtk.main_quit()
+
+    def on_button_success_OK_clicked(self, widget, data=None):
         Gtk.main_quit()
 
     def update_progress(self):
@@ -211,15 +217,66 @@ class SalixUpdateManager:
             return True
         return False
 
-    def perform_updates(self):
-        self.updates_task_running = True
+    def _perform_updates(self):
+        # This runs in a worker thread: do only blocking I/O & parsing here.
+        # All GTK actions should be added with GLib.idle_add
+        len_slapt = len(self.slapt_get_upgrades)
+        len_flat = len(self.flatpak_upgrades)
+        # steps = (download + install) packages + (download + install) flatpaks
+        # + remove unused flatpak runtimes + update any remaining flatpaks
+        steps = 2*len_slapt + 2*len_flat + 2
+        # download packages with slapt-get and then install them
+        self._perform_updates_download_slapt(steps)
+        current_pct_frac = len_slapt / steps
+        current_pct = round(100 * current_pct_frac)
+        GLib.idle_add(self.progressbar_pct.set_fraction, current_pct_frac)
+        GLib.idle_add(self.label_pct.set_text, _("%d %% complete" % current_pct))
+        # now install slapt-get packages that have been downloaded
+        current_step = len_slapt
+        self._perform_updates_install_slapt(current_step, steps)
+        current_pct_frac = 2*len_slapt / steps
+        current_pct = round(100 * current_pct_frac)
+        GLib.idle_add(self.progressbar_pct.set_fraction, current_pct_frac)
+        GLib.idle_add(self.label_pct.set_text, _("%d %% complete" % current_pct))
+        # now for flatpak updates, just download first
+        current_step = 2*len_slapt
+        self._perform_updates_download_flatpaks(current_step, steps)
+        current_pct_frac = (2*len_slapt + len_flat) / steps
+        current_pct = round(100 * current_pct_frac)
+        GLib.idle_add(self.progressbar_pct.set_fraction, current_pct_frac)
+        GLib.idle_add(self.label_pct.set_text, _("%d %% complete" % current_pct))
+        # and update the flatpak updates now
+        current_step = 2*len_slapt + len_flat
+        self._perform_updates_install_flatpaks(current_step, steps)
+        current_pct_frac = (2*len_slapt + 2*len_flat) / steps
+        current_pct = round(100 * current_pct_frac)
+        GLib.idle_add(self.progressbar_pct.set_fraction, current_pct_frac)
+        GLib.idle_add(self.label_pct.set_text, _("%d %% complete" % current_pct))
+        # remove unused flatpak runtimes
+        current_step = 2*len_slapt + 2*len_flat
+        self._perform_updates_removed_unused_flatpaks(current_step, steps)
+        current_pct_frac = (2*len_slapt + 2*len_flat + 1) / steps
+        current_pct = round(100 * current_pct_frac)
+        GLib.idle_add(self.progressbar_pct.set_fraction, current_pct_frac)
+        GLib.idle_add(self.label_pct.set_text, _("%d %% complete" % current_pct))
+        # update remaining flatpaks (are there any at this point? Just to be
+        # certain)
+        current_step = 2*len_slapt + 2*len_flat + 1
+        self._perform_updates_update_rest_of_flatpaks(current_step, steps)
+        GLib.idle_add(self.progressbar_pct.set_fraction, 1)
+        GLib.idle_add(self.label_pct.set_text, _("%d %% complete" % 100))
+
+        self.updates_task_running = False
+        GLib.idle_add(self.label_upgrade.set_text, _("All updates have completed successfully."))
+        GLib.idle_add(self.progressbar_pct.set_fraction, 1)
+        GLib.idle_add(self.label_pct.set_text, _("%d %% complete" % 100))
+        GLib.idle_add(self.dialog_success.show)
+        return False # stop the idle handler
+
+    def _perform_updates_download_slapt(self, steps):
+        # This runs in a worker thread: do only blocking I/O & parsing here.
+        # All GTK actions should be added with GLib.idle_add
         try:
-            len_slapt = len(self.slapt_get_upgrades)
-            len_flat = len(self.flatpak_upgrades)
-            # steps = packages + flatpak apps + remove unused flatpak runtimes +
-            # update all remaining (runtime) flatpaks
-            steps = 2*len_slapt + len_flat + 2
-            # download packages with slapt-get
             env = os.environ.copy()
             env["LANG"] = "C.utf8"
             process = subprocess.Popen(
@@ -230,12 +287,9 @@ class SalixUpdateManager:
                 bufsize=1,
                 env=env
             )
-            total = 0
-            current = 0
             parsing_progress = False
             for line in process.stdout:
                 line = line.strip()
-                print("DEBUG:", line)
                 if line.startswith("Need to get"):
                     parsing_progress = True
                     continue
@@ -246,25 +300,77 @@ class SalixUpdateManager:
                     current_step = int(line.split(" ")[0].split("/")[0])
                     current_pkg = line.split(" ")[3]
                     current_pkg_ver = line.split(" ")[4]
-                    GLib.idle_add(self.label_upgrade.set_text, "Downloading %s %s" %
+                    GLib.idle_add(self.label_upgrade.set_text, "Downloading %s %s ..." %
                             (current_pkg, current_pkg_ver))
-                    current_pct = current_step / steps
-                    GLib.idle_add(self.progressbar_pct.set_fraction, current_pct)
-                    GLib.idle_add(self.label_pct.set_text, str(current_pct))
+                    current_pct_frac = current_step / steps
+                    current_pct = round(100 * current_pct_frac)
+                    GLib.idle_add(self.progressbar_pct.set_fraction, current_pct_frac)
+                    GLib.idle_add(self.label_pct.set_text, _("%d %% complete" % current_pct))
+                    time.sleep(5) # FIXME: remove
             process.wait()
+            if process.returncode != 0:
+                GLib.idle_add(self.dialog_error.show)
         except Exception as e:
-            print("perform_updates error:", e)
-        finally:
-            self.updates_task_running = False
-            GLib.idle_add(self.label_upgrade.set_text, "Done")
+            GLib.idle_add(self.dialog_error.show)
+
+    def _perform_updates_install_slapt(self, current_step, steps):
+        # This runs in a worker thread: do only blocking I/O & parsing here.
+        # All GTK actions should be added with GLib.idle_add
+        try:
+            env = os.environ.copy()
+            env["LANG"] = "C.utf8"
+            process = subprocess.Popen(
+                ["slapt-get", "--upgrade", "--no-prompt"],
+                stdout=subprocess.PIPE,
+                stderr=subprocess.STDOUT,
+                universal_newlines=True,
+                bufsize=1,
+                env=env
+            )
+            parsing_progress = False
+            for line in process.stdout:
+                line = line.strip()
+                print("DEBUG:", line)
+                if line.startswith("Need to get"):
+                    parsing_progress = True
+                    continue
+                if line == "Done":
+                    parsing_progress = False
+                    break
+                if parsing_progress and line.startswith("Upgrading package "):
+                    current_step = current_step + 1
+                    current_pkg = line.split(" ")[4]
+                    GLib.idle_add(self.label_upgrade.set_text, "Upgrading %s ..." %
+                            (current_pkg))
+                    current_pct_frac = current_step / steps
+                    current_pct = round(100 * current_pct_frac)
+                    GLib.idle_add(self.progressbar_pct.set_fraction, current_pct_frac)
+                    GLib.idle_add(self.label_pct.set_text, _("%d %% complete" % current_pct))
+                    time.sleep(5) # FIXME: remove
+            process.wait()
+            if process.returncode != 0:
+                GLib.idle_add(self.dialog_error.show)
+        except Exception as e:
+            GLib.idle_add(self.dialog_error.show)
+
+    def _perform_updates_download_flatpaks(self, current_step, steps):
+        pass
+
+    def _perform_updates_install_flatpaks(self, current_step, steps):
+        pass
+
+    def _perform_updates_remove_unused_flatpaks(self, current_step, steps):
+        pass
+
+    def _perform_updates_update_rest_of_flatpaks(self, current_step, steps):
+        pass
 
     def _on_updates_parsed(self, slapt_upgrades, flatpak_upgrades):
-        # This runs on the main (GTK) thread:
+        # This runs on the main (GTK) thread, no need for GLib.idle_add()
         self.slapt_get_upgrades = slapt_upgrades
         self.flatpak_upgrades = flatpak_upgrades
 
         for pkg in self.slapt_get_upgrades:
-            # call _add_listbox_entry directly — now we're on main thread
             self._add_listbox_entry(pkg, PkgType.SLACK)
         for flatpak in self.flatpak_upgrades:
             self._add_listbox_entry(flatpak, PkgType.FLATPAK)
@@ -278,7 +384,6 @@ class SalixUpdateManager:
 
         if len_slapt == 0 and len_flat == 0:
             self.dialog_no_updates.show()
-            # remove the infinite sleep loop — let the user close dialogs normally
         else:
             if len_slapt == 0:
                 summary = _("%d flatpak apps will be updated.")
@@ -291,8 +396,9 @@ class SalixUpdateManager:
 
         return False  # stop the idle handler
 
-    def populate_updates_list(self):
+    def _populate_updates_list(self):
         # This runs in a worker thread: do only blocking I/O & parsing here.
+        # All GTK actions should be added with GLib.idle_add
         self.reading_task_running = True
         try:
             slapt_upgrades = _get_slapt_get_upgrades()
@@ -304,7 +410,6 @@ class SalixUpdateManager:
         except Exception as e:
             flatpak_upgrades = []
             print("Error getting flatpak upgrades:", e)
-        # Now schedule the UI update on the main thread
         GLib.idle_add(self._on_updates_parsed, slapt_upgrades, flatpak_upgrades)
 
     def __init__(self):
@@ -334,6 +439,12 @@ class SalixUpdateManager:
         self.dialog_no_updates = builder.get_object('dialog_no_updates')
         self.button_no_updates_exit = builder.get_object('button_no_updates_exit')
 
+        self.dialog_error = builder.get_object('dialog_error')
+        self.button_error_exit = builder.get_object('button_error_exit')
+
+        self.dialog_success = builder.get_object('dialog_success')
+        self.button_success_OK = builder.get_object('button_success_OK')
+
         builder.connect_signals(self)
 
         self.dialog_reading.show()
@@ -343,7 +454,7 @@ class SalixUpdateManager:
         self.pulse_timeout_id = GLib.timeout_add(100,
                 self.update_progressbar_reading)
         # Start background task
-        self.populate_updates_task = threading.Thread(target=self.populate_updates_list)
+        self.populate_updates_task = threading.Thread(target=self._populate_updates_list)
         self.populate_updates_task.daemon = True
         self.populate_updates_task.start()
         self.updates_complete = False
