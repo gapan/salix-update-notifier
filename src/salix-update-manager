@@ -132,7 +132,7 @@ def _get_flatpak_app_upgrades():
             available_app_updates.append(flatpak)
         except KeyError:
             pass
-    return available_app_updates
+    return available_app_updates, available_updates
 
 #
 # Just a helper enum
@@ -221,7 +221,7 @@ class SalixUpdateManager:
         # This runs in a worker thread: do only blocking I/O & parsing here.
         # All GTK actions should be added with GLib.idle_add
         len_slapt = len(self.slapt_get_upgrades)
-        len_flat = len(self.flatpak_upgrades)
+        len_flat = len(self.flatpak_all_upgrades)
         # steps = (download + install) packages + (download + install) flatpaks
         # + remove unused flatpak runtimes + update any remaining flatpaks
         steps = 2*len_slapt + 2*len_flat + 2
@@ -254,7 +254,7 @@ class SalixUpdateManager:
         GLib.idle_add(self.label_pct.set_text, _("%d %% complete" % current_pct))
         # remove unused flatpak runtimes
         current_step = 2*len_slapt + 2*len_flat
-        self._perform_updates_removed_unused_flatpaks(current_step, steps)
+        self._perform_updates_remove_unused_flatpaks(current_step, steps)
         current_pct_frac = (2*len_slapt + 2*len_flat + 1) / steps
         current_pct = round(100 * current_pct_frac)
         GLib.idle_add(self.progressbar_pct.set_fraction, current_pct_frac)
@@ -300,7 +300,7 @@ class SalixUpdateManager:
                     current_step = int(line.split(" ")[0].split("/")[0])
                     current_pkg = line.split(" ")[3]
                     current_pkg_ver = line.split(" ")[4]
-                    GLib.idle_add(self.label_upgrade.set_text, "Downloading %s %s ..." %
+                    GLib.idle_add(self.label_upgrade.set_text, _("Downloading %s %s") %
                             (current_pkg, current_pkg_ver))
                     current_pct_frac = current_step / steps
                     current_pct = round(100 * current_pct_frac)
@@ -340,7 +340,7 @@ class SalixUpdateManager:
                 if parsing_progress and line.startswith("Upgrading package "):
                     current_step = current_step + 1
                     current_pkg = line.split(" ")[4]
-                    GLib.idle_add(self.label_upgrade.set_text, "Upgrading %s ..." %
+                    GLib.idle_add(self.label_upgrade.set_text, _("Upgrading %s") %
                             (current_pkg))
                     current_pct_frac = current_step / steps
                     current_pct = round(100 * current_pct_frac)
@@ -354,7 +354,37 @@ class SalixUpdateManager:
             GLib.idle_add(self.dialog_error.show)
 
     def _perform_updates_download_flatpaks(self, current_step, steps):
-        pass
+        # This runs in a worker thread: do only blocking I/O & parsing here.
+        # All GTK actions should be added with GLib.idle_add
+        try:
+            env = os.environ.copy()
+            env["LANG"] = "C.utf8"
+            process = subprocess.Popen(
+                ["flatpak", "update", "--no-deploy", "--noninteractive", "-y"],
+                stdout=subprocess.PIPE,
+                stderr=subprocess.STDOUT,
+                universal_newlines=True,
+                bufsize=1,
+                env=env
+            )
+            parsing_progress = False
+            for line in process.stdout:
+                line = line.strip()
+                print("DEBUG:", line)
+                if line.startswith("Updating "):
+                    current_step = current_step + 1
+                    current_pkg = line.split(" ")[1]
+                    GLib.idle_add(self.label_upgrade.set_text, _("Downloading %s") %
+                            (current_pkg))
+                    current_pct_frac = current_step / steps
+                    current_pct = round(100 * current_pct_frac)
+                    GLib.idle_add(self.progressbar_pct.set_fraction, current_pct_frac)
+                    GLib.idle_add(self.label_pct.set_text, _("%d %% complete" % current_pct))
+            process.wait()
+            if process.returncode != 0:
+                GLib.idle_add(self.dialog_error.show)
+        except Exception as e:
+            GLib.idle_add(self.dialog_error.show)
 
     def _perform_updates_install_flatpaks(self, current_step, steps):
         pass
@@ -365,14 +395,16 @@ class SalixUpdateManager:
     def _perform_updates_update_rest_of_flatpaks(self, current_step, steps):
         pass
 
-    def _on_updates_parsed(self, slapt_upgrades, flatpak_upgrades):
+    def _on_updates_parsed(self, slapt_upgrades, flatpak_app_upgrades,
+            flatpak_all_upgrades):
         # This runs on the main (GTK) thread, no need for GLib.idle_add()
         self.slapt_get_upgrades = slapt_upgrades
-        self.flatpak_upgrades = flatpak_upgrades
+        self.flatpak_app_upgrades = flatpak_app_upgrades
+        self.flatpak_all_upgrades = flatpak_all_upgrades
 
         for pkg in self.slapt_get_upgrades:
             self._add_listbox_entry(pkg, PkgType.SLACK)
-        for flatpak in self.flatpak_upgrades:
+        for flatpak in self.flatpak_app_upgrades:
             self._add_listbox_entry(flatpak, PkgType.FLATPAK)
 
         self.list_box.show_all()
@@ -380,18 +412,20 @@ class SalixUpdateManager:
         self.dialog_reading.hide()
 
         len_slapt = len(self.slapt_get_upgrades)
-        len_flat = len(self.flatpak_upgrades)
+        len_flat = len(self.flatpak_app_upgrades)
 
         if len_slapt == 0 and len_flat == 0:
             self.dialog_no_updates.show()
         else:
             if len_slapt == 0:
                 summary = _("%d flatpak apps will be updated.")
+                self.label_update_summary.set_text(summary % len_flat)
             elif len_flat == 0:
                 summary = _("%d packages will be updated.")
+                self.label_update_summary.set_text(summary % len_slapt)
             else:
                 summary = _("%d packages and %d flatpak apps will be updated.")
-            self.label_update_summary.set_text(summary % (len_slapt, len_flat))
+                self.label_update_summary.set_text(summary % (len_slapt, len_flat))
             self.label_question.set_text("Do you want to proceed with these software updates?")
 
         return False  # stop the idle handler
@@ -406,11 +440,12 @@ class SalixUpdateManager:
             slapt_upgrades = []
             print("Error getting slapt-get upgrades:", e)
         try:
-            flatpak_upgrades = _get_flatpak_app_upgrades()
+            flatpak_app_upgrades, flatpak_all_upgrades = _get_flatpak_app_upgrades()
         except Exception as e:
             flatpak_upgrades = []
             print("Error getting flatpak upgrades:", e)
-        GLib.idle_add(self._on_updates_parsed, slapt_upgrades, flatpak_upgrades)
+        GLib.idle_add(self._on_updates_parsed, slapt_upgrades,
+                flatpak_app_upgrades, flatpak_all_upgrades)
 
     def __init__(self):
         builder = Gtk.Builder()
