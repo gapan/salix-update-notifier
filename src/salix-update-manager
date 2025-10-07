@@ -240,15 +240,17 @@ class SalixUpdateManager:
         GLib.idle_add(self.label_pct.set_text, _("%d %% complete" % current_pct))
         # now for flatpak updates, just download first
         current_step = 2*len_slapt
-        self._perform_updates_download_flatpaks(current_step, steps)
-        current_pct_frac = (2*len_slapt + len_flat) / steps
+        max_next_step = 2*len_slapt + len_flat
+        self._perform_updates_download_flatpaks(current_step, max_next_step,  steps)
+        current_pct_frac = (max_next_step) / steps
         current_pct = round(100 * current_pct_frac)
         GLib.idle_add(self.progressbar_pct.set_fraction, current_pct_frac)
         GLib.idle_add(self.label_pct.set_text, _("%d %% complete" % current_pct))
         # and update the flatpak updates now
         current_step = 2*len_slapt + len_flat
-        self._perform_updates_install_flatpaks(current_step, steps)
-        current_pct_frac = (2*len_slapt + 2*len_flat) / steps
+        max_next_step = 2*len_slapt + 2*len_flat
+        self._perform_updates_install_flatpaks(current_step, max_next_step, steps)
+        current_pct_frac = (max_next_step) / steps
         current_pct = round(100 * current_pct_frac)
         GLib.idle_add(self.progressbar_pct.set_fraction, current_pct_frac)
         GLib.idle_add(self.label_pct.set_text, _("%d %% complete" % current_pct))
@@ -290,6 +292,7 @@ class SalixUpdateManager:
             parsing_progress = False
             for line in process.stdout:
                 line = line.strip()
+                print("DEBUG:", line)
                 if line.startswith("Need to get"):
                     parsing_progress = True
                     continue
@@ -353,10 +356,9 @@ class SalixUpdateManager:
         except Exception as e:
             GLib.idle_add(self.dialog_error.show)
 
-    def _perform_updates_download_flatpaks(self, current_step, steps):
+    def _perform_updates_download_flatpaks(self, current_step, max_next_step, steps):
         # This runs in a worker thread: do only blocking I/O & parsing here.
         # All GTK actions should be added with GLib.idle_add
-        print(self.flatpak_all_upgrades)
         try:
             env = os.environ.copy()
             env["LANG"] = "C.utf8"
@@ -372,8 +374,20 @@ class SalixUpdateManager:
             for line in process.stdout:
                 line = line.strip()
                 print("DEBUG:", line)
-                if line.startswith("Updating "):
-                    current_step = current_step + 1
+                # "Updating" shows when downloading a flatpak that was
+                # previously installed.
+                # "Installing" shows when a new runtime is installed as a
+                # dependency.
+                if line.startswith("Updating ") or line.startswith("Installing "):
+                    # There may be more flatpaks installed that we can tell
+                    # before hand. That includes new flatpaks that are
+                    # installed as dependencies. So instead of counting up by
+                    # 1, we'll count up by 0.5 and we'll also make sure that we
+                    # don't go over the threshold (max_next_step) so
+                    # percentages on the GUI don't freak out and go back.
+                    current_step = current_step + 0.5
+                    if current_step > max_next_step:
+                        current_step = max_next_step
                     current_flatpak_id = line.split(" ")[1].split("/")[1]
                     GLib.idle_add(self.label_upgrade.set_text, _("Downloading %s") %
                             (current_flatpak_id))
@@ -387,14 +401,98 @@ class SalixUpdateManager:
         except Exception as e:
             GLib.idle_add(self.dialog_error.show)
 
-    def _perform_updates_install_flatpaks(self, current_step, steps):
-        pass
+    def _perform_updates_install_flatpaks(self, current_step, max_next_step, steps):
+        # This runs in a worker thread: do only blocking I/O & parsing here.
+        # All GTK actions should be added with GLib.idle_add
+        try:
+            env = os.environ.copy()
+            env["LANG"] = "C.utf8"
+            process = subprocess.Popen(
+                ["flatpak", "update", "--no-pull", "--noninteractive", "-y"],
+                stdout=subprocess.PIPE,
+                stderr=subprocess.STDOUT,
+                universal_newlines=True,
+                bufsize=1,
+                env=env
+            )
+            parsing_progress = False
+            for line in process.stdout:
+                line = line.strip()
+                print("DEBUG:", line)
+                # "Updating" shows when installing a flatpak that was
+                # previously installed.
+                # "Installing" shows when a new runtime is installed as a
+                # dependency.
+                if line.startswith("Updating ") or line.startswith("Installing "):
+                    # There may be more flatpaks installed that we can tell
+                    # before hand. That includes new flatpaks that are
+                    # installed as dependencies. So instead of counting up by
+                    # 1, we'll count up by 0.5 and we'll also make sure that we
+                    # don't go over the threshold (max_next_step) so
+                    # percentages on the GUI don't freak out and go back.
+                    current_step = current_step + 0.5
+                    if current_step > max_next_step:
+                        current_step = max_next_step
+                    current_flatpak_id = line.split(" ")[1].split("/")[1]
+                    GLib.idle_add(self.label_upgrade.set_text, _("Installing %s") %
+                            (current_flatpak_id))
+                    current_pct_frac = current_step / steps
+                    current_pct = round(100 * current_pct_frac)
+                    GLib.idle_add(self.progressbar_pct.set_fraction, current_pct_frac)
+                    GLib.idle_add(self.label_pct.set_text, _("%d %% complete" % current_pct))
+            process.wait()
+            if process.returncode != 0:
+                GLib.idle_add(self.dialog_error.show)
+        except Exception as e:
+            GLib.idle_add(self.dialog_error.show)
 
     def _perform_updates_remove_unused_flatpaks(self, current_step, steps):
-        pass
+        # This runs in a worker thread: do only blocking I/O & parsing here.
+        # All GTK actions should be added with GLib.idle_add
+        try:
+            GLib.idle_add(self.label_upgrade.set_text, _("Removing unused flatpaks"))
+            env = os.environ.copy()
+            env["LANG"] = "C.utf8"
+            process = subprocess.Popen(
+                ["flatpak", "remove", "--unused", "--noninteractive", "-y"],
+                stdout=subprocess.PIPE,
+                stderr=subprocess.STDOUT,
+                universal_newlines=True,
+                bufsize=1,
+                env=env
+            )
+            for line in process.stdout:
+                line = line.strip()
+                print("DEBUG:", line)
+            process.wait()
+            if process.returncode != 0:
+                GLib.idle_add(self.dialog_error.show)
+        except Exception as e:
+            GLib.idle_add(self.dialog_error.show)
 
     def _perform_updates_update_rest_of_flatpaks(self, current_step, steps):
-        pass
+        # This runs in a worker thread: do only blocking I/O & parsing here.
+        # All GTK actions should be added with GLib.idle_add
+        try:
+            GLib.idle_add(self.label_upgrade.set_text, _("Finalizing updates"))
+            env = os.environ.copy()
+            env["LANG"] = "C.utf8"
+            process = subprocess.Popen(
+                ["flatpak", "update", "--noninteractive", "-y"],
+                stdout=subprocess.PIPE,
+                stderr=subprocess.STDOUT,
+                universal_newlines=True,
+                bufsize=1,
+                env=env
+            )
+            for line in process.stdout:
+                line = line.strip()
+                print("DEBUG:", line)
+            process.wait()
+            if process.returncode != 0:
+                GLib.idle_add(self.dialog_error.show)
+        except Exception as e:
+            GLib.idle_add(self.dialog_error.show)
 
     def _on_updates_parsed(self, slapt_upgrades, flatpak_app_upgrades,
             flatpak_all_upgrades):
