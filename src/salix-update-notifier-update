@@ -10,4 +10,4 @@
 # This script is to be placed inside /etc/cron.hourly or another cron directory
 
 /usr/sbin/slapt-get -u
-/usr/bin/flatpak update --noninteractive --appstream -y
+[ -x /usr/bin/flatpak ] && /usr/bin/flatpak update --noninteractive --appstream -y
