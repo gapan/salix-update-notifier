@@ -233,14 +233,14 @@ class SalixUpdateManager:
         current_pct_frac = len_slapt / steps
         current_pct = round(100 * current_pct_frac)
         GLib.idle_add(self.progressbar_pct.set_fraction, current_pct_frac)
-        GLib.idle_add(self.label_pct.set_text, _("%d %% complete" % current_pct))
+        GLib.idle_add(self.label_pct.set_text, _("%d %% complete") % current_pct)
         # now install slapt-get packages that have been downloaded
         current_step = len_slapt
         self._perform_updates_install_slapt(current_step, steps)
         current_pct_frac = 2*len_slapt / steps
         current_pct = round(100 * current_pct_frac)
         GLib.idle_add(self.progressbar_pct.set_fraction, current_pct_frac)
-        GLib.idle_add(self.label_pct.set_text, _("%d %% complete" % current_pct))
+        GLib.idle_add(self.label_pct.set_text, _("%d %% complete") % current_pct)
         # now for flatpak updates, just download first
         if os.access(FLATPAK_BIN, os.X_OK):
             current_step = 2*len_slapt
@@ -249,7 +249,7 @@ class SalixUpdateManager:
             current_pct_frac = (max_next_step) / steps
             current_pct = round(100 * current_pct_frac)
             GLib.idle_add(self.progressbar_pct.set_fraction, current_pct_frac)
-            GLib.idle_add(self.label_pct.set_text, _("%d %% complete" % current_pct))
+            GLib.idle_add(self.label_pct.set_text, _("%d %% complete") % current_pct)
             # and update the flatpak updates now
             current_step = 2*len_slapt + len_flat
             max_next_step = 2*len_slapt + 2*len_flat
@@ -257,25 +257,25 @@ class SalixUpdateManager:
             current_pct_frac = (max_next_step) / steps
             current_pct = round(100 * current_pct_frac)
             GLib.idle_add(self.progressbar_pct.set_fraction, current_pct_frac)
-            GLib.idle_add(self.label_pct.set_text, _("%d %% complete" % current_pct))
+            GLib.idle_add(self.label_pct.set_text, _("%d %% complete") % current_pct)
             # remove unused flatpak runtimes
             current_step = 2*len_slapt + 2*len_flat
             self._perform_updates_remove_unused_flatpaks(current_step, steps)
             current_pct_frac = (2*len_slapt + 2*len_flat + 1) / steps
             current_pct = round(100 * current_pct_frac)
             GLib.idle_add(self.progressbar_pct.set_fraction, current_pct_frac)
-            GLib.idle_add(self.label_pct.set_text, _("%d %% complete" % current_pct))
+            GLib.idle_add(self.label_pct.set_text, _("%d %% complete") % current_pct)
             # update remaining flatpaks (are there any at this point? Just to be
             # certain)
             current_step = 2*len_slapt + 2*len_flat + 1
             self._perform_updates_update_rest_of_flatpaks(current_step, steps)
         GLib.idle_add(self.progressbar_pct.set_fraction, 1)
-        GLib.idle_add(self.label_pct.set_text, _("%d %% complete" % 100))
+        GLib.idle_add(self.label_pct.set_text, _("%d %% complete") % 100)
 
         self.updates_task_running = False
         GLib.idle_add(self.label_upgrade.set_text, _("All updates have completed successfully."))
         GLib.idle_add(self.progressbar_pct.set_fraction, 1)
-        GLib.idle_add(self.label_pct.set_text, _("%d %% complete" % 100))
+        GLib.idle_add(self.label_pct.set_text, _("%d %% complete") % 100)
         GLib.idle_add(self.dialog_success.show)
         return False # stop the idle handler
 
@@ -312,7 +312,7 @@ class SalixUpdateManager:
                     current_pct_frac = current_step / steps
                     current_pct = round(100 * current_pct_frac)
                     GLib.idle_add(self.progressbar_pct.set_fraction, current_pct_frac)
-                    GLib.idle_add(self.label_pct.set_text, _("%d %% complete" % current_pct))
+                    GLib.idle_add(self.label_pct.set_text, _("%d %% complete") % current_pct)
                     time.sleep(5) # FIXME: remove
             process.wait()
             if process.returncode != 0:
@@ -347,12 +347,11 @@ class SalixUpdateManager:
                 if parsing_progress and line.startswith("Upgrading package "):
                     current_step = current_step + 1
                     current_pkg = line.split(" ")[4]
-                    GLib.idle_add(self.label_upgrade.set_text, _("Upgrading %s") %
-                            (current_pkg))
+                    GLib.idle_add(self.label_upgrade.set_text, _("Upgrading %s") % current_pkg)
                     current_pct_frac = current_step / steps
                     current_pct = round(100 * current_pct_frac)
                     GLib.idle_add(self.progressbar_pct.set_fraction, current_pct_frac)
-                    GLib.idle_add(self.label_pct.set_text, _("%d %% complete" % current_pct))
+                    GLib.idle_add(self.label_pct.set_text, _("%d %% complete") % current_pct)
                     time.sleep(5) # FIXME: remove
             process.wait()
             if process.returncode != 0:
@@ -398,7 +397,7 @@ class SalixUpdateManager:
                     current_pct_frac = current_step / steps
                     current_pct = round(100 * current_pct_frac)
                     GLib.idle_add(self.progressbar_pct.set_fraction, current_pct_frac)
-                    GLib.idle_add(self.label_pct.set_text, _("%d %% complete" % current_pct))
+                    GLib.idle_add(self.label_pct.set_text, _("%d %% complete") % current_pct)
             process.wait()
             if process.returncode != 0:
                 GLib.idle_add(self.dialog_error.show)
@@ -438,12 +437,11 @@ class SalixUpdateManager:
                     if current_step > max_next_step:
                         current_step = max_next_step
                     current_flatpak_id = line.split(" ")[1].split("/")[1]
-                    GLib.idle_add(self.label_upgrade.set_text, _("Installing %s") %
-                            (current_flatpak_id))
+                    GLib.idle_add(self.label_upgrade.set_text, _("Installing %s") % current_flatpak_id)
                     current_pct_frac = current_step / steps
                     current_pct = round(100 * current_pct_frac)
                     GLib.idle_add(self.progressbar_pct.set_fraction, current_pct_frac)
-                    GLib.idle_add(self.label_pct.set_text, _("%d %% complete" % current_pct))
+                    GLib.idle_add(self.label_pct.set_text, _("%d %% complete") % current_pct)
             process.wait()
             if process.returncode != 0:
                 GLib.idle_add(self.dialog_error.show)
@@ -529,7 +527,7 @@ class SalixUpdateManager:
             else:
                 summary = _("%d packages and %d flatpak apps will be updated.")
                 self.label_update_summary.set_text(summary % (len_slapt, len_flat))
-            self.label_question.set_text("Do you want to proceed with these software updates?")
+            self.label_question.set_text(_("Do you want to proceed with these software updates?"))
 
         return False  # stop the idle handler
 
