@@ -21,6 +21,8 @@ _ = gettext.gettext
 
 SLAPT_GET_BIN = "/usr/sbin/slapt-get"
 FLATPAK_BIN = "/usr/bin/flatpak"
+SLAPT_GET_ICON = "package"
+FLATPAK_ICON = "flatpak-software"
 
 #
 # slapt-get-logic
@@ -160,7 +162,7 @@ class SalixUpdateManager:
         # Gtk.IconSize.MENU (16px), Gtk.IconSize.SMALL_TOOLBAR (16px),
         # Gtk.IconSize.LARGE_TOOLBAR (24px), Gtk.IconSize.DND (32px)
         if pkg_type == PkgType.SLACK:
-            icon = Gtk.Image.new_from_icon_name('package', Gtk.IconSize.DND)
+            icon = Gtk.Image.new_from_icon_name(SLAPT_GET_ICON, Gtk.IconSize.DND)
             label_text = f"{pkg['name']} {pkg['old_version']} -> {pkg['new_version']}"
         elif pkg_type == PkgType.FLATPAK:
             icon = Gtk.Image.new_from_icon_name('flatpak-software', Gtk.IconSize.DND)
@@ -229,6 +231,8 @@ class SalixUpdateManager:
         # + remove unused flatpak runtimes + update any remaining flatpaks
         steps = 2*len_slapt + 2*len_flat + 2
         # download packages with slapt-get and then install them
+        GLib.idle_add(self.img_package_type.set_from_icon_name, SLAPT_GET_ICON,
+                Gtk.IconSize.DIALOG)
         self._perform_updates_download_slapt(steps)
         current_pct_frac = len_slapt / steps
         current_pct = round(100 * current_pct_frac)
@@ -243,6 +247,8 @@ class SalixUpdateManager:
         GLib.idle_add(self.label_pct.set_text, _("%d %% complete") % current_pct)
         # now for flatpak updates, just download first
         if os.access(FLATPAK_BIN, os.X_OK):
+            GLib.idle_add(self.img_package_type.set_from_icon_name, FLATPAK_ICON,
+                    Gtk.IconSize.DIALOG)
             current_step = 2*len_slapt
             max_next_step = 2*len_slapt + len_flat
             self._perform_updates_download_flatpaks(current_step, max_next_step,  steps)
@@ -569,6 +575,7 @@ class SalixUpdateManager:
         self.progressbar_pulse = builder.get_object('progressbar_pulse')
         self.label_pct = builder.get_object('label_pct')
         self.progressbar_pct = builder.get_object('progressbar_pct')
+        self.img_package_type = builder.get_object('img_package_type')
 
         self.dialog_reading = builder.get_object('dialog_reading')
         self.progressbar_reading = builder.get_object('progressbar_reading')
