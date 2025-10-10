@@ -275,6 +275,8 @@ class SalixUpdateManager:
             # certain)
             current_step = 2*len_slapt + 2*len_flat + 1
             self._perform_updates_update_rest_of_flatpaks(current_step, steps)
+        GLib.idle_add(self.img_package_type.set_from_icon_name, 'gtk-ok',
+                Gtk.IconSize.DIALOG)
         GLib.idle_add(self.progressbar_pct.set_fraction, 1)
         GLib.idle_add(self.label_pct.set_text, _("%d %% complete") % 100)
 
