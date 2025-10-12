@@ -190,7 +190,7 @@ msgstr "Η ολοκλήρωση των ενημερώσεων flatpak απέτυ
 #: src/salix-update-manager:584
 #, python-format
 msgid "%d flatpak app(s) will be updated."
-msgstr "%d εφαρμογή/ες θα ενημερωθεί/ούν."
+msgstr "%d εφαρμογή/ες flatpak θα ενημερωθεί/ούν."
 
 #: src/salix-update-manager:587
 #, python-format
