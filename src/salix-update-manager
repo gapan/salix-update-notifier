@@ -390,7 +390,7 @@ class SalixUpdateManager:
                 if parsing_progress and line.startswith("Upgrading package "):
                     current_step = current_step + 1
                     current_pkg = line.split(" ")[4]
-                    GLib.idle_add(self.label_upgrade.set_text, _("Upgrading %s") % current_pkg)
+                    GLib.idle_add(self.label_upgrade.set_text, _("Updating %s") % current_pkg)
                     current_pct_frac = current_step / steps
                     current_pct = round(100 * current_pct_frac)
                     GLib.idle_add(self.progressbar_pct.set_fraction, current_pct_frac)
@@ -584,13 +584,13 @@ class SalixUpdateManager:
             self.dialog_no_updates.show()
         else:
             if len_slapt == 0:
-                summary = _("%d flatpak apps will be updated.")
+                summary = _("%d flatpak app(s) will be updated.")
                 self.label_update_summary.set_text(summary % len_flat)
             elif len_flat == 0:
-                summary = _("%d packages will be updated.")
+                summary = _("%d package(s) will be updated.")
                 self.label_update_summary.set_text(summary % len_slapt)
             else:
-                summary = _("%d packages and %d flatpak apps will be updated.")
+                summary = _("%d package(s) and %d flatpak app(s) will be updated.")
                 self.label_update_summary.set_text(summary % (len_slapt, len_flat))
             self.label_question.set_text(_("Do you want to proceed with these software updates?"))
 
