@@ -34,6 +34,16 @@ pot:
 	xgettext --from-code=utf-8 -j -L C -o po/salix-update-notifier.pot src/salix-update-notifier-tray-icon.c
 	xgettext --from-code=utf-8 -j -L C -o po/salix-update-notifier.pot src/salix-update-notifier-upgrade-dialog.c
 	xgettext --from-code=utf-8 -j -L C -kN_ -o po/salix-update-notifier.pot salix-update-notifier.desktop.in.h
+	xgettext --from-code=utf-8 \
+		-j \
+		-L Glade \
+		-o po/salix-update-notifier.pot \
+		src/salix-update-manager.ui
+	xgettext --from-code=utf-8 \
+		-j \
+		-L Python \
+		-o po/salix-update-notifier.pot \
+		src/salix-update-manager
 	rm salix-update-notifier.desktop.in.h
 
 .PHONY: clean
