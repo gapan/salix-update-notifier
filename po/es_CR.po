@@ -3,58 +3,56 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# gapan <vlahavas@gmail.com>, 2011
-# gk <genghiskhan@gmx.ca>, 2013-2014
 msgid ""
 msgstr ""
 "Project-Id-Version: Salix\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-10-12 12:35+0300\n"
 "PO-Revision-Date: 2011-04-05 16:32+0000\n"
-"Last-Translator: gapan <vlahavas@gmail.com>, 2011\n"
-"Language-Team: Hebrew (http://app.transifex.com/gapan/salix/language/he/)\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: Spanish (Costa Rica) (http://app.transifex.com/gapan/salix/language/es_CR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: he\n"
-"Plural-Forms: nplurals=3; plural=(n == 1 && n % 1 == 0) ? 0 : (n == 2 && n % 1 == 0) ? 1: 2;\n"
+"Language: es_CR\n"
+"Plural-Forms: nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
 
 #: src/salix-update-notifier-loop:57
 #, sh-format
 msgid ""
 "ERROR: gksu, ktsuss or kdesu are required for salix-update-notifier to work."
-msgstr "ERROR: gksu, ktsuss or kdesu are required for salix-update-notifier to work."
+msgstr ""
 
 #: src/salix-update-notifier-loop:66
 #, sh-format
 msgid "Package updates are available."
-msgstr "עדכוני חבילה זמינים."
+msgstr ""
 
 #: src/salix-update-notifier-upgrade-dialog.c:29
 msgid "Package updates are available for your system."
-msgstr "עדכוני חבילה זמינים עבור המערכת שלך."
+msgstr ""
 
 #: src/salix-update-notifier-upgrade-dialog.c:30
 msgid ""
 "Selecting OK will perform the updates using gslapt. Root user privileges "
 "will be required in order to do that."
-msgstr "לחיצה על הכפתור אישור תוציא אל הפועל את העדכונים באמצעות gslapt. נדרשת פריבילגיית שורש כדי לעשות זאת."
+msgstr ""
 
 #: src/salix-update-notifier-upgrade-dialog.c:32
 msgid "Proceed with updating?"
-msgstr "להמשיך תהליך עדכון?"
+msgstr ""
 
 #: src/salix-update-notifier-upgrade-dialog.c:46
 msgid "Install package updates?"
-msgstr "להתקין עדכוני חבילה?"
+msgstr ""
 
 #: salix-update-notifier.desktop.in.h:1
 msgid "Salix update notifier"
-msgstr "מתריע עדכונים Salix"
+msgstr ""
 
 #: salix-update-notifier.desktop.in.h:2
 msgid "Display a tray notification when package updates are available"
-msgstr "הצג התראת מגש מערכת כאשר עדכוני חבילה זמינים"
+msgstr ""
 
 #: src/salix-update-manager.ui:9
 msgid "Salix Update Manager"
@@ -78,7 +76,7 @@ msgstr ""
 
 #: src/salix-update-manager.ui:267
 msgid "Error"
-msgstr "שגיאה"
+msgstr ""
 
 #: src/salix-update-manager.ui:290 src/salix-update-manager.ui:378
 msgid "Exit"
@@ -94,7 +92,7 @@ msgstr ""
 
 #: src/salix-update-manager.ui:444 src/salix-update-manager.ui:488
 msgid "Reading package lists..."
-msgstr "קורא כעת רשימות חבילה..."
+msgstr ""
 
 #: src/salix-update-manager.ui:512
 msgid "Updates complete"
@@ -102,7 +100,7 @@ msgstr ""
 
 #: src/salix-update-manager.ui:532
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 #: src/salix-update-manager.ui:574 src/salix-update-manager:311
 msgid "All updates have completed successfully."
