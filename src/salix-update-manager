@@ -72,6 +72,17 @@ def _get_slapt_get_upgrades():
                     'old_version': old_version,
                     'new_version': new_version
                 })
+            elif line.endswith(' is to be installed'):
+                package_info = line.split('is to be installed')
+                package_name_version = package_info[0].strip().split('-')
+                package_name = '-'.join(package_name_version[:-3])
+                old_version = "(" +_("new dependency") + ")"
+                new_version = package_name_version[-3]
+                upgrades.append({
+                    'name': package_name,
+                    'old_version': old_version,
+                    'new_version': new_version
+                })
             else:
                 # If the line just contains package names, 
                 # we'll assume they have no version information
@@ -389,6 +400,14 @@ class SalixUpdateManager:
                     current_step = current_step + 1
                     current_pkg = line.split(" ")[4]
                     GLib.idle_add(self.label_upgrade.set_text, _("Updating %s") % current_pkg)
+                    current_pct_frac = current_step / steps
+                    current_pct = round(100 * current_pct_frac)
+                    GLib.idle_add(self.progressbar_pct.set_fraction, current_pct_frac)
+                    GLib.idle_add(self.label_pct.set_text, _("%d %% complete") % current_pct)
+                if parsing_progress and line.startswith("Installing package "):
+                    current_step = current_step + 1
+                    current_pkg = line.split(" ")[2]
+                    GLib.idle_add(self.label_upgrade.set_text, _("Installing %s") % current_pkg)
                     current_pct_frac = current_step / steps
                     current_pct = round(100 * current_pct_frac)
                     GLib.idle_add(self.progressbar_pct.set_fraction, current_pct_frac)
