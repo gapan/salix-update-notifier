@@ -240,7 +240,7 @@
             </child>
             <child>
               <object class="GtkButton" id="button_OK">
-                <property name="label" translatable="yes">Upgrade</property>
+                <property name="label" translatable="yes">Proceed</property>
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
                 <property name="receives-default">True</property>
