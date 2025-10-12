@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-09-25 23:52+0300\n"
+"POT-Creation-Date: 2025-10-12 12:14+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -52,4 +52,162 @@ msgstr ""
 
 #: salix-update-notifier.desktop.in.h:2
 msgid "Display a tray notification when package updates are available"
+msgstr ""
+
+#: src/salix-update-manager.ui:9
+msgid "Salix Update Manager"
+msgstr ""
+
+#: src/salix-update-manager.ui:38
+msgid "The following software will be updated:"
+msgstr ""
+
+#: src/salix-update-manager.ui:143
+msgid "Preparing updates..."
+msgstr ""
+
+#: src/salix-update-manager.ui:229 src/salix-update-manager.ui:465
+msgid "Cancel"
+msgstr ""
+
+#: src/salix-update-manager.ui:243
+msgid "Upgrade"
+msgstr ""
+
+#: src/salix-update-manager.ui:267
+msgid "Error"
+msgstr ""
+
+#: src/salix-update-manager.ui:290 src/salix-update-manager.ui:378
+msgid "Exit"
+msgstr ""
+
+#: src/salix-update-manager.ui:356
+msgid "No Updates"
+msgstr ""
+
+#: src/salix-update-manager.ui:423
+msgid "There are no available updates."
+msgstr ""
+
+#: src/salix-update-manager.ui:444 src/salix-update-manager.ui:488
+msgid "Reading package lists..."
+msgstr ""
+
+#: src/salix-update-manager.ui:512
+msgid "Updates complete"
+msgstr ""
+
+#: src/salix-update-manager.ui:532
+msgid "OK"
+msgstr ""
+
+#: src/salix-update-manager.ui:574 src/salix-update-manager:311
+msgid "All updates have completed successfully."
+msgstr ""
+
+#: src/salix-update-manager:267 src/salix-update-manager:274
+#: src/salix-update-manager:285 src/salix-update-manager:293
+#: src/salix-update-manager:300 src/salix-update-manager:308
+#: src/salix-update-manager:313 src/salix-update-manager:350
+#: src/salix-update-manager:395 src/salix-update-manager:439
+#: src/salix-update-manager:490
+#, python-format
+msgid "%d %% complete"
+msgstr ""
+
+#: src/salix-update-manager:345
+#, python-format
+msgid "Downloading %s %s"
+msgstr ""
+
+#: src/salix-update-manager:353 src/salix-update-manager:358
+msgid "Package download failed."
+msgstr ""
+
+#: src/salix-update-manager:354 src/salix-update-manager:359
+#: src/salix-update-manager:399 src/salix-update-manager:404
+#: src/salix-update-manager:443 src/salix-update-manager:448
+#: src/salix-update-manager:494 src/salix-update-manager:499
+#: src/salix-update-manager:605 src/salix-update-manager:616
+msgid ""
+"Please try again or check your network connection and available disk space "
+"if the issue persists."
+msgstr ""
+
+#: src/salix-update-manager:358 src/salix-update-manager:403
+#: src/salix-update-manager:447 src/salix-update-manager:498
+#: src/salix-update-manager:528 src/salix-update-manager:556
+#: src/salix-update-manager:604 src/salix-update-manager:615
+msgid "Exception"
+msgstr ""
+
+#: src/salix-update-manager:391
+#, python-format
+msgid "Updating %s"
+msgstr ""
+
+#: src/salix-update-manager:398 src/salix-update-manager:403
+msgid "Package installation failed."
+msgstr ""
+
+#: src/salix-update-manager:434
+#, python-format
+msgid "Downloading %s"
+msgstr ""
+
+#: src/salix-update-manager:442 src/salix-update-manager:447
+msgid "Flatpak download failed."
+msgstr ""
+
+#: src/salix-update-manager:486
+#, python-format
+msgid "Installing %s"
+msgstr ""
+
+#: src/salix-update-manager:493 src/salix-update-manager:498
+msgid "Flatpak installation failed."
+msgstr ""
+
+#: src/salix-update-manager:508
+msgid "Removing unused flatpaks"
+msgstr ""
+
+#: src/salix-update-manager:524 src/salix-update-manager:528
+msgid "Unused flatpak removal failed."
+msgstr ""
+
+#: src/salix-update-manager:536
+msgid "Finalizing updates"
+msgstr ""
+
+#: src/salix-update-manager:552 src/salix-update-manager:556
+msgid "Finalizing flatpak updates failed."
+msgstr ""
+
+#: src/salix-update-manager:584
+#, python-format
+msgid "%d flatpak app(s) will be updated."
+msgstr ""
+
+#: src/salix-update-manager:587
+#, python-format
+msgid "%d package(s) will be updated."
+msgstr ""
+
+#: src/salix-update-manager:590
+#, python-format
+msgid "%d package(s) and %d flatpak app(s) will be updated."
+msgstr ""
+
+#: src/salix-update-manager:592
+msgid "Do you want to proceed with these software updates?"
+msgstr ""
+
+#: src/salix-update-manager:604
+msgid "Error getting slapt-get upgrades:"
+msgstr ""
+
+#: src/salix-update-manager:615
+msgid "Error getting flatpak updates:"
 msgstr ""
