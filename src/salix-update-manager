@@ -601,7 +601,7 @@ class SalixUpdateManager:
             slapt_upgrades = _get_slapt_get_upgrades()
         except Exception as e:
             slapt_upgrades = []
-            label_text = _("Exception") + "\n" + _("Error getting slapt-get upgrades:") + " "
+            label_text = _("Exception") + "\n" + _("Error getting slapt-get updates:") + " "
             label_text = label_text + _("Please try again or check your network connection and available disk space if the issue persists.")
             GLib.idle_add(self.label_error.set_text, label_text)
             GLib.idle_add(self.dialog_error.show)
