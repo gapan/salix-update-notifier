@@ -604,7 +604,10 @@ class SalixUpdateManager:
             slapt_upgrades = _get_slapt_get_upgrades()
         except Exception as e:
             slapt_upgrades = []
-            print("Error getting slapt-get upgrades:", e)
+            label_text = _("Exception") + "\n" + _("Error getting slapt-get upgrades:") + " "
+            label_text = label_text + _("Please try again or check your network connection and available disk space if the issue persists.")
+            GLib.idle_add(self.label_error.set_text, label_text)
+            GLib.idle_add(self.dialog_error.show)
         if os.access(FLATPAK_BIN, os.X_OK):
             try:
                 flatpak_app_upgrades = _get_flatpak_app_upgrades()
@@ -612,7 +615,11 @@ class SalixUpdateManager:
             except Exception as e:
                 flatpak_upgrades = []
                 self.len_flat = 0
-                print("Error getting flatpak upgrades:", e)
+                label_text = _("Exception") + "\n" + _("Error getting flatpak updates:") + " "
+                label_text = label_text + _("Please try again or check your network connection and available disk space if the issue persists.")
+                label_text = label_text + '\n\n' + e
+                GLib.idle_add(self.label_error.set_text, label_text)
+                GLib.idle_add(self.dialog_error.show)
         else:
             flatpak_app_upgrades = []
         GLib.idle_add(self._on_updates_parsed, slapt_upgrades,
