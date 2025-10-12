@@ -2,7 +2,7 @@
 <!-- Generated with glade 3.38.2 -->
 <interface>
   <requires lib="gtk+" version="3.24"/>
-  <object class="GtkWindow" id="salix-update-notifier-upgrade">
+  <object class="GtkWindow" id="salix-update-manager">
     <property name="width-request">600</property>
     <property name="height-request">350</property>
     <property name="can-focus">False</property>
@@ -271,7 +271,7 @@
     <property name="icon-name">update-notifier</property>
     <property name="type-hint">dialog</property>
     <property name="skip-taskbar-hint">True</property>
-    <property name="transient-for">salix-update-notifier-upgrade</property>
+    <property name="transient-for">salix-update-manager</property>
     <child internal-child="vbox">
       <object class="GtkBox">
         <property name="can-focus">False</property>
@@ -359,7 +359,7 @@
     <property name="icon-name">update-notifier</property>
     <property name="type-hint">dialog</property>
     <property name="skip-taskbar-hint">True</property>
-    <property name="transient-for">salix-update-notifier-upgrade</property>
+    <property name="transient-for">salix-update-manager</property>
     <child internal-child="vbox">
       <object class="GtkBox">
         <property name="can-focus">False</property>
@@ -446,7 +446,7 @@
     <property name="destroy-with-parent">True</property>
     <property name="icon-name">update-notifier</property>
     <property name="type-hint">dialog</property>
-    <property name="transient-for">salix-update-notifier-upgrade</property>
+    <property name="transient-for">salix-update-manager</property>
     <child internal-child="vbox">
       <object class="GtkBox">
         <property name="can-focus">False</property>
@@ -513,7 +513,7 @@
     <property name="modal">True</property>
     <property name="icon-name">gtk-dialog-info</property>
     <property name="type-hint">dialog</property>
-    <property name="attached-to">salix-update-notifier-upgrade</property>
+    <property name="attached-to">salix-update-manager</property>
     <child internal-child="vbox">
       <object class="GtkBox">
         <property name="can-focus">False</property>

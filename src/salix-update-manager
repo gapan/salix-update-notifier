@@ -624,14 +624,14 @@ class SalixUpdateManager:
 
     def __init__(self):
         builder = Gtk.Builder()
-        builder.set_translation_domain("salix-update-manager")
+        builder.set_translation_domain("salix-update-notifier")
         if os.path.exists('salix-update-manager.ui'):
             builder.add_from_file('salix-update-manager.ui')
         elif os.path.exists('/usr/share/salix-update-notifier/salix-update-manager.ui'):
             builder.add_from_file(
                 '/usr/share/salix-update-notifier/salix-update-manager.ui')
 
-        self.window = builder.get_object('salix-update-notifier-upgrade')
+        self.window = builder.get_object('salix-update-manager')
         self.list_box = builder.get_object('list_box')
         self.stack = builder.get_object('stack')
         self.button_OK = builder.get_object('button_OK')
