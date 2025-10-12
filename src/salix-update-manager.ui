@@ -98,7 +98,6 @@
               </object>
               <packing>
                 <property name="name">page0</property>
-                <property name="title" translatable="yes">page0</property>
               </packing>
             </child>
             <child>
@@ -207,7 +206,6 @@
               </object>
               <packing>
                 <property name="name">page1</property>
-                <property name="title" translatable="yes">page1</property>
                 <property name="position">1</property>
               </packing>
             </child>
@@ -334,7 +332,7 @@
               <object class="GtkLabel" id="label_error">
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
-                <property name="label" translatable="yes">Update failed. Please try again or check your network connection and available disk space if the issue persists.</property>
+                <property name="label">Update failed.</property>
                 <property name="wrap">True</property>
               </object>
               <packing>
