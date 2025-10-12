@@ -251,7 +251,10 @@ class SalixUpdateManager:
         # This runs in a worker thread: do only blocking I/O & parsing here.
         # All GTK actions should be added with GLib.idle_add
         len_slapt = len(self.slapt_get_upgrades)
-        len_flat = self.len_flat
+        try:
+            len_flat = self.len_flat
+        except AttributeError: # when flatpak is not installed
+            len_flat = 0
         # steps = (download + install) packages + (download + install) flatpaks
         # + remove unused flatpak runtimes + update any remaining flatpaks
         steps = 2*len_slapt + 2*len_flat + 2
@@ -349,8 +352,15 @@ class SalixUpdateManager:
                     time.sleep(5) # FIXME: remove
             process.wait()
             if process.returncode != 0:
+                label_text = _("Package download failed.") + " "
+                label_text = label_text + _("Please try again or check your network connection and available disk space if the issue persists.")
+                GLib.idle_add(self.label_error.set_text, label_text)
                 GLib.idle_add(self.dialog_error.show)
         except Exception as e:
+            label_text = _("Exception") + "\n" + _("Package download failed.") + " "
+            label_text = label_text + _("Please try again or check your network connection and available disk space if the issue persists.")
+            label_text = label_text + '\n\n' + e
+            GLib.idle_add(self.label_error.set_text, label_text)
             GLib.idle_add(self.dialog_error.show)
 
     def _perform_updates_install_slapt(self, current_step, steps):
@@ -388,8 +398,15 @@ class SalixUpdateManager:
                     time.sleep(5) # FIXME: remove
             process.wait()
             if process.returncode != 0:
+                label_text = _("Package installation failed.") + " "
+                label_text = label_text + _("Please try again or check your network connection and available disk space if the issue persists.")
+                GLib.idle_add(self.label_error.set_text, label_text)
                 GLib.idle_add(self.dialog_error.show)
         except Exception as e:
+            label_text = _("Exception") + _("Package installation failed.") + " "
+            label_text = label_text + _("Please try again or check your network connection and available disk space if the issue persists.")
+            label_text = label_text + '\n\n' + e
+            GLib.idle_add(self.label_error.set_text, label_text)
             GLib.idle_add(self.dialog_error.show)
 
     def _perform_updates_download_flatpaks(self, current_step, steps):
@@ -425,8 +442,15 @@ class SalixUpdateManager:
                     GLib.idle_add(self.label_pct.set_text, _("%d %% complete") % current_pct)
             process.wait()
             if process.returncode != 0:
+                label_text = _("Flatpak download failed.") + " "
+                label_text = label_text + _("Please try again or check your network connection and available disk space if the issue persists.")
+                GLib.idle_add(self.label_error.set_text, label_text)
                 GLib.idle_add(self.dialog_error.show)
         except Exception as e:
+            label_text = _("Exception") + "\n" + _("Flatpak download failed.") + " "
+            label_text = label_text + _("Please try again or check your network connection and available disk space if the issue persists.")
+            label_text = label_text + '\n\n' + e
+            GLib.idle_add(self.label_error.set_text, label_text)
             GLib.idle_add(self.dialog_error.show)
 
     def _perform_updates_install_flatpaks(self, current_step, max_next_step, steps):
@@ -469,8 +493,15 @@ class SalixUpdateManager:
                     GLib.idle_add(self.label_pct.set_text, _("%d %% complete") % current_pct)
             process.wait()
             if process.returncode != 0:
+                label_text = _("Flatpak installation failed.") + " "
+                label_text = label_text + _("Please try again or check your network connection and available disk space if the issue persists.")
+                GLib.idle_add(self.label_error.set_text, label_text)
                 GLib.idle_add(self.dialog_error.show)
         except Exception as e:
+            label_text = _("Exception") + "\n" + _("Flatpak installation failed.") + " "
+            label_text = label_text + _("Please try again or check your network connection and available disk space if the issue persists.")
+            label_text = label_text + '\n\n' + e
+            GLib.idle_add(self.label_error.set_text, label_text)
             GLib.idle_add(self.dialog_error.show)
 
     def _perform_updates_remove_unused_flatpaks(self, current_step, steps):
@@ -493,8 +524,12 @@ class SalixUpdateManager:
                 print("DEBUG:", line)
             process.wait()
             if process.returncode != 0:
+                label_text = _("Unused flatpak removal failed.")
+                GLib.idle_add(self.label_error.set_text, label_text)
                 GLib.idle_add(self.dialog_error.show)
         except Exception as e:
+            label_text = _("Exception") + "\n" + _("Unused flatpak removal failed.") + " "
+            GLib.idle_add(self.label_error.set_text, label_text)
             GLib.idle_add(self.dialog_error.show)
 
     def _perform_updates_update_rest_of_flatpaks(self, current_step, steps):
@@ -517,8 +552,12 @@ class SalixUpdateManager:
                 print("DEBUG:", line)
             process.wait()
             if process.returncode != 0:
+                label_text = _("Finalizing flatpak updates failed.")
+                GLib.idle_add(self.label_error.set_text, label_text)
                 GLib.idle_add(self.dialog_error.show)
         except Exception as e:
+            label_text = _("Exception") + "\n" + _("Finalizing flatpak updates failed.")
+            GLib.idle_add(self.label_error.set_text, label_text)
             GLib.idle_add(self.dialog_error.show)
 
     def _on_updates_parsed(self, slapt_upgrades, flatpak_app_upgrades):
@@ -536,7 +575,10 @@ class SalixUpdateManager:
         self.dialog_reading.hide()
 
         len_slapt = len(self.slapt_get_upgrades)
-        len_flat = self.len_flat
+        try:
+            len_flat = self.len_flat
+        except AttributeError: # when flatpak is not installed
+            len_flat = 0
 
         if len_slapt == 0 and len_flat == 0:
             self.dialog_no_updates.show()
@@ -605,6 +647,7 @@ class SalixUpdateManager:
         self.button_no_updates_exit = builder.get_object('button_no_updates_exit')
 
         self.dialog_error = builder.get_object('dialog_error')
+        self.label_error = builder.get_object('label_error')
         self.button_error_exit = builder.get_object('button_error_exit')
 
         self.dialog_success = builder.get_object('dialog_success')
