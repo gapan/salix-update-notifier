@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Salix\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-12 12:35+0300\n"
+"POT-Creation-Date: 2025-10-13 15:41+0300\n"
 "PO-Revision-Date: 2011-04-05 16:32+0000\n"
 "Last-Translator: gapan <vlahavas@gmail.com>, 2025\n"
 "Language-Team: Greek (http://app.transifex.com/gapan/salix/language/el/)\n"
@@ -104,112 +104,128 @@ msgstr "Ολοκλήρωση ενημερώσεων"
 msgid "OK"
 msgstr "ΟΚ"
 
-#: src/salix-update-manager.ui:574 src/salix-update-manager:311
+#: src/salix-update-manager.ui:574 src/salix-update-manager:314
 msgid "All updates have completed successfully."
 msgstr "Όλες οι ενημερώσεις ολοκληρώθηκαν με επιτυχία."
 
-#: src/salix-update-manager:267 src/salix-update-manager:274
-#: src/salix-update-manager:285 src/salix-update-manager:293
-#: src/salix-update-manager:300 src/salix-update-manager:308
-#: src/salix-update-manager:313 src/salix-update-manager:350
-#: src/salix-update-manager:395 src/salix-update-manager:439
-#: src/salix-update-manager:490
+#: src/salix-update-manager:80
+msgid "new"
+msgstr "νέο"
+
+#: src/salix-update-manager:270 src/salix-update-manager:277
+#: src/salix-update-manager:288 src/salix-update-manager:296
+#: src/salix-update-manager:303 src/salix-update-manager:311
+#: src/salix-update-manager:316 src/salix-update-manager:353
+#: src/salix-update-manager:398 src/salix-update-manager:406
+#: src/salix-update-manager:450 src/salix-update-manager:501
 #, python-format
 msgid "%d %% complete"
 msgstr "%d %% ολοκληρώθηκε"
 
-#: src/salix-update-manager:345
+#: src/salix-update-manager:348
 #, python-format
 msgid "Downloading %s %s"
 msgstr "Γίνεται λήψη του %s %s"
 
-#: src/salix-update-manager:353 src/salix-update-manager:358
+#: src/salix-update-manager:356 src/salix-update-manager:361
 msgid "Package download failed."
 msgstr "Η λήψη του πακέτου απέτυχε."
 
-#: src/salix-update-manager:354 src/salix-update-manager:359
-#: src/salix-update-manager:399 src/salix-update-manager:404
-#: src/salix-update-manager:443 src/salix-update-manager:448
-#: src/salix-update-manager:494 src/salix-update-manager:499
-#: src/salix-update-manager:605 src/salix-update-manager:616
+#: src/salix-update-manager:357 src/salix-update-manager:362
+#: src/salix-update-manager:410 src/salix-update-manager:415
+#: src/salix-update-manager:454 src/salix-update-manager:459
+#: src/salix-update-manager:505 src/salix-update-manager:510
+#: src/salix-update-manager:631 src/salix-update-manager:642
 msgid ""
 "Please try again or check your network connection and available disk space "
 "if the issue persists."
 msgstr "Παρακαλώ δοκιμάστε ξανά ή ελέγξτε τη σύνδεση δικτύου σας και το διαθέσιμο χώρο στο δίσκο σας αν το πρόβλημα παραμένει."
 
-#: src/salix-update-manager:358 src/salix-update-manager:403
-#: src/salix-update-manager:447 src/salix-update-manager:498
-#: src/salix-update-manager:528 src/salix-update-manager:556
-#: src/salix-update-manager:604 src/salix-update-manager:615
+#: src/salix-update-manager:361 src/salix-update-manager:414
+#: src/salix-update-manager:458 src/salix-update-manager:509
+#: src/salix-update-manager:539 src/salix-update-manager:567
+#: src/salix-update-manager:630 src/salix-update-manager:641
 msgid "Exception"
 msgstr "Εξαίρεση"
 
-#: src/salix-update-manager:391
+#: src/salix-update-manager:394
 #, python-format
 msgid "Updating %s"
 msgstr "Γίνεται ενημέρωση του %s"
 
-#: src/salix-update-manager:398 src/salix-update-manager:403
-msgid "Package installation failed."
-msgstr "Η εγκατάσταση του πακέτου απέτυχε."
-
-#: src/salix-update-manager:434
-#, python-format
-msgid "Downloading %s"
-msgstr "Γίνεται λήψη του %s"
-
-#: src/salix-update-manager:442 src/salix-update-manager:447
-msgid "Flatpak download failed."
-msgstr "Η λήψη του flatpak απέτυχε."
-
-#: src/salix-update-manager:486
+#: src/salix-update-manager:402 src/salix-update-manager:497
 #, python-format
 msgid "Installing %s"
 msgstr "Γίνεται εγκατάσταση του %s"
 
-#: src/salix-update-manager:493 src/salix-update-manager:498
+#: src/salix-update-manager:409 src/salix-update-manager:414
+msgid "Package installation failed."
+msgstr "Η εγκατάσταση του πακέτου απέτυχε."
+
+#: src/salix-update-manager:445
+#, python-format
+msgid "Downloading %s"
+msgstr "Γίνεται λήψη του %s"
+
+#: src/salix-update-manager:453 src/salix-update-manager:458
+msgid "Flatpak download failed."
+msgstr "Η λήψη του flatpak απέτυχε."
+
+#: src/salix-update-manager:504 src/salix-update-manager:509
 msgid "Flatpak installation failed."
 msgstr "Η εγκατάσταση του flatpak απέτυχε."
 
-#: src/salix-update-manager:508
+#: src/salix-update-manager:519
 msgid "Removing unused flatpaks"
 msgstr "Γίνεται απομάκρυνση των flatpak που δεν χρησιμοποιούνται."
 
-#: src/salix-update-manager:524 src/salix-update-manager:528
+#: src/salix-update-manager:535 src/salix-update-manager:539
 msgid "Unused flatpak removal failed."
 msgstr "Η απομάκρυνση των flatpak που δεν χρησιμοποιούνται απέτυχε."
 
-#: src/salix-update-manager:536
+#: src/salix-update-manager:547
 msgid "Finalizing updates"
 msgstr "Γίνεται ολοκλήρωση των ενημερώσεων."
 
-#: src/salix-update-manager:552 src/salix-update-manager:556
+#: src/salix-update-manager:563 src/salix-update-manager:567
 msgid "Finalizing flatpak updates failed."
 msgstr "Η ολοκλήρωση των ενημερώσεων flatpak απέτυχε."
 
-#: src/salix-update-manager:584
-#, python-format
-msgid "%d flatpak app(s) will be updated."
-msgstr "%d εφαρμογή/ες flatpak θα ενημερωθεί/ούν."
+#: src/salix-update-manager:601
+msgid "1 package will be updated."
+msgstr "1 πακέτο θα ενημερωθεί."
 
-#: src/salix-update-manager:587
+#: src/salix-update-manager:603
 #, python-format
-msgid "%d package(s) will be updated."
-msgstr "%d πακέτο/α θα ενημερωθεί/ούν."
+msgid "%d packages will be updated."
+msgstr "%d πακέτα θα ενημερωθούν."
 
-#: src/salix-update-manager:590
+#: src/salix-update-manager:606
+msgid "1 new package will be installed as a dependency."
+msgstr "1 νέο πακέτο θα εγκατασταθεί ως εξάρτηση."
+
+#: src/salix-update-manager:608
 #, python-format
-msgid "%d package(s) and %d flatpak app(s) will be updated."
-msgstr "%d πακέτο/α και %d εφαρμογή/ές flatpak θα ενημερωθούν."
+msgid "%d new packages will be installed as dependencies."
+msgstr "%d νέα πακέτα θα εγκατασταθούν ως εξαρτήσεις."
 
-#: src/salix-update-manager:592
+#: src/salix-update-manager:613
+msgid "1 flatpak app will be updated."
+msgstr "1 εφαρμογή flatpak θα ενημερωθεί."
+
+#: src/salix-update-manager:615
+#, python-format
+msgid "%d flatpak apps will be updated."
+msgstr "%d εφαρμογές flatpak θα ενημερωθούν."
+
+#: src/salix-update-manager:618
 msgid "Do you want to proceed with these software updates?"
 msgstr "Επιθυμείτε να συνεχίσετε με αυτές τις ενημερώσεις λογισμικού;"
 
-#: src/salix-update-manager:604
+#: src/salix-update-manager:630
 msgid "Error getting slapt-get updates:"
 msgstr "Σφάλμα κατά τη λήψη των ενημερώσεων slapt-get:"
 
-#: src/salix-update-manager:615
+#: src/salix-update-manager:641
 msgid "Error getting flatpak updates:"
 msgstr "Σφάλμα κατά τη λήψη των ενημερώσεων flatpak:"
