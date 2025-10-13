@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-13 15:41+0300\n"
+"POT-Creation-Date: 2025-10-13 20:00+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -26,24 +26,6 @@ msgstr ""
 #: src/salix-update-notifier-loop:66
 #, sh-format
 msgid "Package updates are available."
-msgstr ""
-
-#: src/salix-update-notifier-upgrade-dialog.c:29
-msgid "Package updates are available for your system."
-msgstr ""
-
-#: src/salix-update-notifier-upgrade-dialog.c:30
-msgid ""
-"Selecting OK will perform the updates using gslapt. Root user privileges "
-"will be required in order to do that."
-msgstr ""
-
-#: src/salix-update-notifier-upgrade-dialog.c:32
-msgid "Proceed with updating?"
-msgstr ""
-
-#: src/salix-update-notifier-upgrade-dialog.c:46
-msgid "Install package updates?"
 msgstr ""
 
 #: salix-update-notifier.desktop.in.h:1
