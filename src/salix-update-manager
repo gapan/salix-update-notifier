@@ -104,7 +104,7 @@ def _get_installed_flatpak_apps():
     lines = output.splitlines()
     installed_flatpaks = {}
     for line in lines:
-        columns = line.split()
+        columns = line.split('\t')
         app_id = columns[0]
         branch = columns[1]
         if len(columns) == 2:
@@ -120,7 +120,7 @@ def _get_available_flatpak_updates():
     lines = output.splitlines()
     available_updates = []
     for line in lines:
-        columns = line.split()
+        columns = line.split('\t')
         if line.startswith('\t'):
             version = f"({columns[0]})"
             app_id = columns[1]
