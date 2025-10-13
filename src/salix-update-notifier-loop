@@ -73,7 +73,6 @@ while true; do
 	then
 		$NOTIFY_SEND -i salix-update-notifier "$NOTIFY_SEND_TEXT" \
 		& /usr/libexec/salix-update-notifier-tray-icon \
-		&& /usr/libexec/salix-update-notifier-upgrade-dialog \
 		&& $SUCOMMAND /usr/sbin/salix-update-manager
 	fi
 
