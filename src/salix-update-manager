@@ -70,29 +70,21 @@ def _get_slapt_get_upgrades():
                 upgrades.append({
                     'name': package_name,
                     'old_version': old_version,
-                    'new_version': new_version
+                    'new_version': new_version,
+                    'new_dep': False
                 })
             elif line.endswith(' is to be installed'):
                 package_info = line.split('is to be installed')
                 package_name_version = package_info[0].strip().split('-')
                 package_name = '-'.join(package_name_version[:-3])
-                old_version = "(" +_("new dependency") + ")"
+                old_version = "(" +_("new") + ")"
                 new_version = package_name_version[-3]
                 upgrades.append({
                     'name': package_name,
                     'old_version': old_version,
-                    'new_version': new_version
+                    'new_version': new_version,
+                    'new_dep': True
                 })
-            else:
-                # If the line just contains package names, 
-                # we'll assume they have no version information
-                package_names = line.split()
-                for package_name in package_names:
-                    upgrades.append({
-                        'name': package_name,
-                        'old_version': None,
-                        'new_version': None
-                    })
     return upgrades
 
 #
@@ -591,6 +583,11 @@ class SalixUpdateManager:
         self.dialog_reading.hide()
 
         len_slapt = len(self.slapt_get_upgrades)
+        len_slapt_new = 0
+        for package in self.slapt_get_upgrades:
+            if package['new_dep']:
+                len_slapt_new = len_slapt_new + 1
+        len_slapt_updates = len_slapt - len_slapt_new
         try:
             len_flat = self.len_flat
         except AttributeError: # when flatpak is not installed
@@ -599,15 +596,25 @@ class SalixUpdateManager:
         if len_slapt == 0 and len_flat == 0:
             self.dialog_no_updates.show()
         else:
-            if len_slapt == 0:
-                summary = _("%d flatpak app(s) will be updated.")
-                self.label_update_summary.set_text(summary % len_flat)
-            elif len_flat == 0:
-                summary = _("%d package(s) will be updated.")
-                self.label_update_summary.set_text(summary % len_slapt)
-            else:
-                summary = _("%d package(s) and %d flatpak app(s) will be updated.")
-                self.label_update_summary.set_text(summary % (len_slapt, len_flat))
+            summary = ""
+            if len_slapt == 1:
+                summary = _("1 package will be updated.")
+            elif len_slapt > 1:
+                summary = (_("%d packages will be updated.") %
+                        len_slapt_updates)
+            if len_slapt_new == 1:
+                summary = summary + "\n" + _("1 new package will be installed as a dependency.")
+            elif len_slapt_new > 1:
+                summary = summary + "\n" + (_("%d new packages will be installed as dependencies.") %
+                        len_slapt_new)
+            if len_slapt > 0:
+                summary = summary + "\n"
+            if len_flat == 1:
+                summary = summary + _("1 flatpak app will be updated.")
+            elif len_flat > 1:
+                summary = summary + (_("%d flatpak apps will be updated.") %
+                        len_flat)
+            self.label_update_summary.set_text(summary)
             self.label_question.set_text(_("Do you want to proceed with these software updates?"))
 
         return False  # stop the idle handler
