@@ -147,12 +147,6 @@ def _get_flatpak_number_of_actions():
     Get how many actions (upgrades, new installations) will be performed
     when running flatpak update, including runtimes.
     """
-    """
-    Get how many actions (upgrades, new installations) will be performed
-    when running flatpak update, including runtimes.
-    Automatically replies 'n' to 'Do you want to install it?' and 'y' to
-    'Proceed with these changes?' prompts.
-    """
     child = pexpect.spawn("flatpak update", encoding="utf-8", timeout=None)
     output_lines = []
     last_number = 0
