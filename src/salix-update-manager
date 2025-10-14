@@ -93,7 +93,7 @@ def _get_slapt_get_upgrades():
 #
 def _get_installed_flatpak_apps():
     """Get a list of installed flatpaks."""
-    output = subprocess.check_output([FLATPAK_BIN, "list", "--app", "--columns=application,branch,version"]).decode("utf-8")
+    output = subprocess.check_output([FLATPAK_BIN, "list", "--columns=application,branch,version"]).decode("utf-8")
     lines = output.splitlines()
     installed_flatpaks = {}
     for line in lines:
@@ -109,19 +109,17 @@ def _get_installed_flatpak_apps():
 
 def _get_available_flatpak_updates():
     """Get a list of available flatpak updates."""
-    output = subprocess.check_output([FLATPAK_BIN, "remote-ls", "--updates", "--columns=version,branch,application,name"]).decode("utf-8")
+    output = subprocess.check_output([FLATPAK_BIN, "remote-ls", "--updates", "--columns=application,name,version,branch"]).decode("utf-8")
     lines = output.splitlines()
     available_updates = []
     for line in lines:
         columns = line.split('\t')
-        if line.startswith('\t'):
-            version = f"({columns[0]})"
-            app_id = columns[1]
-            name = " ".join(columns[2:])
+        app_id = columns[0]
+        name = columns[1]
+        if columns[2] == '':
+            version = f"({columns[3]})"
         else:
-            version = f"{columns[0]} ({columns[1]})"
-            app_id = columns[2]
-            name = " ".join(columns[3:])
+            version = f"{columns[2]} ({columns[3]})"
         available_updates.append({
             'name': name,
             'id': app_id,
@@ -211,7 +209,10 @@ class SalixUpdateManager:
             label_text = f"{pkg['name']} {pkg['old_version']} -> {pkg['new_version']}"
         elif pkg_type == PkgType.FLATPAK:
             icon = Gtk.Image.new_from_icon_name('flatpak-software', Gtk.IconSize.DND)
-            label_text = f"{pkg['name']} ({pkg['id']}) {pkg['old_version']} -> {pkg['new_version']}"
+            if pkg['old_version'].startswith('('):
+                label_text = f"{pkg['name']} ({pkg['id']}) {pkg['old_version']}"
+            else:
+                label_text = f"{pkg['name']} ({pkg['id']}) {pkg['old_version']} -> {pkg['new_version']}"
         else:
             return
         label = Gtk.Label(label=label_text)
