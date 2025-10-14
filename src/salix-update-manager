@@ -7,6 +7,7 @@ from gi.repository import Gtk, GLib
 from enum import Enum
 import subprocess
 import threading
+import pexpect
 import os
 
 # Internationalization
@@ -146,24 +147,47 @@ def _get_flatpak_number_of_actions():
     Get how many actions (upgrades, new installations) will be performed
     when running flatpak update, including runtimes.
     """
-    process = subprocess.run(
-        ["bash", "-c", "yes n | flatpak update"],
-        stdout=subprocess.PIPE,
-        stderr=subprocess.STDOUT,
-        text=True
-    )
-    output = process.stdout.splitlines()
-    parsing = False
+    """
+    Get how many actions (upgrades, new installations) will be performed
+    when running flatpak update, including runtimes.
+    Automatically replies 'n' to 'Do you want to install it?' and 'y' to
+    'Proceed with these changes?' prompts.
+    """
+    child = pexpect.spawn("flatpak update", encoding="utf-8", timeout=None)
+    output_lines = []
     last_number = 0
+    while True:
+        try:
+            i = child.expect([
+                r"Do you want to install it\?.*",
+                r"Proceed with these changes.*",
+                pexpect.EOF,
+                pexpect.TIMEOUT
+            ])
+            if i == 0:
+                # flatpak asks "Do you want to install it?"
+                child.sendline("y")
+            elif i == 1:
+                # flatpak asks "Proceed with these changes?"
+                child.sendline("n")
+            elif i == 2:
+                # End of process
+                break
+            elif i == 3:
+                # Timeout — optional handling
+                break
+            output_lines.extend(child.before.splitlines())
+        except pexpect.exceptions.EOF:
+            break
+        except pexpect.exceptions.TIMEOUT:
+            break
+    # Combine all collected lines
+    output = [line.strip() for line in output_lines if line.strip()]
+    # Parse numbered entries
     for line in output:
-        line = line.strip()
-        # Skip empty lines
-        if not line:
-            continue
-        parts = line.split(None, 1)  # split only on first space
-        if parts[0].rstrip('.').isdigit():
+        parts = line.split(None, 1)
+        if parts and parts[0].rstrip('.').isdigit():
             last_number = int(parts[0].rstrip('.'))
-            last_entry = parts[1]
     return last_number
 
 #
