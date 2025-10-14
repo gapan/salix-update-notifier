@@ -634,9 +634,9 @@ class SalixUpdateManager:
             if len_slapt > 0:
                 summary = summary + "\n"
             if len_flat == 1:
-                summary = summary + _("1 flatpak app will be updated.")
+                summary = summary + _("1 flatpak will be updated.")
             elif len_flat > 1:
-                summary = summary + (_("%d flatpak apps will be updated.") %
+                summary = summary + (_("%d flatpaks will be updated.") %
                         len_flat)
             self.label_update_summary.set_text(summary)
             self.label_question.set_text(_("Do you want to proceed with these software updates?"))
