@@ -613,9 +613,11 @@ class SalixUpdateManager:
                 len_slapt_new = len_slapt_new + 1
         len_slapt_updates = len_slapt - len_slapt_new
         try:
-            len_flat = self.len_flat
+            len_flat_new = self.len_flat_new
+            len_flat_updates = self.len_flat_updates
         except AttributeError: # when flatpak is not installed
-            len_flat = 0
+            len_flat_new = 0
+            len_flat_updates = 0
 
         if len_slapt == 0 and len_flat == 0:
             self.dialog_no_updates.show()
@@ -633,11 +635,18 @@ class SalixUpdateManager:
                         len_slapt_new)
             if len_slapt > 0:
                 summary = summary + "\n"
-            if len_flat == 1:
+            if len_flat_updates == 1:
                 summary = summary + _("1 flatpak will be updated.")
-            elif len_flat > 1:
+            elif len_flat_updates > 1:
                 summary = summary + (_("%d flatpaks will be updated.") %
-                        len_flat)
+                        len_flat_updates)
+            if len_flat_new > 0:
+                summary = summary + "\n"
+            if len_flat_new == 1:
+                summary = summary + _("1 new flatpak runtime will be installed as a dependency.")
+            elif len_flat_new > 1:
+                summary = summary + (_("%d new flatpak runtimes will be installed as dependencies.") %
+                        len_flat_new)
             self.label_update_summary.set_text(summary)
             self.label_question.set_text(_("Do you want to proceed with these software updates?"))
 
@@ -659,9 +668,16 @@ class SalixUpdateManager:
             try:
                 flatpak_upgrades = _get_flatpak_upgrades()
                 self.len_flat = len(flatpak_upgrades)
+                self.len_flat_new = 0
+                for flatpak in flatpak_upgrades:
+                    if flatpak['action'] == 'i':
+                        self.len_flat_new = self.len_flat_new + 1
+                self.len_flat_updates = self.len_flat - self.len_flat_new
             except Exception as e:
                 flatpak_upgrades = []
                 self.len_flat = 0
+                self.len_flat_new = 0
+                self.len_flat_updates = 0
                 label_text = _("Exception") + "\n" + _("Error getting flatpak updates:") + " "
                 label_text = label_text + _("Please try again or check your network connection and available disk space if the issue persists.")
                 label_text = label_text + '\n\n' + e
