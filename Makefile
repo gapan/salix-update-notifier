@@ -20,6 +20,7 @@ mo:
 .PHONY: desktop
 desktop:
 	intltool-merge po/ -d -u salix-update-notifier.desktop.in salix-update-notifier.desktop
+	intltool-merge po/ -d -u salix-update-manager.desktop.in salix-update-manager.desktop
 
 .PHONY: updatepo
 updatepo:
@@ -33,6 +34,7 @@ pot:
 	xgettext --from-code=utf-8 -L shell -o po/salix-update-notifier.pot src/salix-update-notifier-loop
 	xgettext --from-code=utf-8 -j -L C -o po/salix-update-notifier.pot src/salix-update-notifier-tray-icon.c
 	xgettext --from-code=utf-8 -j -L C -kN_ -o po/salix-update-notifier.pot salix-update-notifier.desktop.in.h
+	xgettext --from-code=utf-8 -j -L C -kN_ -o po/salix-update-notifier.pot salix-update-manager.desktop.in.h
 	xgettext --from-code=utf-8 \
 		-j \
 		-L Glade \
@@ -44,11 +46,13 @@ pot:
 		-o po/salix-update-notifier.pot \
 		src/salix-update-manager
 	rm salix-update-notifier.desktop.in.h
+	rm salix-update-manager.desktop.in.h
 
 .PHONY: clean
 clean:
 	rm -f src/salix-update-notifier-tray-icon
 	rm -f salix-update-notifier.desktop
+	rm -f salix-update-manager.desktop
 	rm -f po/*.mo
 	rm -f po/*.po~
 
@@ -62,6 +66,7 @@ install:
 	install -d -m 755 $(DESTDIR)/usr/libexec
 	install -d -m 755 $(DESTDIR)/usr/share/icons/hicolor/scalable/apps
 	install -d -m 755 $(DESTDIR)/usr/share/salix-update-notifier
+	install -d -m 755 $(DESTIDR)/usr/share/applications
 	install -m 755 src/salix-update-notifier $(DESTDIR)/$(PREFIX)/bin/
 	install -m 644 salix-update-notifier.desktop $(DESTDIR)/etc/xdg/autostart/
 	install -m 755 src/salix-update-notifier-update $(DESTDIR)/etc/cron.hourly/
@@ -73,6 +78,7 @@ install:
 	install -m 644 src/updates-notifier.svg $(DESTDIR)/usr/share/icons/hicolor/scalable/apps/
 	install -m 644 src/update-notifier.svg $(DESTDIR)/usr/share/icons/hicolor/scalable/apps/
 	install -m 644 src/salix-update-manager.ui $(DESTDIR)/usr/share/salix-update-notifier/
+	instamm -m 644 salix-update-manager.desktop $(DESTDIR)/usr/share/pplications/
 	for i in `ls po/*.mo|sed "s|po/\(.*\).mo|\1|"`; do \
 		install -d -m 755 $(DESTDIR)/$(PACKAGE_LOCALE_DIR)/$${i}/LC_MESSAGES ;\
 		install -m 644 po/$${i}.mo \

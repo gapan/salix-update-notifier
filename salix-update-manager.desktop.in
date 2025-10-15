@@ -1,0 +1,10 @@
+[Desktop Entry]
+Categories=Application;System;PackageManager;
+Exec=gksu salix-update-manager
+Icon=system-software-update
+_Name=Salix Update Manager
+_Comment=Update your installed software
+StartupNotify=true
+Encoding=UTF-8
+NoDisplay=false
+NotShowIn=KDE
