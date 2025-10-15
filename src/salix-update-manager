@@ -618,6 +618,7 @@ class SalixUpdateManager:
         except AttributeError: # when flatpak is not installed
             len_flat_new = 0
             len_flat_updates = 0
+        len_flat = len_flat_new + len_flat_updates
 
         if len_slapt == 0 and len_flat == 0:
             self.dialog_no_updates.show()
