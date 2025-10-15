@@ -93,7 +93,7 @@ def _get_slapt_get_upgrades():
 #
 def _get_installed_flatpaks():
     """Get a list of installed flatpaks."""
-    output = subprocess.check_output([FLATPAK_BIN, "list", "--columns=application,branch,version"]).decode("utf-8")
+    output = subprocess.check_output([FLATPAK_BIN, "list", "--all", "--columns=application,branch,version"]).decode("utf-8")
     lines = output.splitlines()
     installed_flatpaks = {}
     for line in lines:
@@ -109,7 +109,8 @@ def _get_installed_flatpaks():
 
 def _get_available_flatpak_updates():
     """Get a list of available flatpak updates."""
-    output = subprocess.check_output([FLATPAK_BIN, "remote-ls", "--updates", "--columns=application,name,version,branch"]).decode("utf-8")
+    output = subprocess.check_output([FLATPAK_BIN, "remote-ls", "--updates",
+        "--all", "--columns=application,name,version,branch"]).decode("utf-8")
     lines = output.splitlines()
     available_updates = []
     for line in lines:
