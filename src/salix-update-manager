@@ -92,8 +92,12 @@ def _get_slapt_get_upgrades():
 # flatpak logic
 #
 def _get_installed_flatpaks():
-    """Get a list of installed flatpaks."""
-    output = subprocess.check_output([FLATPAK_BIN, "list", "--all", "--columns=application,branch,version"]).decode("utf-8")
+    """
+    Get a dictionary of all installed flatpaks. The key is a tuple of
+    (flatpak_id, branch).
+    """
+    output = subprocess.check_output([FLATPAK_BIN, "list", "--all",
+                "--columns=application,branch,version"]).decode("utf-8")
     lines = output.splitlines()
     installed_flatpaks = {}
     for line in lines:
@@ -101,54 +105,37 @@ def _get_installed_flatpaks():
         flatpak_id = columns[0]
         branch = columns[1]
         if len(columns) == 2:
-            version = f"({branch})"
+            version = ''
         else:
-            version = f"{columns[2]} ({branch})"
-        installed_flatpaks[flatpak_id] = version
+            version = columns[2]
+        installed_flatpaks[(flatpak_id, branch)] = {'old_version': version}
     return installed_flatpaks
 
-def _get_available_flatpak_updates():
-    """Get a list of available flatpak updates."""
-    output = subprocess.check_output([FLATPAK_BIN, "remote-ls", "--updates",
-        "--all", "--columns=application,name,version,branch"]).decode("utf-8")
+def _get_remote_flatpaks():
+    """
+    Get a dictionary of all available flatpaks at the remote. The key is a
+    tuple of (flatpak_id, branch).
+    """
+    output = subprocess.check_output([FLATPAK_BIN, "remote-ls", "--all",
+                "--columns=application,name,version,branch"]).decode("utf-8")
     lines = output.splitlines()
-    available_updates = []
+    available_updates = {}
     for line in lines:
         columns = line.split('\t')
-        flatpak_id = columns[0]
-        name = columns[1]
-        if columns[2] == '':
-            version = f"({columns[3]})"
-        else:
-            version = f"{columns[2]} ({columns[3]})"
-        available_updates.append({
-            'name': name,
-            'id': flatpak_id,
-            'new_version': version
-        })
+        available_updates[(columns[0], columns[3])] = {
+                'name': columns[1],
+                'new_version': columns[2]
+                }
     return available_updates
 
 def _get_flatpak_upgrades():
-    """Get a list of flatpaks that can be upgraded."""
-    installed_flatpaks = _get_installed_flatpaks()
-    available_updates = _get_available_flatpak_updates()
-    available_app_updates = []
-    for flatpak in available_updates:
-        try:
-            flatpak['old_version'] = installed_flatpaks[flatpak['id']]
-            available_app_updates.append(flatpak)
-        except KeyError:
-            pass
-    return available_app_updates
-
-def _get_flatpak_number_of_actions():
     """
-    Get how many actions (upgrades, new installations) will be performed
-    when running flatpak update, including runtimes.
+    Get a list of flatpak apps that will be upgraded (or installed as
+    dependencies.
     """
     child = pexpect.spawn("flatpak update", encoding="utf-8", timeout=None)
     output_lines = []
-    last_number = 0
+    available_updates = []
     while True:
         try:
             i = child.expect([
@@ -178,10 +165,27 @@ def _get_flatpak_number_of_actions():
     output = [line.strip() for line in output_lines if line.strip()]
     # Parse numbered entries
     for line in output:
-        parts = line.split(None, 1)
+        parts = line.split(None)
         if parts and parts[0].rstrip('.').isdigit():
             last_number = int(parts[0].rstrip('.'))
-    return last_number
+            available_updates.append({
+                'flatpak_id': parts[1],
+                'branch': parts[2],
+                'action': parts[3]
+            })
+    installed_flatpaks = _get_installed_flatpaks()
+    remote_flatpaks = _get_remote_flatpaks()
+    for flatpak in available_updates:
+        try:
+            flatpak['old_version'] = installed_flatpaks[(flatpak['flatpak_id'], flatpak['branch'])]['old_version']
+        except KeyError:
+            flatpak['old_version'] = ''
+        flatpak['name'] = remote_flatpaks[(flatpak['flatpak_id'], flatpak['branch'])]['name']
+        if flatpak['action'] == 'i':
+            flatpak['new_version'] = "(" + _("new") + ")"
+        else:
+            flatpak['new_version'] = remote_flatpaks[(flatpak['flatpak_id'], flatpak['branch'])]['new_version']
+    return available_updates
 
 #
 # Just a helper enum
@@ -210,10 +214,10 @@ class SalixUpdateManager:
             label_text = f"{pkg['name']} {pkg['old_version']} -> {pkg['new_version']}"
         elif pkg_type == PkgType.FLATPAK:
             icon = Gtk.Image.new_from_icon_name('flatpak-software', Gtk.IconSize.DND)
-            if pkg['old_version'].startswith('('):
-                label_text = f"{pkg['name']} ({pkg['id']}) {pkg['new_version']}"
+            if pkg['old_version'] == '':
+                label_text = f"{pkg['name']} ({pkg['flatpak_id']}) [{pkg['branch']}] {pkg['new_version']}"
             else:
-                label_text = f"{pkg['name']} ({pkg['id']}) {pkg['old_version']} -> {pkg['new_version']}"
+                label_text = f"{pkg['name']} ({pkg['flatpak_id']}) {pkg['old_version']} ({pkg['branch']}) -> {pkg['new_version']}"
         else:
             return
         label = Gtk.Label(label=label_text)
@@ -588,14 +592,14 @@ class SalixUpdateManager:
             GLib.idle_add(self.label_error.set_text, label_text)
             GLib.idle_add(self.dialog_error.show)
 
-    def _on_updates_parsed(self, slapt_upgrades, flatpak_app_upgrades):
+    def _on_updates_parsed(self, slapt_upgrades, flatpak_upgrades):
         # This runs on the main (GTK) thread, no need for GLib.idle_add()
         self.slapt_get_upgrades = slapt_upgrades
-        self.flatpak_app_upgrades = flatpak_app_upgrades
+        self.flatpak_upgrades = flatpak_upgrades
 
         for pkg in self.slapt_get_upgrades:
             self._add_listbox_entry(pkg, PkgType.SLACK)
-        for flatpak in self.flatpak_app_upgrades:
+        for flatpak in self.flatpak_upgrades:
             self._add_listbox_entry(flatpak, PkgType.FLATPAK)
 
         self.list_box.show_all()
@@ -653,8 +657,8 @@ class SalixUpdateManager:
             GLib.idle_add(self.dialog_error.show)
         if os.access(FLATPAK_BIN, os.X_OK):
             try:
-                flatpak_app_upgrades = _get_flatpak_upgrades()
-                self.len_flat = _get_flatpak_number_of_actions()
+                flatpak_upgrades = _get_flatpak_upgrades()
+                self.len_flat = len(flatpak_upgrades)
             except Exception as e:
                 flatpak_upgrades = []
                 self.len_flat = 0
@@ -664,9 +668,9 @@ class SalixUpdateManager:
                 GLib.idle_add(self.label_error.set_text, label_text)
                 GLib.idle_add(self.dialog_error.show)
         else:
-            flatpak_app_upgrades = []
+            flatpak_upgrades = []
         GLib.idle_add(self._on_updates_parsed, slapt_upgrades,
-                flatpak_app_upgrades)
+                flatpak_upgrades)
 
     def __init__(self):
         builder = Gtk.Builder()
