@@ -91,7 +91,7 @@ def _get_slapt_get_upgrades():
 #
 # flatpak logic
 #
-def _get_installed_flatpak_apps():
+def _get_installed_flatpaks():
     """Get a list of installed flatpaks."""
     output = subprocess.check_output([FLATPAK_BIN, "list", "--columns=application,branch,version"]).decode("utf-8")
     lines = output.splitlines()
@@ -127,9 +127,9 @@ def _get_available_flatpak_updates():
         })
     return available_updates
 
-def _get_flatpak_app_upgrades():
+def _get_flatpak_upgrades():
     """Get a list of flatpaks that can be upgraded."""
-    installed_flatpaks = _get_installed_flatpak_apps()
+    installed_flatpaks = _get_installed_flatpaks()
     available_updates = _get_available_flatpak_updates()
     available_app_updates = []
     for flatpak in available_updates:
@@ -652,7 +652,7 @@ class SalixUpdateManager:
             GLib.idle_add(self.dialog_error.show)
         if os.access(FLATPAK_BIN, os.X_OK):
             try:
-                flatpak_app_upgrades = _get_flatpak_app_upgrades()
+                flatpak_app_upgrades = _get_flatpak_upgrades()
                 self.len_flat = _get_flatpak_number_of_actions()
             except Exception as e:
                 flatpak_upgrades = []
