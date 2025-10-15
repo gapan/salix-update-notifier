@@ -244,7 +244,6 @@
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
                 <property name="has-focus">True</property>
-                <property name="has-default">True</property>
                 <property name="receives-default">True</property>
                 <signal name="clicked" handler="on_button_OK_clicked" swapped="no"/>
               </object>
