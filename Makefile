@@ -32,10 +32,13 @@ updatepo:
 .PHONY: pot
 pot:
 	intltool-extract --type="gettext/ini" salix-update-notifier.desktop.in
+	intltool-extract --type="gettext/ini" salix-update-manager.desktop.in
+	intltool-extract --type="gettext/ini" salix-update-manager-kde.desktop.in
 	xgettext --from-code=utf-8 -L shell -o po/salix-update-notifier.pot src/salix-update-notifier-loop
 	xgettext --from-code=utf-8 -j -L C -o po/salix-update-notifier.pot src/salix-update-notifier-tray-icon.c
 	xgettext --from-code=utf-8 -j -L C -kN_ -o po/salix-update-notifier.pot salix-update-notifier.desktop.in.h
 	xgettext --from-code=utf-8 -j -L C -kN_ -o po/salix-update-notifier.pot salix-update-manager.desktop.in.h
+	xgettext --from-code=utf-8 -j -L C -kN_ -o po/salix-update-notifier.pot salix-update-manager-kde.desktop.in.h
 	xgettext --from-code=utf-8 \
 		-j \
 		-L Glade \
@@ -67,7 +70,7 @@ install:
 	install -d -m 755 $(DESTDIR)/usr/libexec
 	install -d -m 755 $(DESTDIR)/usr/share/icons/hicolor/scalable/apps
 	install -d -m 755 $(DESTDIR)/usr/share/salix-update-notifier
-	install -d -m 755 $(DESTIDR)/usr/share/applications
+	install -d -m 755 $(DESTDIR)/usr/share/applications
 	install -m 755 src/salix-update-notifier $(DESTDIR)/$(PREFIX)/bin/
 	install -m 644 salix-update-notifier.desktop $(DESTDIR)/etc/xdg/autostart/
 	install -m 755 src/salix-update-notifier-update $(DESTDIR)/etc/cron.hourly/
