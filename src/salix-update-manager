@@ -22,7 +22,7 @@ _ = gettext.gettext
 SLAPT_GET_BIN = "/usr/sbin/slapt-get"
 FLATPAK_BIN = "/usr/bin/flatpak"
 SLAPT_GET_ICON = "package"
-FLATPAK_ICON = "flatpak-software"
+FLATPAK_ICON = "flatpak"
 
 #
 # slapt-get-logic
