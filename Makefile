@@ -80,11 +80,11 @@ install:
 	install -m 755 src/salix-update-notifier-loop $(DESTDIR)/usr/libexec/
 	install -m 755 src/salix-update-notifier-tray-icon $(DESTDIR)/usr/libexec/
 	install -m 755 src/salix-update-manager $(DESTDIR)/usr/sbin/
-	install -m 644 src/updates-notifier.svg $(DESTDIR)/usr/share/icons/hicolor/scalable/apps/
-	install -m 644 src/update-notifier.svg $(DESTDIR)/usr/share/icons/hicolor/scalable/apps/
 	install -m 644 src/salix-update-manager.ui $(DESTDIR)/usr/share/salix-update-notifier/
 	install -m 644 salix-update-manager.desktop $(DESTDIR)/usr/share/applications/
 	install -m 644 salix-update-manager-kde.desktop $(DESTDIR)/usr/share/applications/
+	install -m 644 icons/updates-notifier.svg $(DESTDIR)/usr/share/icons/hicolor/scalable/apps/
+	install -m 644 icons/update-notifier.svg $(DESTDIR)/usr/share/icons/hicolor/scalable/apps/
 	install -m 644 icons/flatpak.svg $(DESTDIR)/usr/share/icons/hicolor/scalable/apps/
 	for i in `ls po/*.mo|sed "s|po/\(.*\).mo|\1|"`; do \
 		install -d -m 755 $(DESTDIR)/$(PACKAGE_LOCALE_DIR)/$${i}/LC_MESSAGES ;\
