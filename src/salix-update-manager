@@ -96,8 +96,10 @@ def _get_installed_flatpaks():
     Get a dictionary of all installed flatpaks. The key is a tuple of
     (flatpak_id, branch).
     """
-    output = subprocess.check_output([FLATPAK_BIN, "list", "--all",
-                "--columns=application,branch,version"]).decode("utf-8")
+    command = [FLATPAK_BIN, "list", "--all", "--columns=application,branch,version"]
+    new_env = dict(subprocess.os.environ)
+    new_env['LANG'] = 'C.utf8'
+    output = subprocess.check_output(command, env=new_env).decode("utf-8")
     lines = output.splitlines()
     installed_flatpaks = {}
     for line in lines:
@@ -116,8 +118,10 @@ def _get_remote_flatpaks():
     Get a dictionary of all available flatpaks at the remote. The key is a
     tuple of (flatpak_id, branch).
     """
-    output = subprocess.check_output([FLATPAK_BIN, "remote-ls", "--all",
-                "--columns=application,name,version,branch"]).decode("utf-8")
+    command = [FLATPAK_BIN, "remote-ls", "--all", "--columns=application,name,version,branch"]
+    new_env = dict(subprocess.os.environ)
+    new_env['LANG'] = 'C.utf8'
+    output = subprocess.check_output(command, env=new_env).decode("utf-8")
     lines = output.splitlines()
     available_updates = {}
     for line in lines:
