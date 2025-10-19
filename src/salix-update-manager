@@ -213,7 +213,7 @@ class SalixUpdateManager:
             icon = Gtk.Image.new_from_icon_name(SLAPT_GET_ICON, Gtk.IconSize.DND)
             label_text = f"{pkg['name']} {pkg['old_version']} -> {pkg['new_version']}"
         elif pkg_type == PkgType.FLATPAK:
-            icon = Gtk.Image.new_from_icon_name('flatpak-software', Gtk.IconSize.DND)
+            icon = Gtk.Image.new_from_icon_name(FLATPAK_ICON, Gtk.IconSize.DND)
             if pkg['old_version'] == '':
                 label_text = f"{pkg['name']} ({pkg['flatpak_id']}) [{pkg['branch']}] {pkg['new_version']}"
             else:
