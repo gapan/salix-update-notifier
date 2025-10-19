@@ -86,6 +86,7 @@ install:
 	install -m 644 icons/updates-notifier.svg $(DESTDIR)/usr/share/icons/hicolor/scalable/apps/
 	install -m 644 icons/update-notifier.svg $(DESTDIR)/usr/share/icons/hicolor/scalable/apps/
 	install -m 644 icons/flatpak.svg $(DESTDIR)/usr/share/icons/hicolor/scalable/apps/
+	install -m 644 icons/salix-update-manager.svg $(DESTDIR)/usr/share/icons/hicolor/scalable/apps/
 	for i in `ls po/*.mo|sed "s|po/\(.*\).mo|\1|"`; do \
 		install -d -m 755 $(DESTDIR)/$(PACKAGE_LOCALE_DIR)/$${i}/LC_MESSAGES ;\
 		install -m 644 po/$${i}.mo \
