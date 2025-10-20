@@ -51,7 +51,7 @@ system_loop() {
 		then
 			$NOTIFY_SEND -i salix-update-notifier "$NOTIFY_SEND_TEXT" \
 			& /usr/libexec/salix-update-notifier-tray-icon \
-			&& $SUCOMMAND /usr/bin/salix-update-manager
+			&& pkexec /usr/bin/salix-update-manager
 		fi
 
 		# Wait until checking for updates again
@@ -89,18 +89,6 @@ fi
 export TEXTDOMAIN="salix-update-notifier"
 export TEXTDOMAINDIR="/usr/share/locale"
 . gettext.sh
-
-# Determine if gksu or kdesu will be used
-if [[ `which gksu 2> /dev/null` ]]; then
-	SUCOMMAND="gksu"
-elif [[ `which ktsuss 2> /dev/null` ]]; then
-	SUCOMMAND="ktsuss -u root"
-elif [[ `which kdesu 2> /dev/null` ]]; then
-	SUCOMMAND="kdesu"
-else
-	echo "`eval_gettext 'ERROR: gksu, ktsuss or kdesu are required for salix-update-notifier to work.'`" >&2
-	exit 1
-fi
 
 # Wait before running for the first time
 read_configuration
