@@ -6,6 +6,9 @@ DEFAULT_INITIAL_INTERVAL="10m"
 # The default interval between updates is set to 2 hours
 DEFAULT_INTERVAL="2h"
 
+# The default interval between updates for user flatpaks is set to 2 hours
+DEFAULT_USER_INTERVAL="2h"
+
 # possible locations for the configuration file
 CONFIG_FILE_LOCAL=$HOME/.config/salix-update-notifier
 CONFIG_FILE_GLOBAL=/etc/salix-update-notifier.conf
@@ -29,11 +32,52 @@ read_configuration() {
 			head -n1 | sed "s/initial-interval=\(.*\)/\1/" `
 		INTERVAL=`grep "^interval=" $CONFIG_FILE | \
 			head -n1 | sed "s/interval=\(.*\)/\1/" `
+		USER_INTERVAL=`grep "^user-interval=" $CONFIG_FILE | \
+			head -n1 | sed "s/user-interval=\(.*\)/\1/" `
 	fi
 
 	[ -z $NOTIFY_SEND ] && NOTIFY_SEND=true # default action is to do nothing by running the true command
 	[ -z $INITIAL_INTERVAL ] && INITIAL_INTERVAL=$DEFAULT_INITIAL_INTERVAL
 	[ -z $INTERVAL ] && INTERVAL=$DEFAULT_INTERVAL
+	[ -z $USER_INTERVAL ] && USER_INTERVAL=$DEFAULT_USER_INTERVAL
+}
+
+system_loop() {
+	# Main loop
+	while true; do
+		read_configuration
+
+		if /usr/libexec/salix-update-notifier-check-for-updates
+		then
+			$NOTIFY_SEND -i salix-update-notifier "$NOTIFY_SEND_TEXT" \
+			& /usr/libexec/salix-update-notifier-tray-icon \
+			&& $SUCOMMAND /usr/bin/salix-update-manager
+		fi
+
+		# Wait until checking for updates again
+		sleep $INTERVAL 2> /dev/null || sleep $DEFAULT_INTERVAL
+	done
+}
+
+user_loop() {
+	while true; do
+		if [ -x /usr/bin/flatpak ]; then
+			INSTALLED_FLATPAKS=$( /usr/bin/flatpak list --user | wc -l )
+			if [ $INSTALLED_FLATPAKS -gt 0 ]; then
+				/usr/bin/flatpak update --user --noninteractive --appstream -y
+				yes n | /usr/bin/flatpak update --user | \
+					grep -q "Nothing to do."
+				retval=$?
+				if [ $retval -ne 0 ]; then
+					$NOTIFY_SEND -i salix-update-notifier "$NOTIFY_SEND_TEXT" \
+					& /usr/libexec/salix-update-notifier-tray-icon \
+					&& /usr/bin/salix-update-manager
+				fi
+			fi
+		fi
+		# Wait until checking for updates again
+		sleep $USER_INTERVAL 2> /dev/null || sleep $DEFAULT_USER_INTERVAL
+	done
 }
 
 # Translations only work with utf8 locales
@@ -65,18 +109,10 @@ sleep $INITIAL_INTERVAL 2> /dev/null || sleep $DEFAULT_INITIAL_INTERVAL
 # the text to show in the notification
 NOTIFY_SEND_TEXT="`eval_gettext 'Package updates are available.'`"
 
-# Main loop
-while true; do
-	read_configuration
+system_loop &
+# Now sleep a little bit more so that notifications don't come up at exactly
+# the same time and then start the user loop
+sleep $INITIAL_INTERVAL 2> /dev/null || sleep $DEFAULT_INITIAL_INTERVAL
+user_loop &
 
-	if /usr/libexec/salix-update-notifier-check-for-updates
-	then
-		$NOTIFY_SEND -i salix-update-notifier "$NOTIFY_SEND_TEXT" \
-		& /usr/libexec/salix-update-notifier-tray-icon \
-		&& $SUCOMMAND /usr/sbin/salix-update-manager
-	fi
-
-	# Wait until checking for updates again
-	sleep $INTERVAL 2> /dev/null || sleep $DEFAULT_INTERVAL
-done
-
+sleep infinity
