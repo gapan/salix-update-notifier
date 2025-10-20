@@ -5,7 +5,7 @@ PACKAGE_LOCALE_DIR ?= $(PREFIX)/share/locale
 SUBDIRS = src
 
 .PHONY: all
-all: mo desktop $(SUBDIRS)
+all: mo desktop policy $(SUBDIRS)
 
 .PHONY: $(SUBDIRS)
 $(SUBDIRS):
@@ -21,7 +21,10 @@ mo:
 desktop:
 	intltool-merge po/ -d -u salix-update-notifier.desktop.in salix-update-notifier.desktop
 	intltool-merge po/ -d -u salix-update-manager.desktop.in salix-update-manager.desktop
-	intltool-merge po/ -d -u salix-update-manager-kde.desktop.in salix-update-manager-kde.desktop
+
+.PHONY: policy
+policy:
+	intltool-merge po/ -d -u org.salixos.salix-update-manager.policy.in org.salixos.salix-update-manager.policy
 
 .PHONY: updatepo
 updatepo:
@@ -33,12 +36,12 @@ updatepo:
 pot:
 	intltool-extract --type="gettext/ini" salix-update-notifier.desktop.in
 	intltool-extract --type="gettext/ini" salix-update-manager.desktop.in
-	intltool-extract --type="gettext/ini" salix-update-manager-kde.desktop.in
+	intltool-extract --type="gettext/xml" org.salixos.salix-update-manager.policy.in
 	xgettext --from-code=utf-8 -L shell -o po/salix-update-notifier.pot src/salix-update-notifier-loop
 	xgettext --from-code=utf-8 -j -L C -o po/salix-update-notifier.pot src/salix-update-notifier-tray-icon.c
 	xgettext --from-code=utf-8 -j -L C -kN_ -o po/salix-update-notifier.pot salix-update-notifier.desktop.in.h
 	xgettext --from-code=utf-8 -j -L C -kN_ -o po/salix-update-notifier.pot salix-update-manager.desktop.in.h
-	xgettext --from-code=utf-8 -j -L C -kN_ -o po/salix-update-notifier.pot salix-update-manager-kde.desktop.in.h
+	xgettext --from-code=utf-8 -j -L C -kN_ -o po/salix-update-notifier.pot org.salixos.salix-update-manager.policy.in.h
 	xgettext --from-code=utf-8 \
 		-j \
 		-L Glade \
@@ -57,6 +60,7 @@ clean:
 	rm -f src/salix-update-notifier-tray-icon
 	rm -f salix-update-notifier.desktop
 	rm -f salix-update-manager{,-kde}.desktop
+	rm -f org.salixos.salix-update-manager.policy
 	rm -f po/*.mo
 	rm -f po/*.po~
 
@@ -72,6 +76,7 @@ install:
 	install -d -m 755 $(DESTDIR)/usr/share/salix-update-notifier
 	install -d -m 755 $(DESTDIR)/usr/share/applications
 	install -d -m 755 $(DESTDIR)/usr/share/icons/hicolor/scalable/apps
+	install -d -m 755 $(DESTDIR)/usr/share/polkit-1/actions
 	install -m 755 src/salix-update-notifier $(DESTDIR)/$(PREFIX)/bin/
 	install -m 644 salix-update-notifier.desktop $(DESTDIR)/etc/xdg/autostart/
 	install -m 755 src/salix-update-notifier-update $(DESTDIR)/etc/cron.hourly/
@@ -87,6 +92,7 @@ install:
 	install -m 644 icons/update-notifier.svg $(DESTDIR)/usr/share/icons/hicolor/scalable/apps/
 	install -m 644 icons/flatpak.svg $(DESTDIR)/usr/share/icons/hicolor/scalable/apps/
 	install -m 644 icons/salix-update-manager.svg $(DESTDIR)/usr/share/icons/hicolor/scalable/apps/
+	install -m 644 org.salixos.salix-update-manager.policy $(DESTDIR)/usr/share/polkit-1/actions/
 	for i in `ls po/*.mo|sed "s|po/\(.*\).mo|\1|"`; do \
 		install -d -m 755 $(DESTDIR)/$(PACKAGE_LOCALE_DIR)/$${i}/LC_MESSAGES ;\
 		install -m 644 po/$${i}.mo \
