@@ -297,20 +297,21 @@ class SalixUpdateManager:
         # + remove unused flatpak runtimes + update any remaining flatpaks
         steps = 2*len_slapt + 2*len_flat + 2
         # download packages with slapt-get and then install them
-        GLib.idle_add(self.img_package_type.set_from_icon_name, SLAPT_GET_ICON,
-                Gtk.IconSize.DIALOG)
-        self._perform_updates_download_slapt(steps)
-        current_pct_frac = len_slapt / steps
-        current_pct = round(100 * current_pct_frac)
-        GLib.idle_add(self.progressbar_pct.set_fraction, current_pct_frac)
-        GLib.idle_add(self.label_pct.set_text, _("%d %% complete") % current_pct)
-        # now install slapt-get packages that have been downloaded
-        current_step = len_slapt
-        self._perform_updates_install_slapt(current_step, steps)
-        current_pct_frac = 2*len_slapt / steps
-        current_pct = round(100 * current_pct_frac)
-        GLib.idle_add(self.progressbar_pct.set_fraction, current_pct_frac)
-        GLib.idle_add(self.label_pct.set_text, _("%d %% complete") % current_pct)
+        if os.geteuid() == 0:
+            GLib.idle_add(self.img_package_type.set_from_icon_name, SLAPT_GET_ICON,
+                    Gtk.IconSize.DIALOG)
+            self._perform_updates_download_slapt(steps)
+            current_pct_frac = len_slapt / steps
+            current_pct = round(100 * current_pct_frac)
+            GLib.idle_add(self.progressbar_pct.set_fraction, current_pct_frac)
+            GLib.idle_add(self.label_pct.set_text, _("%d %% complete") % current_pct)
+            # now install slapt-get packages that have been downloaded
+            current_step = len_slapt
+            self._perform_updates_install_slapt(current_step, steps)
+            current_pct_frac = 2*len_slapt / steps
+            current_pct = round(100 * current_pct_frac)
+            GLib.idle_add(self.progressbar_pct.set_fraction, current_pct_frac)
+            GLib.idle_add(self.label_pct.set_text, _("%d %% complete") % current_pct)
         # now for flatpak updates, just download first
         if os.access(FLATPAK_BIN, os.X_OK) and len_flat > 0:
             GLib.idle_add(self.img_package_type.set_from_icon_name, FLATPAK_ICON,
