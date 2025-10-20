@@ -137,7 +137,7 @@ def _get_flatpak_upgrades():
     Get a list of flatpak apps that will be upgraded (or installed as
     dependencies.
     """
-    child = pexpect.spawn("flatpak update", encoding="utf-8", timeout=None)
+    child = pexpect.spawn(f"{FLATPAK_BIN} update", encoding="utf-8", timeout=None)
     output_lines = []
     available_updates = []
     while True:
