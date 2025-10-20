@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-20 16:01+0300\n"
+"POT-Creation-Date: 2025-10-20 16:10+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -48,7 +48,7 @@ msgid "Authentication is required to run Salix Update Manager"
 msgstr ""
 
 #: src/salix-update-manager-select-window.c:77
-msgid "Please choose the installation you would like to update."
+msgid "Please choose the type of installation you want to update."
 msgstr ""
 
 #: src/salix-update-manager-select-window.c:78
@@ -56,23 +56,26 @@ msgid "System:"
 msgstr ""
 
 #: src/salix-update-manager-select-window.c:79
-msgid ""
-"Update Salix system packages as well as the Flatpak system installation."
+msgid "Update system packages and the system-wide Flatpak installation."
 msgstr ""
 
 #: src/salix-update-manager-select-window.c:80
-msgid "User:"
+msgid "You will need to enter your password to continue."
 msgstr ""
 
 #: src/salix-update-manager-select-window.c:81
-msgid "Update your current user's Flatpak installation only."
+msgid "User:"
 msgstr ""
 
-#: src/salix-update-manager-select-window.c:97
+#: src/salix-update-manager-select-window.c:82
+msgid "Update only your user's Flatpak installation."
+msgstr ""
+
+#: src/salix-update-manager-select-window.c:98
 msgid "System"
 msgstr ""
 
-#: src/salix-update-manager-select-window.c:105
+#: src/salix-update-manager-select-window.c:106
 msgid "User"
 msgstr ""
 
