@@ -24,6 +24,11 @@ FLATPAK_BIN = "/usr/bin/flatpak"
 SLAPT_GET_ICON = "package"
 FLATPAK_ICON = "flatpak"
 
+if os.geteuid() == 0:
+    FLATPAK_INSTALLATION="--system"
+else:
+    FLATPAK_INSTALLATION="--user"
+
 #
 # slapt-get-logic
 #
@@ -35,6 +40,9 @@ def _get_slapt_get_upgrades():
         list: A list of dictionaries containing the package name, old version, 
         and new version.
     """
+    # slapt-get is only available if you're root
+    if os.geteuid() != 0:
+        return []
     # Run the command and capture its output
     command = f"{SLAPT_GET_BIN} --upgrade --simulate"
     new_env = dict(subprocess.os.environ)
@@ -96,7 +104,7 @@ def _get_installed_flatpaks():
     Get a dictionary of all installed flatpaks. The key is a tuple of
     (flatpak_id, branch).
     """
-    command = [FLATPAK_BIN, "list", "--all", "--columns=application,branch,version"]
+    command = [FLATPAK_BIN, "list", FLATPAK_INSTALLATION, "--all", "--columns=application,branch,version"]
     new_env = dict(subprocess.os.environ)
     new_env['LANG'] = 'C.utf8'
     output = subprocess.check_output(command, env=new_env).decode("utf-8")
@@ -118,7 +126,7 @@ def _get_remote_flatpaks():
     Get a dictionary of all available flatpaks at the remote. The key is a
     tuple of (flatpak_id, branch).
     """
-    command = [FLATPAK_BIN, "remote-ls", "--all", "--columns=application,name,version,branch"]
+    command = [FLATPAK_BIN, "remote-ls", FLATPAK_INSTALLATION, "--all", "--columns=application,name,version,branch"]
     new_env = dict(subprocess.os.environ)
     new_env['LANG'] = 'C.utf8'
     output = subprocess.check_output(command, env=new_env).decode("utf-8")
@@ -137,7 +145,7 @@ def _get_flatpak_upgrades():
     Get a list of flatpak apps that will be upgraded (or installed as
     dependencies.
     """
-    child = pexpect.spawn(f"{FLATPAK_BIN} update", encoding="utf-8", timeout=None)
+    child = pexpect.spawn(f"{FLATPAK_BIN} update {FLATPAK_INSTALLATION}", encoding="utf-8", timeout=None)
     output_lines = []
     available_updates = []
     while True:
@@ -452,7 +460,7 @@ class SalixUpdateManager:
             env = os.environ.copy()
             env["LANG"] = "C.utf8"
             process = subprocess.Popen(
-                [FLATPAK_BIN, "update", "--no-deploy", "--noninteractive", "-y"],
+                [FLATPAK_BIN, "update", FLATPAK_INSTALLATION, "--no-deploy", "--noninteractive", "-y"],
                 stdout=subprocess.PIPE,
                 stderr=subprocess.STDOUT,
                 universal_newlines=True,
@@ -496,7 +504,7 @@ class SalixUpdateManager:
             env = os.environ.copy()
             env["LANG"] = "C.utf8"
             process = subprocess.Popen(
-                [FLATPAK_BIN, "update", "--no-pull", "--noninteractive", "-y"],
+                [FLATPAK_BIN, "update", FLATPAK_INSTALLATION, "--no-pull", "--noninteractive", "-y"],
                 stdout=subprocess.PIPE,
                 stderr=subprocess.STDOUT,
                 universal_newlines=True,
@@ -548,7 +556,7 @@ class SalixUpdateManager:
             env = os.environ.copy()
             env["LANG"] = "C.utf8"
             process = subprocess.Popen(
-                [FLATPAK_BIN, "remove", "--unused", "--noninteractive", "-y"],
+                [FLATPAK_BIN, "remove", FLATPAK_INSTALLATION, "--unused", "--noninteractive", "-y"],
                 stdout=subprocess.PIPE,
                 stderr=subprocess.STDOUT,
                 universal_newlines=True,
@@ -576,7 +584,7 @@ class SalixUpdateManager:
             env = os.environ.copy()
             env["LANG"] = "C.utf8"
             process = subprocess.Popen(
-                [FLATPAK_BIN, "update", "--noninteractive", "-y"],
+                [FLATPAK_BIN, "update", FLATPAK_INSTALLATION, "--noninteractive", "-y"],
                 stdout=subprocess.PIPE,
                 stderr=subprocess.STDOUT,
                 universal_newlines=True,
