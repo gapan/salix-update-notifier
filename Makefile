@@ -53,13 +53,13 @@ pot:
 		-o po/salix-update-notifier.pot \
 		src/salix-update-manager
 	rm salix-update-notifier.desktop.in.h
-	rm salix-update-manager{,-kde}.desktop.in.h
+	rm salix-update-manager.desktop.in.h
 
 .PHONY: clean
 clean:
 	rm -f src/salix-update-notifier-tray-icon
 	rm -f salix-update-notifier.desktop
-	rm -f salix-update-manager{,-kde}.desktop
+	rm -f salix-update-manager.desktop
 	rm -f org.salixos.salix-update-manager.policy
 	rm -f po/*.mo
 	rm -f po/*.po~
@@ -87,7 +87,6 @@ install:
 	install -m 755 src/salix-update-manager $(DESTDIR)/usr/bin/
 	install -m 644 src/salix-update-manager.ui $(DESTDIR)/usr/share/salix-update-notifier/
 	install -m 644 salix-update-manager.desktop $(DESTDIR)/usr/share/applications/
-	install -m 644 salix-update-manager-kde.desktop $(DESTDIR)/usr/share/applications/
 	install -m 644 icons/updates-notifier.svg $(DESTDIR)/usr/share/icons/hicolor/scalable/apps/
 	install -m 644 icons/update-notifier.svg $(DESTDIR)/usr/share/icons/hicolor/scalable/apps/
 	install -m 644 icons/flatpak.svg $(DESTDIR)/usr/share/icons/hicolor/scalable/apps/
