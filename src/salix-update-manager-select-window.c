@@ -73,12 +73,13 @@ int main(int argc, char *argv[]) {
     gtk_container_add(GTK_CONTAINER(app->window), vbox);
 
     gchar *label_text = g_strdup_printf(
-        "<span size='large' weight='bold'>%s</span>\n\n<span weight='bold'>%s</span> %s\n\n<span weight='bold'>%s</span> %s",
-        _("Please choose the installation you would like to update."),
+        "<span size='large' weight='bold'>%s</span>\n\n<span weight='bold'>%s</span> %s\n%s\n\n<span weight='bold'>%s</span> %s",
+        _("Please choose the type of installation you want to update."),
         _("System:"),
-        _("Update Salix system packages as well as the Flatpak system installation."),
+        _("Update system packages and the system-wide Flatpak installation."),
+        _("You will need to enter your password to continue."),
         _("User:"),
-        _("Update your current user's Flatpak installation only.")
+        _("Update only your user's Flatpak installation.")
     );
 
     GtkWidget *label = gtk_label_new(NULL);
