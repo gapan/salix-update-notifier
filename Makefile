@@ -79,7 +79,7 @@ install:
 	install -m 755 src/salix-update-notifier-check-for-updates $(DESTDIR)/usr/libexec/
 	install -m 755 src/salix-update-notifier-loop $(DESTDIR)/usr/libexec/
 	install -m 755 src/salix-update-notifier-tray-icon $(DESTDIR)/usr/libexec/
-	install -m 755 src/salix-update-manager $(DESTDIR)/usr/sbin/
+	install -m 755 src/salix-update-manager $(DESTDIR)/usr/bin/
 	install -m 644 src/salix-update-manager.ui $(DESTDIR)/usr/share/salix-update-notifier/
 	install -m 644 salix-update-manager.desktop $(DESTDIR)/usr/share/applications/
 	install -m 644 salix-update-manager-kde.desktop $(DESTDIR)/usr/share/applications/
