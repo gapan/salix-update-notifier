@@ -38,10 +38,21 @@ pot:
 	intltool-extract --type="gettext/ini" salix-update-manager.desktop.in
 	intltool-extract --type="gettext/xml" org.salixos.salix-update-manager.policy.in
 	xgettext --from-code=utf-8 -L shell -o po/salix-update-notifier.pot src/salix-update-notifier-loop
-	xgettext --from-code=utf-8 -j -L C -o po/salix-update-notifier.pot src/salix-update-notifier-tray-icon.c
 	xgettext --from-code=utf-8 -j -L C -kN_ -o po/salix-update-notifier.pot salix-update-notifier.desktop.in.h
 	xgettext --from-code=utf-8 -j -L C -kN_ -o po/salix-update-notifier.pot salix-update-manager.desktop.in.h
 	xgettext --from-code=utf-8 -j -L C -kN_ -o po/salix-update-notifier.pot org.salixos.salix-update-manager.policy.in.h
+	xgettext --from-code=utf-8 \
+		-j \
+		-L C \
+		--keyword=_ \
+		-o po/salix-update-notifier.pot \
+		src/salix-update-notifier-tray-icon.c
+	xgettext --from-code=utf-8 \
+		-j \
+		-L C \
+		--keyword=_ \
+		-o po/salix-update-notifier.pot \
+		src/salix-update-manager-select-window.c
 	xgettext --from-code=utf-8 \
 		-j \
 		-L Glade \
@@ -54,6 +65,7 @@ pot:
 		src/salix-update-manager
 	rm salix-update-notifier.desktop.in.h
 	rm salix-update-manager.desktop.in.h
+	rm org.salixos.salix-update-manager.policy.in.h
 
 .PHONY: clean
 clean:
@@ -85,6 +97,8 @@ install:
 	install -m 755 src/salix-update-notifier-loop $(DESTDIR)/usr/libexec/
 	install -m 755 src/salix-update-notifier-tray-icon $(DESTDIR)/usr/libexec/
 	install -m 755 src/salix-update-manager $(DESTDIR)/usr/bin/
+	install -m 755 src/salix-update-manager-select $(DESTDIR)/usr/bin/
+	install -m 755 src/salix-update-manager-select-window $(DESTDIR)/usr/libexec/
 	install -m 644 src/salix-update-manager.ui $(DESTDIR)/usr/share/salix-update-notifier/
 	install -m 644 salix-update-manager.desktop $(DESTDIR)/usr/share/applications/
 	install -m 644 icons/updates-notifier.svg $(DESTDIR)/usr/share/icons/hicolor/scalable/apps/

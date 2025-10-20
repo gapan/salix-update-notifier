@@ -1,0 +1,18 @@
+#!/bin/bash
+
+if [ -x /usr/bin/flatpak ]; then
+	# flatpak is installed, so ask if the user wants to run a system update
+	# or a flatpak --user installation update
+	/usr/libexec/salix-update-manager-select-window
+	retval=$?
+
+	if [ $retval == 1 ]; then
+		pkexec /usr/bin/salix-update-manager
+	elif [ $retval == 2 ]; then
+		/usr/bin/salix-update-manager
+	fi
+else
+	# no flatpak installed, so only slapt-get applies
+	pkexec /usr/bin/salix-update-manager
+fi
+

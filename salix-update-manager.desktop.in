@@ -1,6 +1,6 @@
 [Desktop Entry]
 Categories=Application;System;PackageManager;
-Exec=salix-update-manager
+Exec=salix-update-manager-select
 Icon=system-software-update
 _Name=Salix Update Manager
 _Comment=Update your installed software
