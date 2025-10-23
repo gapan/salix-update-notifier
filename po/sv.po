@@ -4,13 +4,14 @@
 # 
 # Translators:
 # gapan <vlahavas@gmail.com>, 2011
+# Ingemar Karlsson <ingemar@ingk.se>, 2025
 msgid ""
 msgstr ""
 "Project-Id-Version: Salix\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-12 12:35+0300\n"
+"POT-Creation-Date: 2025-10-23 21:46+0300\n"
 "PO-Revision-Date: 2011-04-05 16:32+0000\n"
-"Last-Translator: gapan <vlahavas@gmail.com>, 2011\n"
+"Last-Translator: Ingemar Karlsson <ingemar@ingk.se>, 2025\n"
 "Language-Team: Swedish (http://app.transifex.com/gapan/salix/language/sv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -18,34 +19,20 @@ msgstr ""
 "Language: sv\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: src/salix-update-notifier-loop:57
-#, sh-format
-msgid ""
-"ERROR: gksu, ktsuss or kdesu are required for salix-update-notifier to work."
-msgstr "Fel: gksu, ktsuss eller kdesu krävs för att salix-update-notifier skall fungera."
+#. (itstool) path: action/description
+#: org.salixos.salix-update-manager.policy.in:10
+msgid "Run Salix Update Manager as root"
+msgstr "Kör Salix Update Manager som root"
 
-#: src/salix-update-notifier-loop:66
+#. (itstool) path: action/message
+#: org.salixos.salix-update-manager.policy.in:11
+msgid "Authentication is required to run Salix Update Manager"
+msgstr "Autentisering krävs för att köra Salix Update Manager"
+
+#: src/salix-update-notifier-loop:98 src/salix-update-notifier-tray-icon.c:46
 #, sh-format
 msgid "Package updates are available."
 msgstr "Uppdateringar är tillgängliga."
-
-#: src/salix-update-notifier-upgrade-dialog.c:29
-msgid "Package updates are available for your system."
-msgstr "Uppdateringar är tillgängliga för ditt system."
-
-#: src/salix-update-notifier-upgrade-dialog.c:30
-msgid ""
-"Selecting OK will perform the updates using gslapt. Root user privileges "
-"will be required in order to do that."
-msgstr "Välj OK för att köra uppdatering med gslapt. Root behörighet krävs för att göra det."
-
-#: src/salix-update-notifier-upgrade-dialog.c:32
-msgid "Proceed with updating?"
-msgstr "Fortsätta med uppdateringen?"
-
-#: src/salix-update-notifier-upgrade-dialog.c:46
-msgid "Install package updates?"
-msgstr "Installera uppdateringar?"
 
 #: salix-update-notifier.desktop.in.h:1
 msgid "Salix update notifier"
@@ -55,160 +42,222 @@ msgstr "Salix uppdaterings meddelande"
 msgid "Display a tray notification when package updates are available"
 msgstr "Visa meddelande när det finns uppdateringar"
 
-#: src/salix-update-manager.ui:9
+#: salix-update-manager.desktop.in.h:1
+#: src/salix-update-manager-select-window.c:67 src/salix-update-manager.ui:9
 msgid "Salix Update Manager"
-msgstr ""
+msgstr "Salix uppdateringshanterare"
+
+#: salix-update-manager.desktop.in.h:2
+msgid "Update your installed software"
+msgstr "Uppdatera dina installerade programvaror"
+
+#: src/salix-update-manager-select-window.c:77
+msgid "Please choose the type of installation you want to update."
+msgstr "Välj vilken typ av installation du vill uppdatera."
+
+#: src/salix-update-manager-select-window.c:78
+msgid "System:"
+msgstr "System:"
+
+#: src/salix-update-manager-select-window.c:79
+msgid "Update system packages and the system-wide Flatpak installation."
+msgstr "Uppdatera systempaket och den systemomfattande Flatpak-installationen."
+
+#: src/salix-update-manager-select-window.c:80
+msgid "You will need to enter your password to continue."
+msgstr "Du måste ange ditt lösenord för att fortsätta."
+
+#: src/salix-update-manager-select-window.c:81
+msgid "User:"
+msgstr "Användare:"
+
+#: src/salix-update-manager-select-window.c:82
+msgid "Update only your user's Flatpak installation."
+msgstr "Uppdatera endast din användares Flatpak-installation."
+
+#: src/salix-update-manager-select-window.c:98
+msgid "System"
+msgstr "System"
+
+#: src/salix-update-manager-select-window.c:106
+msgid "User"
+msgstr "Användare"
 
 #: src/salix-update-manager.ui:38
 msgid "The following software will be updated:"
-msgstr ""
+msgstr "Följande programvara kommer att uppdateras:"
 
 #: src/salix-update-manager.ui:143
 msgid "Preparing updates..."
-msgstr ""
+msgstr "Förbereder uppdateringar..."
 
-#: src/salix-update-manager.ui:229 src/salix-update-manager.ui:465
+#: src/salix-update-manager.ui:229 src/salix-update-manager.ui:466
 msgid "Cancel"
 msgstr "Avbryt"
 
 #: src/salix-update-manager.ui:243
 msgid "Proceed"
-msgstr ""
+msgstr "Fortsätt"
 
-#: src/salix-update-manager.ui:267
+#: src/salix-update-manager.ui:268
 msgid "Error"
 msgstr "Fel"
 
-#: src/salix-update-manager.ui:290 src/salix-update-manager.ui:378
+#: src/salix-update-manager.ui:291 src/salix-update-manager.ui:379
 msgid "Exit"
 msgstr "Avsluta"
 
-#: src/salix-update-manager.ui:356
+#: src/salix-update-manager.ui:357
 msgid "No Updates"
-msgstr ""
+msgstr "Inga uppdateringar"
 
-#: src/salix-update-manager.ui:423
+#: src/salix-update-manager.ui:424
 msgid "There are no available updates."
-msgstr ""
+msgstr "Det finns inga tillgängliga uppdateringar."
 
-#: src/salix-update-manager.ui:444 src/salix-update-manager.ui:488
+#: src/salix-update-manager.ui:445 src/salix-update-manager.ui:489
 msgid "Reading package lists..."
 msgstr "Läser paketlistor..."
 
-#: src/salix-update-manager.ui:512
+#: src/salix-update-manager.ui:513
 msgid "Updates complete"
-msgstr ""
+msgstr "Uppdateringar slutförda"
 
-#: src/salix-update-manager.ui:532
+#: src/salix-update-manager.ui:533
 msgid "OK"
 msgstr "OK"
 
-#: src/salix-update-manager.ui:574 src/salix-update-manager:311
+#: src/salix-update-manager.ui:575 src/salix-update-manager:354
 msgid "All updates have completed successfully."
-msgstr ""
+msgstr "Alla uppdateringar har slutförts."
 
-#: src/salix-update-manager:267 src/salix-update-manager:274
-#: src/salix-update-manager:285 src/salix-update-manager:293
-#: src/salix-update-manager:300 src/salix-update-manager:308
-#: src/salix-update-manager:313 src/salix-update-manager:350
-#: src/salix-update-manager:395 src/salix-update-manager:439
-#: src/salix-update-manager:490
+#: src/salix-update-manager:89 src/salix-update-manager:200
+msgid "new"
+msgstr "ny"
+
+#: src/salix-update-manager:310 src/salix-update-manager:317
+#: src/salix-update-manager:328 src/salix-update-manager:336
+#: src/salix-update-manager:343 src/salix-update-manager:351
+#: src/salix-update-manager:356 src/salix-update-manager:393
+#: src/salix-update-manager:438 src/salix-update-manager:446
+#: src/salix-update-manager:490 src/salix-update-manager:541
 #, python-format
 msgid "%d %% complete"
-msgstr ""
+msgstr "%d %% slutfört"
 
-#: src/salix-update-manager:345
+#: src/salix-update-manager:388
 #, python-format
 msgid "Downloading %s %s"
-msgstr ""
+msgstr "Laddar ner %s %s"
 
-#: src/salix-update-manager:353 src/salix-update-manager:358
+#: src/salix-update-manager:396 src/salix-update-manager:401
 msgid "Package download failed."
-msgstr ""
+msgstr "Paketnedladdningen misslyckades."
 
-#: src/salix-update-manager:354 src/salix-update-manager:359
-#: src/salix-update-manager:399 src/salix-update-manager:404
-#: src/salix-update-manager:443 src/salix-update-manager:448
+#: src/salix-update-manager:397 src/salix-update-manager:402
+#: src/salix-update-manager:450 src/salix-update-manager:455
 #: src/salix-update-manager:494 src/salix-update-manager:499
-#: src/salix-update-manager:605 src/salix-update-manager:616
+#: src/salix-update-manager:545 src/salix-update-manager:550
+#: src/salix-update-manager:681 src/salix-update-manager:699
 msgid ""
 "Please try again or check your network connection and available disk space "
 "if the issue persists."
-msgstr ""
+msgstr "Försök igen eller kontrollera din nätverksanslutning och tillgängligt diskutrymme om problemet kvarstår."
 
-#: src/salix-update-manager:358 src/salix-update-manager:403
-#: src/salix-update-manager:447 src/salix-update-manager:498
-#: src/salix-update-manager:528 src/salix-update-manager:556
-#: src/salix-update-manager:604 src/salix-update-manager:615
+#: src/salix-update-manager:401 src/salix-update-manager:454
+#: src/salix-update-manager:498 src/salix-update-manager:549
+#: src/salix-update-manager:579 src/salix-update-manager:607
+#: src/salix-update-manager:680 src/salix-update-manager:698
 msgid "Exception"
-msgstr ""
-
-#: src/salix-update-manager:391
-#, python-format
-msgid "Updating %s"
-msgstr ""
-
-#: src/salix-update-manager:398 src/salix-update-manager:403
-msgid "Package installation failed."
-msgstr ""
+msgstr "Undantag"
 
 #: src/salix-update-manager:434
 #, python-format
-msgid "Downloading %s"
-msgstr ""
+msgid "Updating %s"
+msgstr "Uppdaterar %s"
 
-#: src/salix-update-manager:442 src/salix-update-manager:447
-msgid "Flatpak download failed."
-msgstr ""
-
-#: src/salix-update-manager:486
+#: src/salix-update-manager:442 src/salix-update-manager:537
 #, python-format
 msgid "Installing %s"
-msgstr ""
+msgstr "Installerar %s"
+
+#: src/salix-update-manager:449 src/salix-update-manager:454
+msgid "Package installation failed."
+msgstr "Paketinstallationen misslyckades."
+
+#: src/salix-update-manager:485
+#, python-format
+msgid "Downloading %s"
+msgstr "Laddar ner %s"
 
 #: src/salix-update-manager:493 src/salix-update-manager:498
+msgid "Flatpak download failed."
+msgstr "Flatpak-nedladdningen misslyckades."
+
+#: src/salix-update-manager:544 src/salix-update-manager:549
 msgid "Flatpak installation failed."
-msgstr ""
+msgstr "Flatpak-installationen misslyckades."
 
-#: src/salix-update-manager:508
+#: src/salix-update-manager:559
 msgid "Removing unused flatpaks"
-msgstr ""
+msgstr "Tar bort oanvända flatpaks"
 
-#: src/salix-update-manager:524 src/salix-update-manager:528
+#: src/salix-update-manager:575 src/salix-update-manager:579
 msgid "Unused flatpak removal failed."
-msgstr ""
-
-#: src/salix-update-manager:536
-msgid "Finalizing updates"
-msgstr ""
-
-#: src/salix-update-manager:552 src/salix-update-manager:556
-msgid "Finalizing flatpak updates failed."
-msgstr ""
-
-#: src/salix-update-manager:584
-#, python-format
-msgid "%d flatpak app(s) will be updated."
-msgstr ""
+msgstr "Borttagning av oanvänd flatpak misslyckades."
 
 #: src/salix-update-manager:587
-#, python-format
-msgid "%d package(s) will be updated."
-msgstr ""
+msgid "Finalizing updates"
+msgstr "Slutför uppdateringar"
 
-#: src/salix-update-manager:590
-#, python-format
-msgid "%d package(s) and %d flatpak app(s) will be updated."
-msgstr ""
+#: src/salix-update-manager:603 src/salix-update-manager:607
+msgid "Finalizing flatpak updates failed."
+msgstr "Slutförandet av Flatpak-uppdateringar misslyckades."
 
-#: src/salix-update-manager:592
+#: src/salix-update-manager:644
+msgid "1 package will be updated."
+msgstr "1 paket kommer att uppdateras."
+
+#: src/salix-update-manager:646
+#, python-format
+msgid "%d packages will be updated."
+msgstr "%d paket kommer att uppdateras."
+
+#: src/salix-update-manager:649
+msgid "1 new package will be installed as a dependency."
+msgstr "1 nytt paket kommer att installeras som beroende."
+
+#: src/salix-update-manager:651
+#, python-format
+msgid "%d new packages will be installed as dependencies."
+msgstr "%d nya paket kommer att installeras som beroenden."
+
+#: src/salix-update-manager:656
+msgid "1 flatpak will be updated."
+msgstr "1 flatpak kommer att uppdateras."
+
+#: src/salix-update-manager:658
+#, python-format
+msgid "%d flatpaks will be updated."
+msgstr "%d flatpaks kommer att uppdateras."
+
+#: src/salix-update-manager:663
+msgid "1 new flatpak runtime will be installed as a dependency."
+msgstr "1 ny flatpak-runtime kommer att installeras som ett beroende."
+
+#: src/salix-update-manager:665
+#, python-format
+msgid "%d new flatpak runtimes will be installed as dependencies."
+msgstr "%d nya Flatpak-runtimes kommer att installeras som beroenden."
+
+#: src/salix-update-manager:668
 msgid "Do you want to proceed with these software updates?"
-msgstr ""
+msgstr "Vill du fortsätta med dessa programuppdateringar?"
 
-#: src/salix-update-manager:604
+#: src/salix-update-manager:680
 msgid "Error getting slapt-get updates:"
-msgstr ""
+msgstr "Fel vid hämtning av slapt-get-uppdateringar:"
 
-#: src/salix-update-manager:615
+#: src/salix-update-manager:698
 msgid "Error getting flatpak updates:"
-msgstr ""
+msgstr "Fel vid hämtning av Flatpak-uppdateringar:"
