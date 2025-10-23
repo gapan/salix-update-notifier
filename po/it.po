@@ -22,17 +22,17 @@ msgstr ""
 #. (itstool) path: action/description
 #: org.salixos.salix-update-manager.policy.in:10
 msgid "Run Salix Update Manager as root"
-msgstr "Avvia Gestore Aggiornamenti Salix come root"
+msgstr "Avvia Gestore Aggiornamenti di Salix come root"
 
 #. (itstool) path: action/message
 #: org.salixos.salix-update-manager.policy.in:11
 msgid "Authentication is required to run Salix Update Manager"
-msgstr ""
+msgstr "E' richiesta l'autenticazione per avviare il Gestore Aggiornamenti Salix"
 
 #: src/salix-update-notifier-loop:98 src/salix-update-notifier-tray-icon.c:46
 #, sh-format
 msgid "Package updates are available."
-msgstr "Aggiornamenti dei pacchetti disponibili"
+msgstr "Sono disponibili aggiornamenti dei pacchetti,"
 
 #: salix-update-notifier.desktop.in.h:1
 msgid "Salix update notifier"
@@ -53,35 +53,35 @@ msgstr "Aggiorna il software installato"
 
 #: src/salix-update-manager-select-window.c:77
 msgid "Please choose the type of installation you want to update."
-msgstr ""
+msgstr "Selezionare il tipo di installazione che si desidera aggiornare. "
 
 #: src/salix-update-manager-select-window.c:78
 msgid "System:"
-msgstr ""
+msgstr "Sistema:"
 
 #: src/salix-update-manager-select-window.c:79
 msgid "Update system packages and the system-wide Flatpak installation."
-msgstr ""
+msgstr "Aggiorna i pacchetti del sistema e i Flatpak installati per l'intero sistema."
 
 #: src/salix-update-manager-select-window.c:80
 msgid "You will need to enter your password to continue."
-msgstr ""
+msgstr "E' richiesta la password per continuare."
 
 #: src/salix-update-manager-select-window.c:81
 msgid "User:"
-msgstr ""
+msgstr "Utente:"
 
 #: src/salix-update-manager-select-window.c:82
 msgid "Update only your user's Flatpak installation."
-msgstr ""
+msgstr "Aggiorna solo i Flatpak installati dall'utente."
 
 #: src/salix-update-manager-select-window.c:98
 msgid "System"
-msgstr ""
+msgstr "Sistema"
 
 #: src/salix-update-manager-select-window.c:106
 msgid "User"
-msgstr ""
+msgstr "Utente"
 
 #: src/salix-update-manager.ui:38
 msgid "The following software will be updated:"
@@ -212,7 +212,7 @@ msgstr "Completamento aggiornamenti"
 
 #: src/salix-update-manager:603 src/salix-update-manager:607
 msgid "Finalizing flatpak updates failed."
-msgstr "Completamento aggiornamenti flatpak fallito"
+msgstr "Completamento aggiornamenti flatpak fallito."
 
 #: src/salix-update-manager:644
 msgid "1 package will be updated."
