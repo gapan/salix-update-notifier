@@ -4,3 +4,4 @@ org.salixos.salix-update-manager.policy
 *.desktop
 src/salix-update-manager-select-window
 src/salix-update-notifier-tray-icon
+po/*.mo
