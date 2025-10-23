@@ -65,7 +65,7 @@ user_loop() {
 			INSTALLED_FLATPAKS=$( /usr/bin/flatpak list --user | wc -l )
 			if [ $INSTALLED_FLATPAKS -gt 0 ]; then
 				/usr/bin/flatpak update --user --noninteractive --appstream -y
-				yes n | /usr/bin/flatpak update --user | \
+				yes n | LANG=C.utf8 /usr/bin/flatpak update --user | \
 					grep -q "Nothing to do."
 				retval=$?
 				if [ $retval -ne 0 ]; then
