@@ -7,8 +7,8 @@
   <vendor_url>https://salixos.org</vendor_url>
   <icon_name>salix-update-manager</icon_name>
   <action id="org.salixos.salix-update-manager">
-   <_description>Run Salix Update Manager as root</_description>
-   <_message>Authentication is required to run Salix Update Manager</_message>
+   <description>Run Salix Update Manager as root</description>
+   <message>Authentication is required to run Salix Update Manager</message>
    <defaults>
      <allow_any>no</allow_any>
      <allow_inactive>no</allow_inactive>

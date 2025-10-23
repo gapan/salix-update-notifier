@@ -24,7 +24,9 @@ desktop:
 
 .PHONY: policy
 policy:
-	intltool-merge po/ -d -u org.salixos.salix-update-manager.policy.in org.salixos.salix-update-manager.policy
+	itstool -j org.salixos.salix-update-manager.policy.in \
+		-o org.salixos.salix-update-manager.policy \
+		po/*.mo
 
 .PHONY: updatepo
 updatepo:
@@ -34,13 +36,13 @@ updatepo:
 
 .PHONY: pot
 pot:
+	itstool -i /usr/share/gettext/its/polkit.its \
+		-o po/salix-update-notifier.pot org.salixos.salix-update-manager.policy.in
 	intltool-extract --type="gettext/ini" salix-update-notifier.desktop.in
 	intltool-extract --type="gettext/ini" salix-update-manager.desktop.in
-	intltool-extract --type="gettext/xml" org.salixos.salix-update-manager.policy.in
-	xgettext --from-code=utf-8 -L shell -o po/salix-update-notifier.pot src/salix-update-notifier-loop
+	xgettext --from-code=utf-8 -j -L shell -o po/salix-update-notifier.pot src/salix-update-notifier-loop
 	xgettext --from-code=utf-8 -j -L C -kN_ -o po/salix-update-notifier.pot salix-update-notifier.desktop.in.h
 	xgettext --from-code=utf-8 -j -L C -kN_ -o po/salix-update-notifier.pot salix-update-manager.desktop.in.h
-	xgettext --from-code=utf-8 -j -L C -kN_ -o po/salix-update-notifier.pot org.salixos.salix-update-manager.policy.in.h
 	xgettext --from-code=utf-8 \
 		-j \
 		-L C \
@@ -65,7 +67,6 @@ pot:
 		src/salix-update-manager
 	rm salix-update-notifier.desktop.in.h
 	rm salix-update-manager.desktop.in.h
-	rm org.salixos.salix-update-manager.policy.in.h
 
 .PHONY: clean
 clean:
