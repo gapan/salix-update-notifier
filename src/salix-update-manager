@@ -7,6 +7,8 @@ from gi.repository import Gtk, GLib
 from enum import Enum
 import subprocess
 import threading
+import argparse
+import logging
 import pexpect
 import os
 
@@ -28,6 +30,9 @@ if os.geteuid() == 0:
     FLATPAK_INSTALLATION="--system"
 else:
     FLATPAK_INSTALLATION="--user"
+
+# Create a module-level logger (no output until configured)
+logger = logging.getLogger(__name__)
 
 #
 # slapt-get-logic
@@ -374,7 +379,7 @@ class SalixUpdateManager:
             parsing_progress = False
             for line in process.stdout:
                 line = line.strip()
-                print("DEBUG:", line)
+                logger.debug(line)
                 if line.startswith("Need to get"):
                     parsing_progress = True
                     continue
@@ -421,7 +426,7 @@ class SalixUpdateManager:
             parsing_progress = False
             for line in process.stdout:
                 line = line.strip()
-                print("DEBUG:", line)
+                logger.debug(line)
                 if line.startswith("Need to get"):
                     parsing_progress = True
                     continue
@@ -474,7 +479,7 @@ class SalixUpdateManager:
             parsing_progress = False
             for line in process.stdout:
                 line = line.strip()
-                print("DEBUG:", line)
+                logger.debug(line)
                 # "Updating" shows when downloading a flatpak that was
                 # previously installed.
                 # "Installing" shows when a new runtime is installed as a
@@ -518,7 +523,7 @@ class SalixUpdateManager:
             parsing_progress = False
             for line in process.stdout:
                 line = line.strip()
-                print("DEBUG:", line)
+                logger.debug(line)
                 # "Updating" shows when installing a flatpak that was
                 # previously installed.
                 # "Installing" shows when a new runtime is installed as a
@@ -569,7 +574,7 @@ class SalixUpdateManager:
             )
             for line in process.stdout:
                 line = line.strip()
-                print("DEBUG:", line)
+                logger.debug(line)
             process.wait()
             if process.returncode != 0:
                 label_text = _("Unused flatpak removal failed.")
@@ -597,7 +602,7 @@ class SalixUpdateManager:
             )
             for line in process.stdout:
                 line = line.strip()
-                print("DEBUG:", line)
+                logger.debug(line)
             process.wait()
             if process.returncode != 0:
                 label_text = _("Finalizing flatpak updates failed.")
@@ -754,7 +759,30 @@ class SalixUpdateManager:
         self.populate_updates_task.start()
         self.updates_complete = False
 
-if __name__ == "__main__":
+def main(argv=None):
+    """Main entry point for Salix Update Manager."""
+    parser = argparse.ArgumentParser(
+        description="Salix Update Manager"
+    )
+    parser.add_argument(
+        "--debug",
+        action="store_true",
+        help="Enable debug output (shows detailed logging in console)."
+    )
+
+    args, unknown_args = parser.parse_known_args(argv)
+
+    if args.debug:
+        logging.basicConfig(
+            level=logging.DEBUG,
+            format="%(asctime)s [%(levelname)s] %(message)s",
+            handlers=[logging.StreamHandler()]
+        )
+        logger.debug("Debug mode enabled.")
+
     app = SalixUpdateManager()
     app.window.show()
     Gtk.main()
+
+if __name__ == "__main__":
+    main()
