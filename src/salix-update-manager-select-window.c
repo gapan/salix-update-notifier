@@ -103,7 +103,7 @@ int main(int argc, char *argv[]) {
 
     /* User button */
     app->user_button = gtk_button_new();
-    GtkWidget *user_box = create_button_content(_("User"), "users");
+    GtkWidget *user_box = create_button_content(_("User"), "config-users");
     gtk_container_add(GTK_CONTAINER(app->user_button), user_box);
     gtk_widget_set_size_request(app->user_button, 300, 300);
     g_signal_connect(app->user_button, "clicked", G_CALLBACK(on_user_clicked), NULL);
